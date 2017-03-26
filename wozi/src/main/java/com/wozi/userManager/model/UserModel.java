@@ -2,6 +2,7 @@ package com.wozi.userManager.model;
 
 import com.jfinal.plugin.activerecord.Model;
 
+/**表名:WOZI_USER*/
 public class UserModel extends Model<UserModel>{
 
 	/**
