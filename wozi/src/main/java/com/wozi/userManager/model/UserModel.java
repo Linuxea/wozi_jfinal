@@ -1,4 +1,4 @@
-package userManager.model;
+package com.wozi.userManager.model;
 
 import com.jfinal.plugin.activerecord.Model;
 

@@ -1,4 +1,4 @@
-package wozi_super.com.base;
+package com.wozi.base;
 
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
@@ -10,8 +10,8 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
+import com.wozi.userManager.controller.UserController;
 
-import userManager.controller.UserController;
 
 public class JMainConfig extends JFinalConfig {
 

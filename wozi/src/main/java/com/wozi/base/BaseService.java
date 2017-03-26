@@ -1,4 +1,4 @@
-package wozi_super.com.base;
+package com.wozi.base;
 
 import com.jfinal.plugin.activerecord.Model;
 
