@@ -1,4 +1,4 @@
-package userManager.controller;
+package userManager.model;
 
 import com.jfinal.plugin.activerecord.Model;
 
