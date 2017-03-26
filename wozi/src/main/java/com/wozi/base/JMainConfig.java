@@ -11,7 +11,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.wozi.base.interceptor.GlobalExceptionInterceptor;
-import com.wozi.userManager.controller.UserController;
+import com.wozi.usermanager.controller.UserController;
 
 
 public class JMainConfig extends JFinalConfig {

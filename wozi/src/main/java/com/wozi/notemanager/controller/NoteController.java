@@ -1,4 +1,4 @@
-package com.wozi.noteManager.controller;
+package com.wozi.notemanager.controller;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseController;
-import com.wozi.noteManager.model.NoteModel;
-import com.wozi.noteManager.service.NoteService;
+import com.wozi.notemanager.model.NoteModel;
+import com.wozi.notemanager.service.NoteService;
 
 /**笔记的controller*/
 public class NoteController extends BaseController {

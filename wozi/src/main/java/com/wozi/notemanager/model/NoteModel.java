@@ -1,4 +1,4 @@
-package com.wozi.noteManager.model;
+package com.wozi.notemanager.model;
 
 import com.jfinal.plugin.activerecord.Model;
 

@@ -1,4 +1,4 @@
-package com.wozi.noteManager.service;
+package com.wozi.notemanager.service;
 
 import java.util.List;
 

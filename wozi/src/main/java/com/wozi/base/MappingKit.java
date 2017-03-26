@@ -2,10 +2,10 @@ package com.wozi.base;
 
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.wozi.friendmanager.model.FriendModel;
-import com.wozi.noteManager.model.MenuModel;
-import com.wozi.noteManager.model.NoteModel;
+import com.wozi.notemanager.model.MenuModel;
+import com.wozi.notemanager.model.NoteModel;
 import com.wozi.pointmanager.model.PointModel;
-import com.wozi.userManager.model.UserModel;
+import com.wozi.usermanager.model.UserModel;
 
 public class MappingKit {
 	

@@ -1,4 +1,4 @@
-package com.wozi.noteManager.controller;
+package com.wozi.notemanager.controller;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseController;
-import com.wozi.noteManager.model.MenuModel;
-import com.wozi.noteManager.service.MenuService;
+import com.wozi.notemanager.model.MenuModel;
+import com.wozi.notemanager.service.MenuService;
 
 /**目录的controller*/
 public class MenuController extends BaseController {
@@ -19,8 +19,7 @@ public class MenuController extends BaseController {
 	/**目录的添加*/
 	public void add(){
 		int id = (int) this.service.getId(this.getModel(MenuModel.class),"id");
-		super.maps.put("generatedId", id);
-		this.renderJson(super.maps);
+		this.renderJson("generatedId", id);
 	}
 	
 	/**目录名称的修改*/

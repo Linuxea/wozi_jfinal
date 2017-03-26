@@ -63,3 +63,15 @@ create table WOZI_FRIENDS(
 create_time datetime not null,
 update_time datetime not null
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+drop table if exists wozi_chat_one_to_one;
+create table wozi_chat_one_to_one(
+
+id int(11) primary key auto_increment,
+starter varchar(50) not null comment '谈话发起人',
+ender varchar(50) not null comment '谈话第二人',
+create_time datetime not null,
+content varchar(140) not null
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -1,6 +1,7 @@
 package com.wozi.base;
 
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +13,9 @@ public class BaseController extends Controller{
 	
 	private Logger logger = LoggerFactory.getLogger(BaseController.class);
 	
-	private String currentUserName = null;
+	protected String currentUserName = null;
 	
-	/**用来封装返回map*/
-	public ConcurrentHashMap<String, Object> maps = new ConcurrentHashMap<>();
-	
+	protected Map<String, Object> map = new HashMap<>();
 	public BaseController() {
 		try{
 			if(null == currentUserName){
