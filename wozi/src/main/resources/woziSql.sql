@@ -37,3 +37,15 @@ content text
 
 )
 
+
+
+drop table if exists WOZI_USER_POINT
+
+create table WOZI_USER_POINT(
+id int(11) primary key auto_increment,
+user_id int(11) not null,
+point int(11) not null,
+status int(1)  default 0,#是否当前为黑名单 0不是  1是
+create_time datetime not null,
+update_time datetime not null
+)
