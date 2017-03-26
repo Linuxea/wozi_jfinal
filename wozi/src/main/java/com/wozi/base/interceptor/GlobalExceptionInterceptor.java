@@ -19,12 +19,14 @@ public class GlobalExceptionInterceptor implements Interceptor {
 		try{
 			inv.invoke();
 		}catch(Exception e) {
+			e.printStackTrace();
 			logger.error(e.getMessage());
-		}finally{
 			Controller controller = inv.getController();
 			Map<String, Object> map = new HashMap<>();
 			map.put("errorMsg", "system error!");
 			controller.renderJson(map);
+		}finally{
+			System.out.println("via global Exception Interceptor:"+ this.getClass().getName());
 		}
 	}
 
