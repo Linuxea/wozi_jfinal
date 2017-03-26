@@ -1,8 +1,10 @@
 package com.wozi.base;
 
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.wozi.friendmanager.model.FriendModel;
 import com.wozi.noteManager.model.MenuModel;
 import com.wozi.noteManager.model.NoteModel;
+import com.wozi.pointmanager.model.PointModel;
 import com.wozi.userManager.model.UserModel;
 
 public class MappingKit {
@@ -16,6 +18,12 @@ public class MappingKit {
 		
 		/**笔记的映射表*/
 		arp.addMapping("WOZI_NOTE", "id", NoteModel.class);
+		
+		/**积分映射表*/
+		arp.addMapping("WOZI_USER_POINT", "id", PointModel.class);
+		
+		/**好友关系映射表*/
+		arp.addMapping("WOZI_FRIENDS", "id", FriendModel.class);
 	}
 	
 }
