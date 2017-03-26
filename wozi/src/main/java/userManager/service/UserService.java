@@ -1,5 +1,7 @@
 package userManager.service;
 
-public class UserService {
+import wozi_super.com.base.BaseService;
+
+public class UserService extends BaseService {
 
 }
