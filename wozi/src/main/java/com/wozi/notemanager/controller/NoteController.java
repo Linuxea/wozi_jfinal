@@ -33,7 +33,7 @@ public class NoteController extends BaseController {
 	/**笔记的删除*/
 	public void del() {
 		boolean isSuccess = false;
-		int id = this.getParaToInt("id");
+		int id = this.getParaToInt("currentNoteId");
 		isSuccess = this.service.del(new NoteModel().set("id", id));
 		this.renderJson("isSuccess", isSuccess);
 	}

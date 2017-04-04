@@ -579,15 +579,11 @@
             callback: function(key, options) {
                 var nodeId = $(this).find("i>span").attr("id");
                 $.ajax({
-                	url:"http://192.168.0.102:8080/wozi//note/noteManager_delNodeById",
+                	url: "<%=request.getContextPath()%>/noteController/del",
                 	dataType:"json",
                 	data:{"currentNoteId":nodeId},
                 	success:function(rs){
-                		if(rs.code === '0'){
                 			getNoteListByMenu(currentMenuId);//重新加载日记列表
-                		}else{
-                			alert(rs.desc)
-                		}
                 	}
                 });
             },
