@@ -2,6 +2,8 @@ package com.wozi.usermanager.controller;
 
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.Record;
@@ -21,10 +23,20 @@ public class UserController extends BaseController{
 	/**用户的注册添加*/
 	public void add(){
 		UserModel model = this.getModel(UserModel.class);
-		model.set("create_time", new Date())
+		boolean isOk = this.service.checkNotNull(model);
+		Map<String,Object> resultMap = new HashMap<>();
+		if(!isOk){
+			resultMap.put("code", -1);
+			resultMap.put("msg", "关键字段不能为空!");
+		}else{
+			model.set("create_time", new Date())
 			.set("update_time", new Date());
 		int id = (int) this.service.getId(model,"id");
-		this.renderJson("generatedId", id);
+		resultMap.put("desc", "恭喜！注册成功");
+		resultMap.put("code", 0);
+		resultMap.put("id", id);
+		}
+		this.renderJson(resultMap);
 	}
 	
 	/**用户信息的修改*/

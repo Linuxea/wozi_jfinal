@@ -3,31 +3,31 @@ package com.wozi.base;
 import com.jfinal.plugin.activerecord.Model;
 
 /**curd base service*/
-public class BaseService {
+public class BaseService<T extends Model<?>> {
 	
 	/**model save*/
-	public boolean add(Model<?> model) {
+	public boolean add(T model) {
 		boolean isSuccess = false;
 		isSuccess = model.save();
 		return isSuccess;
 	}
 	
 	/**model del*/
-	public boolean del(Model<?> model) {
+	public boolean del(T model) {
 		boolean isSuccess = false;
 		isSuccess = model.delete();
 		return isSuccess;
 	}
 	
 	/**model update*/
-	public boolean update(Model<?> model) {
+	public boolean update(T model) {
 		boolean isSuccess = false;
 		isSuccess = model.update();
 		return isSuccess;
 	}
 	
 	/**model return newID*/
-	public Object getId(Model<?> model, String idName) {
+	public Object getId(T model, String idName) {
 		model.save();
 		return model.get(idName);
 	}

@@ -279,6 +279,16 @@
 <script type="text/javascript" charset="utf-8" src="../../lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="../../plugins/js/common.js"></script>
 <script>
+
+	var params = window.location.search;
+	var paramObj = handleSearchParams(params);
+	$("button.user-btn").text(paramObj.name);
+	var currentMenuId;//声明一个全局变量来保存每个操作当前目录的Id
+	var menuId;//声明一个全局变量来保存每一个笔记的Id
+	var currentNoteId = "";//保存当前编辑的笔记
+	var id = null;//保存用户的Id
+	
+
 	$("a.navbar-brand").hover(function(){
 		//覆盖掉移动到该文字上面的默认样式
 		$(this).css("color","#fff");
@@ -293,12 +303,6 @@
 	}
 	
 	$(function () {
-		var params = window.location.search;
-		var paramObj = handleSearchParams(params);
-		$("button.user-btn").text(paramObj.name);
-		var currentMenuId;//声明一个全局变量来保存每个操作当前目录的Id
-		var menuId;//声明一个全局变量来保存每一个笔记的Id
-		var currentNoteId = "";//保存当前编辑的笔记
 		//取得用户目录json格式数据
 		getMenu();
 		findNode();
@@ -340,7 +344,7 @@
 	//创建目录节点
 	function createMenuNode(parnetId,newNodeId){
 		$.ajax({
-			url:"<%=request.getContextPath()%>/note/noteManager_ajaxAddMenuNode",
+			url:"<%=request.getContextPath()%>/menuController/add",
 			type:"post",
 			data:{"directMenuParentId":parnetId,"newNodeId":newNodeId},
 			dataType:"json",
@@ -476,12 +480,15 @@
 	
 	function getMenu() {
 		$.ajax({
-			url:"<%=request.getContextPath()%>/note/noteManager_handleNoteMenu",
+			url:"<%=request.getContextPath()%>/menuController/findMenu",
 			dataType:"json",
+			data: {
+				id:id
+			},
 			success:function(rs) {
 				 $('#jstree').jstree({
 				    	"core": {
-				    			"data": rs.data,
+				    			"data": rs,
 				    		  	"check_callback" : true,
 				    		  	//"multiple" : true,
 				    		    //"animation" : 1,

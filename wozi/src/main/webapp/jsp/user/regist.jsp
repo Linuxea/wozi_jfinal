@@ -5,7 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
+	span.necessary{
+		color:red;
+		font-size:14px;
+		font-weight: bold;
+	}
+</style>  
 </head>
 <body>
 <div class="panel panel-default">
@@ -49,17 +56,35 @@
 	<div class="form-group">
 		<label for="firstname" class="col-sm-offset-3 col-sm-2 control-label">名称</label>
 		<div class="col-sm-2">
-			<input type="text" class="form-control" id="" name="userModel.user_name"
-				   placeholder="请输入名字">
+			<input type="text" class="form-control" id="" name="userModel.user_name" placeholder="请输入名字" />
 		</div>
+		<span class="necessary">*</span>
 	</div>
 	<div class="form-group">
 		<label for="EMail" class="col-sm-offset-3 col-sm-2 control-label">邮箱</label>
 		<div class="col-sm-2">
-			<input type="text" class="form-control" id="" name="userModel.email"
-				   placeholder="请输入邮箱">
+			<input type="text" class="form-control" id="" name="userModel.email" placeholder="请输入邮箱"/>
 		</div>
 	</div>
+	
+	<div class="form-group">
+		<label for="age" class="col-sm-offset-3 col-sm-2 control-label">年龄</label> 
+		<div class="col-sm-2">
+			<input type="text" class="form-control" id="" name="userModel.age" placeholder="请输入年龄"/>
+		</div>
+		<span class="necessary">*</span>
+	</div>
+	
+	<div class="form-group">
+		<label for="sex" class="col-sm-offset-3 col-sm-2 control-label">性别</label> 
+		<div class="col-sm-2">
+			<input type="radio" class="" id="" name="userModel.sex" value="boy" checked />boy
+			<input type="radio" class="" id="" name="userModel.sex" value="girl"/>girl
+		</div>
+		<span class="necessary">*</span>
+	</div>
+	
+	
 	<div class="form-group">
 		<label for="password" class="col-sm-offset-3 col-sm-2 control-label">密码</label>
 		<div class="col-sm-2 col">
@@ -67,13 +92,15 @@
 				   placeholder="请输入密码">
 			<span class="help-block">Use at least 6 characters</span>
 		</div>
+		<span class="necessary">*</span>
 	</div>
 	<div class="form-group">
 		<label for="confirmPassword" class="col-sm-offset-3 col-sm-2 control-label">确认密码</label>
 		<div class="col-sm-2 col">
 			<input type="password" class="form-control" id="" name="confirmPassword"
-				   placeholder="请再次输入密码">
+				   placeholder="请再次输入密码" />
 				   <span class="help-block">confirm your password</span>
+				   <span class="necessary">*</span>
 		</div>
 	</div>
 	<div class="form-group">
@@ -88,12 +115,45 @@
 <script src="../../plugins/js/Jquery-Form.js"></script>
 <script>
 	$(document).on("click","#submit",function(){
+		var name = $("input[name='userModel.user_name']").val();
+		var pwd = $("input[name='userModel.user_password']").val();
+		var age = $("input[name='userModel.age']").val();
+		var sex = $("input[name='userModel.sex']").val();
+		var first = $("input[name='userModel.user_password']").val();
+		var second = $("input[name=confirmPassword]").val();
+		
+		if(name===''|| pwd=== '' || age === '' || sex === '' || first === '' || second === ''){
+			if($(".alert").length){
+				$(".alert").remove();
+			}
+			var appendStr = "<div class=\"alert alert-warning\">"+
+			"<a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>"+
+			"<strong>警告！</strong>关键字段不能为空</div>";
+			$(".msg").append(appendStr);
+			return;
+		}
+		
+		if(first!==second){
+			if($(".alert").length){
+				$(".alert").remove();
+			}
+			var appendStr = "<div class=\"alert alert-warning\">"+
+			"<a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>"+
+			"<strong>警告！</strong>密码不一致</div>";
+			$(".msg").append(appendStr);
+			return;
+		}
 		$("#registForm").ajaxSubmit({
 			url:"<%=request.getContextPath() %>/userController/add",
 			dataType:"json",
 			success:function(rs){
 				if(rs.code==="0"){
-					window.location.href="../jsp/note/myNote.html?name=" + rs.data;
+					var appendStr = "<div class=\"alert alert-success\">"+
+					"<a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>"+
+					"<strong></strong>"+ 
+					rs.desc +
+					"</div>";
+					$(".msg").append(appendStr);
 				}else{
 					if($(".alert").length){
 						$(".alert").remove();
