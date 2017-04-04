@@ -12,6 +12,7 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.wozi.base.interceptor.GlobalExceptionInterceptor;
 import com.wozi.notemanager.controller.MenuController;
+import com.wozi.notemanager.controller.NoteController;
 import com.wozi.usermanager.controller.UserController;
 
 
@@ -27,6 +28,7 @@ public class JMainConfig extends JFinalConfig {
 	public void configRoute(Routes me) {
 		me.add("userController", UserController.class);
 		me.add("menuController", MenuController.class);
+		me.add("noteController", NoteController.class);
 	}
 
 

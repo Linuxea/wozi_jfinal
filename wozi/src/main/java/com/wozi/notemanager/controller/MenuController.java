@@ -53,6 +53,22 @@ public class MenuController extends BaseController {
 		this.renderJson("isSuccess", isSuccess);
 	}
 	
+	/**目录重新命名*/
+	public void reName(){
+		int id = 1;
+		String currentMenuNodeId  = this.getPara("currentMenuNodeId");
+		String newTextName = this.getPara("newTextName");
+		this.service.reName(currentMenuNodeId, newTextName, id);
+		this.renderJson("msg","rename ok！");
+	}
+	
+	/**列出某目录下的所有笔记*/
+	public void listNote(){
+		String id = this.getPara("currentMenuNodeId");
+		//需要用户的Id
+		int user_id = 1;
+		this.renderJson(this.service.findNode(id,user_id));
+	}
 	
 
 }

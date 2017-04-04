@@ -317,26 +317,24 @@
 	//点击目录获取该目录下的笔记列表
 	function getNoteListByMenu(menuId) {
 		$.ajax({
-			url:"<%=request.getContextPath()%>/note/noteManager_listNoteByDirectMenuId",
+			url:"<%=request.getContextPath()%>/menuController/listNote",
 			data:{
 				"currentMenuNodeId":menuId,
 			},
 			success:function(rs){
-				if(rs.code === "0"){
 					var divs = $("#menu_list>div");
 					if(divs.length>0){
 						divs.remove();
-				}
-					var list =rs.data;
+					}
 					var strLine = "";
-					$.each(list, function(i,c){
-						var time = c.uploadTime;
-						time = time.replace("T"," ");
-						strLine+='<div><i><span id='+c.id+' class="glyphicon glyphicon-list-alt">&nbsp;</span></i><span>'+c.title.substring(0,18)+'...</span><span style="display:block;color:#8c8c8c;margin-top: 4px;font-size: 12px;line-height: 1.35;">'+time+'</span></div>';
+					$.each(rs, function(i,c){
+						console.log("fuck");
+						console.log(c);
+						var time = c.create_time;//
+						strLine+='<div><i><span id='+c.id+' class="glyphicon glyphicon-list-alt">&nbsp;</span></i><span>'+c.title+'...</span><span style="display:block;color:#8c8c8c;margin-top: 4px;font-size: 12px;line-height: 1.35;">'+time+'</span></div>';
 					});
 					$("#menu_list").append(strLine);
 					addNoteHover();
-				}
 			}
 		});
 	}
@@ -367,7 +365,7 @@
 			currentMenuId = currentMenuId[0];
 		}
 		$.ajax({
-			url:"<%=request.getContextPath()%>/note/noteManager_reNameMenuNode",
+			url:"<%=request.getContextPath()%>/menuController/reName",
 			dataType:"json",
 			data:{
 				"currentMenuNodeId":currentMenuId,//currentMenuNodeId
@@ -453,20 +451,20 @@
 		//alert($(this).find("span").attr("id"));
 		currentNoteId = $(this).find("span").attr("id");
 		$.ajax({
-			url:"<%=request.getContextPath()%>/note/noteManager_ajaxGetNode",
+			url:"<%=request.getContextPath()%>/noteController/find",
 			dataType:"json",
 			data:{
 				"currentNoteId":$(this).find("span").attr("id"),
 			},
 			success:function(rs){
-				if(rs.code === "0"){
+				console.log("over");
+				console.log(rs);
 					initUE(function(){
 						UE.getEditor('editor').setEnabled();
 						UE.getEditor('editor').setContent("");
-						UE.getEditor('editor').execCommand('insertHtml', rs.data.content);
-						$(".note-title").val(rs.data.title);
+						UE.getEditor('editor').execCommand('insertHtml', rs.content);
+						$(".note-title").val(rs.title);
 					});
-				}
 			}
 		});
 	});

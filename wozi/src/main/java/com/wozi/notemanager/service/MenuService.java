@@ -15,4 +15,18 @@ public class MenuService extends BaseService<MenuModel> {
 		return Db.find(sql, id);
 	}
 
+	public void reName(String currentMenuNodeId, String newTextName,int userId) {
+		String upDateSql = "update wozi_menu set text = ? "
+				+ " where id = ? "
+				+ " and user_id = ?";
+		Db.update(upDateSql, newTextName, currentMenuNodeId, userId);
+	}
+
+	public List<Record> findNode(String id, int user_id) {
+		String querySql = "select * from wozi_note "
+				+ " where user_id = ?"
+				+ " and menu_id = ?";
+		return Db.find(querySql, user_id, id);
+	}
+
 }

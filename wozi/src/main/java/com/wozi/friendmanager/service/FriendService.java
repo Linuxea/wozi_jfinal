@@ -6,8 +6,9 @@ import java.util.Objects;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.wozi.base.BaseService;
+import com.wozi.friendmanager.model.FriendModel;
 
-public class FriendService  extends BaseService{
+public class FriendService  extends BaseService<FriendModel>{
 
 	public List<Record> findFriends(int sex, int age, String orderBy) {
 		String sql = "select * from WOZI_USER where 1=1 ";

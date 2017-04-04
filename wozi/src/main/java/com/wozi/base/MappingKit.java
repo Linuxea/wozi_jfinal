@@ -14,7 +14,7 @@ public class MappingKit {
 		arp.addMapping("WOZI_USER","id", UserModel.class);
 		
 		/**目录的映射表*/
-		arp.addMapping("WOZI_MENU", "id", MenuModel.class);
+		arp.addMapping("WOZI_MENU", "tb_id", MenuModel.class);
 		
 		/**笔记的映射表*/
 		arp.addMapping("WOZI_NOTE", "id", NoteModel.class);

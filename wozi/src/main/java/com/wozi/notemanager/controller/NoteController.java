@@ -1,10 +1,7 @@
 package com.wozi.notemanager.controller;
 
-import java.util.List;
 
 import com.jfinal.aop.Duang;
-import com.jfinal.plugin.activerecord.Model;
-import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseController;
 import com.wozi.notemanager.model.NoteModel;
@@ -28,7 +25,7 @@ public class NoteController extends BaseController {
 	/**笔记的修改*/
 	public void edit(){
 		boolean isSuccess = false;
-		Model<NoteModel> model = this.getModel(NoteModel.class);
+		NoteModel model = this.getModel(NoteModel.class);
 		isSuccess = this.service.update(model);
 		this.renderJson("isSuccess", isSuccess);
 	}
@@ -43,9 +40,8 @@ public class NoteController extends BaseController {
 	
 	/**点击目录查找笔记*/
 	public void find(){
-		int id = this.getParaToInt("id");
-		List<Record> rs = this.service.findNote(id);
-		this.renderJson("noteList", rs);
+		int id = this.getParaToInt("currentNoteId");
+		this.renderJson(this.service.findNote(id));
 	}
 	
 

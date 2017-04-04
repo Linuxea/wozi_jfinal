@@ -75,3 +75,47 @@ ender varchar(50) not null comment '谈话第二人',
 create_time datetime not null,
 content varchar(140) not null
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+
+drop table if exists wozi_menu
+
+CREATE TABLE `wozi_menu` (
+`tb_id`  int(11) not null auto_increment,
+`id`  varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+`parent`  varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+`text`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+`create_time`  datetime NOT NULL ,
+`update_time`  datetime NOT NULL ,
+`user_id`  int(11) NOT NULL ,
+PRIMARY KEY (`tb_id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+ROW_FORMAT=COMPACT
+;
+
+
+
+CREATE TABLE `wozi_note` (
+`id`  int(11) NOT NULL AUTO_INCREMENT ,
+`name`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+`create_time`  datetime NOT NULL ,
+`update_time`  datetime NOT NULL ,
+`menu_id`  int(11) NOT NULL ,
+`title`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+`content`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`user_id`  int(11) NULL DEFAULT NULL ,
+PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=1
+ROW_FORMAT=COMPACT
+;
+
+
+
+

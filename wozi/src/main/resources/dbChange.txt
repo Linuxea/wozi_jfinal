@@ -1,0 +1,17 @@
+drop table if exists wozi_menu
+
+CREATE TABLE `wozi_menu` (
+`tb_id`  int(11) not null auto_increment,
+`id`  varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+`parent`  varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+`text`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+`create_time`  datetime NOT NULL ,
+`update_time`  datetime NOT NULL ,
+`user_id`  int(11) NOT NULL ,
+PRIMARY KEY (`tb_id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+ROW_FORMAT=COMPACT
+;
+
