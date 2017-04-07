@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="false" scanPeriod="60 seconds" debug="false">
-    <property name="LOG_HOME" value="/usr/local/apache-tomcat-7.0.72/logs" />
-    <property name="appName" value="choice-BC"></property>
+<configuration scan="false" scanPeriod="60 seconds" debug="true">
+    <property name="LOG_HOME" value="C:/Users/linuxea.lin/Desktop/log/" /><!-- 这里改为需要的存放日志的地址 -->
+    <property name="appName" value="wozi"></property>
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <Encoding>UTF-8</Encoding>
         <layout class="ch.qos.logback.classic.PatternLayout">
@@ -11,9 +11,8 @@
 
     <appender name="appLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <Encoding>UTF-8</Encoding>
-        <file>${LOG_HOME}/${appName}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME}/${appName}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/${appName}/${appName}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
             <MaxHistory>365</MaxHistory>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>100MB</maxFileSize>
