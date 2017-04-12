@@ -286,7 +286,7 @@
 <script>
 
 	var params = window.location.search;
-	var paramObj = handleSearchParams(params);
+// 	var paramObj = handleSearchParams(params);
 	var currentMenuId;//声明一个全局变量来保存每个操作当前目录的Id
 	var menuId;//声明一个全局变量来保存每一个笔记的Id
 	var currentNoteId = "";//保存当前编辑的笔记

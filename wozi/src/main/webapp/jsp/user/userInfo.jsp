@@ -29,11 +29,6 @@
     <div class="navbar-header">
         <a class="navbar-brand"><span class="glyphicon glyphicon-book" style="color:#fff;">&nbsp;</span><strong>我知笔记个人信息</strong></a>
     </div>
-     <div class="nav navbar-nav navbar-right">
-        	 <button type="button" class="btn btn-default navbar-btn user-btn">
-        	 返回
-         	</button>
-        </div>
     </div>
 </nav>
 
@@ -46,7 +41,7 @@
 	<div class="form-group">
 		<label class="col-sm-2 control-label">用户名</label>
 		<div class="col-sm-10">
-			<input class="form-control" id="" type="text" disabled>
+			<input class="form-control" id="user_name" type="text" disabled>
 		</div>
 	</div>
 	
@@ -55,7 +50,7 @@
 			旧密码
 		</label>
 		<div class="col-sm-10">
-			<input class="form-control" id="" type="text">
+			<input class="form-control" id="oldPwd" type="text" disabled>
 		</div>
 	</div>
 	
@@ -64,7 +59,7 @@
 			新密码
 		</label>
 		<div class="col-sm-10">
-			<input class="form-control" id="" type="text" placeholder="">
+			<input class="form-control" id="newPwd" type="text" placeholder="如果需要,请在此处输入新密码">
 		</div>
 	</div>
 	
@@ -73,7 +68,7 @@
 			年龄
 		</label>
 		<div class="col-sm-10">
-			<input class="form-control" id="" type="text">
+			<input class="form-control" id="age" type="text">
 		</div>
 	</div>
 	
@@ -82,7 +77,7 @@
 			邮箱
 		</label>
 		<div class="col-sm-10">
-			<input class="form-control" id="" type="text">
+			<input class="form-control" id="email" type="text">
 		</div>
 	</div>
 	
@@ -95,48 +90,119 @@
 <!-- 			</div> -->
 <!-- 		</div> -->
 		<div class="form-group">
-			<label for=""  class="col-sm-2 control-label">性别
+			<label for="sex"  class="col-sm-2 control-label">性别
 			</label>
 			<div class="col-sm-10">
-				<select id="" class="form-control">
-					<option>boy</option>
-					<option>girl</option>
+				<select id="sex" class="form-control">
+					<option value="boy">boy</option>
+					<option value="girl">girl</option>
 				</select>
 			</div>
 		</div>
 	</fieldset>
 	
 	<div class="form-group">
+		<label for="" class="col-sm-2 control-label">
+			个人介绍
+		</label>
+		<div class="col-sm-10 input-group-lg">
+			<input class="form-control" id="intro" type="text">
+		</div>
+	</div>
+	
+	<div class="form-group">
 		<label class="col-sm-2 control-label">账户创建时间</label>
 		<div class="col-sm-10">
-			<input class="form-control" id="" type="text" disabled>
+			<input class="form-control" id="create_time" type="text" disabled>
 		</div>
 	</div>
 	
 	<div class="form-group">
 		<label class="col-sm-2 control-label">账户最后修改时间</label>
 		<div class="col-sm-10">
-			<input class="form-control" id="" type="text" disabled>
+			<input class="form-control" id="update_time" type="text" disabled>
 		</div>
 	</div>
 	
 	<div class="form-group">
 		<label class="col-sm-2 control-label"></label>
 		<div class="col-sm-5">
-			<button type="button" class="btn btn-info">返回</button>
+			<button type="button" class="btn btn-info" id="back">返回</button>
 		</div>
 		
 		<div class="col-sm-5">
-		<button type="button" class="btn btn-info">确认修改</button>
+		<button type="button" class="btn btn-info" id="update">确认修改</button>
 		</div>
 	</div>
 	
 	
 </form>
-
 </div>
 
+<script>
+var id = null;//保存用户id
 
+$(function(){
+	init();
+	getUser();
+});
 
+function init(){
+	$("#update").on("click", function(){
+		updateInfo();
+	});
+	
+	$("#back").on("click",function(){
+		window.location.href="<%=request.getContextPath()%>/jsp/note/MyNote.jsp";
+	});
+}
+
+function getUser(){
+	$.ajax({
+     	url: "<%=request.getContextPath()%>/userController/getCurrentName",
+     	dataType:"json",
+     	success:function(rs){
+     		$("#user_name").val(rs.user_name);
+     		$("#age").val(rs.age);
+     		$("#oldPwd").val(rs.user_password);
+			$("#create_time").val(rs.create_time);
+			$("#update_time").val(rs.update_time)
+			$("#email").val(rs.email);
+			$("#intro").val(rs.intro);
+			id = rs.id;
+			if(rs.sex ==="boy"){
+				$("#sex>option:eq(0)").prop("selected", true);
+			}else{
+				$("#sex>option:eq(1)").prop("selected", true);
+			}
+     	}
+     });
+}
+
+function updateInfo(){
+	$.ajax({
+     	url: "<%=request.getContextPath()%>/userController/update",
+     	dataType:"json",
+     	data: {
+     		age : $("#age").val(),
+			user_password : $("#newPwd").val(),
+			email :  $("#email").val(),
+			sex :  $("#sex>option:selected").val(),
+			intro:$("#intro").val(),
+     		id: id,
+     	},
+     	success:function(rs){
+     		if(rs.isSuccess){
+     			getUser();
+     			
+     		}else{
+     			alert("systemerror!");
+     		}
+     	}
+     });
+	
+}
+
+</script>
 </body>
 </html>

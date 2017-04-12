@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -43,9 +45,19 @@ public class UserController extends BaseController{
 	
 	/**用户信息的修改*/
 	public void update() {
-		UserModel model = this.getModel(UserModel.class);
+		UserModel um = new UserModel();//自己封装 :(
+		um.set("age", this.getPara("age"))
+			.set("email", this.getPara("email"))
+			.set("sex", this.getPara("sex"))
+			.set("intro", this.getPara("intro"))
+			.set("id", this.getParaToInt("id"))
+			.set("update_time", new Date());
+		if(StringUtils.isNotEmpty(this.getPara("user_password"))){
+			//表示有新的密码
+			um.set("user_password", this.getPara("user_password"));
+		}
 		boolean isSuccess = false;
-		isSuccess = this.service.update(model);
+		isSuccess = this.service.update(um);
 		this.renderJson("isSuccess", isSuccess);
 	}
 	
