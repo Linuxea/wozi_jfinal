@@ -11,11 +11,10 @@ public class LoginInterceptor implements Interceptor {
 	public void intercept(Invocation inv) {
 		Controller controller = inv.getController();
 		StringBuffer sb = controller.getRequest().getRequestURL();
-		//http://localhost:8080/wozi/userController/login
 		if(!sb.toString().endsWith("login")){
 			if( null ==  controller.getSession().getAttribute("UID") ){
 				//表示没登录 跳转到登录页面
-				controller.renderJsp("/jsp/user/login.jsp");
+				controller.render("/jsp/user/login.jsp");
 			}else{
 				System.out.println("通过登录拦截");
 				inv.invoke();
