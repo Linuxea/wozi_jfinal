@@ -396,8 +396,8 @@
 					alert("删除成功!共删除了该目录下"+rs.impact+"条日记");
 				}else{
 					alert(rs.msg);
-					location.reload();
 				}
+				location.reload();
 			},
 			fail:function(){
 				
