@@ -20,15 +20,29 @@ public class NoteService extends BaseService<NoteModel>{
 	
 	/**笔记的创建或更新*/
 	public boolean add(NoteVO rs) {
-		NoteModel nm = new NoteModel();
-		nm.set("create_time", new Date())
-		.set("update_time", new Date())
-		.set("menu_id", rs.getRefMenu() )
-		.set("title", rs.getTitle())
-		.set("content", rs.getContent())
-		.set("name", rs.getTitle())
-		.set("user_id", 1);
-		return super.add(nm);
+		//通过id值来判断
+		if(null!=rs.getId()){
+			NoteModel nm = new NoteModel();
+			nm.set("create_time", new Date())
+			.set("id", rs.getId())
+			.set("update_time", new Date())
+			.set("menu_id", rs.getRefMenu() )
+			.set("title", rs.getTitle())
+			.set("content", rs.getContent())
+			.set("name", rs.getTitle())
+			.set("user_id", 1);
+			return super.update(nm);
+		}else{
+			NoteModel nm = new NoteModel();
+			nm.set("create_time", new Date())
+			.set("update_time", new Date())
+			.set("menu_id", rs.getRefMenu() )
+			.set("title", rs.getTitle())
+			.set("content", rs.getContent())
+			.set("name", rs.getTitle())
+			.set("user_id", 1);
+			return super.add(nm);
+		}
 	}
 
 }
