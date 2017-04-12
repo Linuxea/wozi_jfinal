@@ -68,4 +68,12 @@ public class UserController extends BaseController{
 	}
 	
 	/**不提供用户注销*/
+	
+	
+	/**返回当前登录人名称*/
+	public void getCurrentName(){
+		int userId = (int) this.getSession().getAttribute("UID");
+		Record rs = this.service.findUser(userId);
+		this.renderJson(rs);
+	}
 }

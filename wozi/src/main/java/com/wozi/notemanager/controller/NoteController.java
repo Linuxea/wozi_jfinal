@@ -22,10 +22,11 @@ public class NoteController extends BaseController {
 	
 	/**笔记的创建  前端传来所在目录的id*/
 	public void add(){
+		int userId = (int) this.getSession().getAttribute("UID");
 		//tbWoZiNotePOStr
 		String tbWoZiNotePOStr = this.getPara("tbWoZiNotePOStr");
 		NoteVO rs = JSONObject.parseObject(tbWoZiNotePOStr, NoteVO.class);
-		boolean isSuccess  = this.service.add(rs);
+		boolean isSuccess  = this.service.add(rs, userId);
 		this.renderJson("isSuccess", isSuccess);
 	}
 	

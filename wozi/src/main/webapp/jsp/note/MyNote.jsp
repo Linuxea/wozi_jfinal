@@ -287,7 +287,6 @@
 
 	var params = window.location.search;
 	var paramObj = handleSearchParams(params);
-	$("button.user-btn").text(paramObj.name);
 	var currentMenuId;//声明一个全局变量来保存每个操作当前目录的Id
 	var menuId;//声明一个全局变量来保存每一个笔记的Id
 	var currentNoteId = "";//保存当前编辑的笔记
@@ -313,6 +312,7 @@
 		findNode();
 		addDel();
 		initSearch();//搜索功能
+		getCurrentName();
 	  });
 	
 	//点击用户名称跳转到用户信息详情页面
@@ -620,6 +620,17 @@
 	         	}
 	         });
 		});
+	}
+	
+	function getCurrentName(){
+		$.ajax({
+         	url: "<%=request.getContextPath()%>/userController/getCurrentName",
+         	dataType:"json",
+         	success:function(rs){
+         		//将当前登录人名称
+         		$(".user-btn").text(rs.user_name);
+         	}
+         });
 	}
 	
 	

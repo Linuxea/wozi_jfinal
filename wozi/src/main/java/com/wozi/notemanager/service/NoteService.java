@@ -21,7 +21,7 @@ public class NoteService extends BaseService<NoteModel>{
 
 	
 	/**笔记的创建或更新*/
-	public boolean add(NoteVO rs) {
+	public boolean add(NoteVO rs, int userId) {
 		//通过id值来判断
 		if(StringUtils.isNotEmpty(rs.getId())){
 			NoteModel nm = new NoteModel();
@@ -32,7 +32,7 @@ public class NoteService extends BaseService<NoteModel>{
 			.set("title", rs.getTitle())
 			.set("content", rs.getContent())
 			.set("name", rs.getTitle())
-			.set("user_id", 1);
+			.set("user_id", userId);
 			return super.update(nm);
 		}else{
 			NoteModel nm = new NoteModel();
@@ -42,7 +42,7 @@ public class NoteService extends BaseService<NoteModel>{
 			.set("title", rs.getTitle())
 			.set("content", rs.getContent())
 			.set("name", rs.getTitle())
-			.set("user_id", 1);
+			.set("user_id", userId);
 			return super.add(nm);
 		}
 	}

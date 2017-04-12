@@ -44,4 +44,10 @@ public class UserService extends BaseService<Model> {
 		super.add(mm);
 	}
 
+	//返回当前登录人的所有信息
+	public Record findUser(int userId) {
+		String querySql = "select * from wozi_user where id = ?";
+		return Db.findFirst(querySql, userId);
+	}
+
 }
