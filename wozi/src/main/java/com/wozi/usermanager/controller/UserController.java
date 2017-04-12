@@ -32,6 +32,8 @@ public class UserController extends BaseController{
 			model.set("create_time", new Date())
 			.set("update_time", new Date());
 		int id = (int) this.service.getId(model,"id");
+		//注册成功新目录一个root根目录
+		this.service.newRoot(id);
 		resultMap.put("desc", "恭喜！注册成功");
 		resultMap.put("code", 0);
 		resultMap.put("id", id);

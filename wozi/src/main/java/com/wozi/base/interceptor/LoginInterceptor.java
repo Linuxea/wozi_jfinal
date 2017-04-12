@@ -11,7 +11,9 @@ public class LoginInterceptor implements Interceptor {
 	public void intercept(Invocation inv) {
 		Controller controller = inv.getController();
 		StringBuffer sb = controller.getRequest().getRequestURL();
-		if(!sb.toString().endsWith("login")){
+		if(sb.toString().endsWith("userController/login") || sb.toString().endsWith("userController/add")){
+			inv.invoke();
+		}else{
 			if( null ==  controller.getSession().getAttribute("UID") ){
 				//表示没登录 跳转到登录页面
 				controller.render("/jsp/user/login.jsp");
@@ -19,8 +21,6 @@ public class LoginInterceptor implements Interceptor {
 				System.out.println("通过登录拦截");
 				inv.invoke();
 			}
-		}else{
-			inv.invoke();
 		}
 	}
 

@@ -53,7 +53,7 @@ public class MenuController extends BaseController {
 	
 	/**目录的删除与该目录下所有笔记的删除*/
 	public void del() {
-		int userId = 1;
+		int userId = (int) this.getSession().getAttribute("UID");
 		String menuId = this.getPara("currentMenuNodeId");
 		/**目录的删除检查 根目录不能删除,有子目录的不能删除*/
 		Map<String, Object> checkMap = this.service.checkMenu(menuId, userId);
@@ -73,7 +73,7 @@ public class MenuController extends BaseController {
 	
 	/**目录重新命名*/
 	public void reName(){
-		int id = 1;
+		int id = (int) this.getSession().getAttribute("UID");
 		String currentMenuNodeId  = this.getPara("currentMenuNodeId");
 		String newTextName = this.getPara("newTextName");
 		this.service.reName(currentMenuNodeId, newTextName, id);
@@ -84,9 +84,10 @@ public class MenuController extends BaseController {
 	public void listNote(){
 		String id = this.getPara("currentMenuNodeId");
 		//需要用户的Id
-		int user_id = 1;
+		int user_id = (int) this.getSession().getAttribute("UID");
 		this.renderJson(this.service.findNode(id,user_id));
 	}
+	
 	
 
 }

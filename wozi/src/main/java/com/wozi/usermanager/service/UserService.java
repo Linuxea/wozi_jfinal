@@ -1,14 +1,18 @@
 package com.wozi.usermanager.service;
 
 
+import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Record;
 import com.wozi.base.BaseService;
+import com.wozi.notemanager.model.MenuModel;
 import com.wozi.usermanager.model.UserModel;
 
-public class UserService extends BaseService<UserModel> {
+public class UserService extends BaseService<Model> {
 
 	/**用户存在返回true,否则返回fasle*/
 	public Record login(String userName, String pwd) {
@@ -27,6 +31,17 @@ public class UserService extends BaseService<UserModel> {
 		}
 			
 		return true;
+	}
+
+	public void newRoot(int id) {
+		MenuModel mm = new MenuModel();
+		mm.set("id", "j1.0")
+			.set("parent", "#")
+			.set("text", "root")
+			.set("create_time", new Date())
+			.set("update_time", new Date())
+			.set("user_id", id);
+		super.add(mm);
 	}
 
 }
