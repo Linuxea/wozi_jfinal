@@ -13,8 +13,8 @@ public class NoteSearchService extends BaseService<NoteModel>{
 		String queryNoteSql = "select * from wozi_note "
 				+ " where user_id = ? "
 				+ " and "
-				+ " title like "+ "'%"+titleOrContent+"%'"+""
-				+ " or content like "+"'%"+titleOrContent+"%'";
+				+ " title like "+ "'%"+titleOrContent+"%'";
+//				+ " or content like "+"'%"+titleOrContent+"%'";
 		return 
 				Db.find(queryNoteSql,userId);
 		

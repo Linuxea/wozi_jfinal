@@ -353,11 +353,7 @@
 			data:{"directMenuParentId":parnetId,"newNodeId":newNodeId},
 			dataType:"json",
 			success:function(rs){
-				if(rs.code ==="0"){
-					console.log(rs.desc);
-				}else{
-					console.log(rs.desc);
-				}
+				//成功
 			},
 			fail:function(){
 				console.log("error..");
@@ -417,7 +413,6 @@
 		if(typeof currentMenuId ==="undefined"){
 			alert("请选择目录");
 		}else {
-			console.log("创建笔记成功" + currentMenuId);
 			var str = '<div><i><span class="glyphicon glyphicon-list-alt">&nbsp;</span></i><span>标题1</span><span style="display:block;color:#8c8c8c;margin-top: 4px;font-size: 12px;line-height: 1.35;">时间标签</span></div>';
 			$("#menu_list").prepend(str);
 			$("#menu_list>div:eq(0)").css("height","0").css("background","#fff").animate({height:"81px"}, 500 ,"swing",function(){
@@ -431,6 +426,7 @@
 	
 	$(document).on("click",".note-save", function(){
 		var htmlContent = UE.getEditor('editor').getAllHtml();
+		
 		var tbWoZiNotePO = {};
 		tbWoZiNotePO.content = htmlContent;
 		tbWoZiNotePO.id = currentNoteId;
@@ -466,13 +462,15 @@
 				"currentNoteId":$(this).find("span").attr("id"),
 			},
 			success:function(rs){
-				console.log("over");
-				console.log(rs);
 					initUE(function(){
 						UE.getEditor('editor').setEnabled();
 						UE.getEditor('editor').setContent("");
 						UE.getEditor('editor').execCommand('insertHtml', rs.content);
 						$(".note-title").val(rs.title);
+						
+						//当前目录的改变
+						menuId = rs.menu_id;
+						currentNoteId = rs.id;
 					});
 			}
 		});
@@ -605,6 +603,7 @@
 	
 	function initSearch(){
 		$(".searchMirror ").on("click", function(){
+			alert("search ing....");
 			$.ajax({
 	         	url: "<%=request.getContextPath()%>/noteSearchController/search",
 	         	dataType:"json",
