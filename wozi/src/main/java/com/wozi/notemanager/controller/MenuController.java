@@ -54,6 +54,12 @@ public class MenuController extends BaseController {
 	public void del() {
 		int userId = 1;
 		String menuId = this.getPara("currentMenuNodeId");
+		/**目录的删除检查 根目录不能删除,有子目录的不能删除*/
+		Map<String, Object> checkMap = this.service.checkMenu(menuId, userId);
+		if(!((Boolean)checkMap.get("isSuccess"))){
+			this.renderJson(checkMap);
+			return;
+		}
 		//删除目录
 		boolean isSuccess = this.service.delMenu(menuId, userId);
 		//删除该目录下的笔记
