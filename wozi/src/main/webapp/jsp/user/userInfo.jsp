@@ -194,7 +194,7 @@ function updateInfo(){
      	success:function(rs){
      		if(rs.isSuccess){
      			getUser();
-     			
+     			$("#newPwd").val("");
      		}else{
      			alert("systemerror!");
      		}
