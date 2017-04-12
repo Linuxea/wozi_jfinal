@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>我的笔记首页</title>
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 	<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 	<!-- jqContext begin -->
@@ -317,7 +317,7 @@
 	
 	//点击用户名称跳转到用户信息详情页面
 	$(document).on("click","button.user-btn", function(){
-		window.location.href = "../userManager/userInfo.jsp";
+		window.location.href = "<%=request.getContextPath()%>/jsp/user/userInfo.jsp";
 	});
 	
 	//点击目录获取该目录下的笔记列表
