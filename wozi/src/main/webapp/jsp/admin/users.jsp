@@ -27,7 +27,7 @@
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid"> 
     <div class="navbar-header">
-        <a class="navbar-brand"><span class="glyphicon glyphicon-book" style="color:#fff;">&nbsp;</span><strong>留言中心</strong></a>
+        <a class="navbar-brand"><span class="glyphicon glyphicon-book" style="color:#fff;">&nbsp;</span><strong>用户信息中心</strong></a>
     </div>
     
     </div>
@@ -84,11 +84,15 @@
 			     			str +="</tr>";
 			     		}
 			     		$("#msgBody").append(str);
+			     		funs.detail();
 			     	}
 			     });
 			},
 			detail: function(){
-				
+				$("#msgBody>tr").on("click", function(){
+					var id = $(this).find("td:eq(6)").text();
+					window.location.href="detail.jsp?id="+id;
+				});
 			},
 			
 			

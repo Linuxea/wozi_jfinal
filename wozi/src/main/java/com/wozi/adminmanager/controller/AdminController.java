@@ -29,4 +29,12 @@ public class AdminController extends BaseController {
 		List<Record> rs = this.service.listUser();
 		this.renderJson(rs);
 	}
+	
+	//返回某个人的全部信息
+	public void getDetail(){
+		int id = this.getParaToInt("id");
+		Record rs = this.service.getDetail(id);
+		this.renderJson(rs);
+	}
+	
 }

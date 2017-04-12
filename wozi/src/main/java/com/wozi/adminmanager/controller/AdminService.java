@@ -35,8 +35,13 @@ public class AdminService extends BaseService<Model<?>> {
 
 	public List<Record> listUser() {
 		//数据量少
-		String sql = "select * from wozi_user";
+		String sql = "select * from wozi_user order by update_time desc";
 		return Db.find(sql);
+	}
+
+	public Record getDetail(int id) {
+		String sql = "select * from wozi_user where id = ?";
+		return Db.findFirst(sql, id);
 	}
 	
 }
