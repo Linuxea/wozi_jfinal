@@ -14,6 +14,7 @@ import com.wozi.base.interceptor.GlobalExceptionInterceptor;
 import com.wozi.friendmanager.controller.FriendController;
 import com.wozi.notemanager.controller.MenuController;
 import com.wozi.notemanager.controller.NoteController;
+import com.wozi.searchManager.controller.NoteSearchController;
 import com.wozi.usermanager.controller.UserController;
 
 
@@ -22,7 +23,7 @@ public class JMainConfig extends JFinalConfig {
 	@Override
 	public void configConstant(Constants me) {
 		PropKit.use("db_config.properties");
-		me.setDevMode(PropKit.getBoolean("devMode", PropKit.getBoolean("devMode")));		
+		me.setDevMode(PropKit.getBoolean("devMode", PropKit.getBoolean("devMode")));
 	}
 
 	@Override
@@ -31,6 +32,7 @@ public class JMainConfig extends JFinalConfig {
 		me.add("menuController", MenuController.class);
 		me.add("noteController", NoteController.class);
 		me.add("friendController", FriendController.class);
+		me.add("noteSearchController", NoteSearchController.class);
 	}
 
 
@@ -43,6 +45,8 @@ public class JMainConfig extends JFinalConfig {
 		
 		// 配置ActiveRecord插件
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(druidPlugin);
+		//show sql true
+		arp.setShowSql(true);
 		// 所有映射在 MappingKit 中自动化搞定
 		MappingKit.mapping(arp);
 		me.add(arp);		

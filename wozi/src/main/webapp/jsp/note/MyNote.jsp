@@ -93,6 +93,11 @@
 		top: 7px;
     	padding-left: 5px;
 	}
+	
+	.searchMirror:hover{
+		background:gray;
+	}
+	
 	/*笔记目录*/
 	.note-menu {
     	width: 15%;
@@ -213,7 +218,7 @@
             	<div class="form-group">
                		<input type="text" class="zu-top-search-input" id="q" name="q" autocomplete="off" value="" maxlength="100" placeholder="搜索你的笔记..." role="combobox" aria-autocomplete="list">
             	</div>
-            		<span class="searchMirror glyphicon glyphicon-zoom-in" style="color: rgb(255, 255, 255);font-size: 20px;background:#337ab7;"></span>
+            		<span class="searchMirror glyphicon glyphicon-zoom-in" style="color: rgb(255, 255, 255);font-size: 20px;background:#337ab7;">S</span>
         	</form>
     	</div>
         <!--向右对齐-->
@@ -307,6 +312,7 @@
 		getMenu();
 		findNode();
 		addDel();
+		initSearch();//搜索功能
 	  });
 	
 	//点击用户名称跳转到用户信息详情页面
@@ -430,6 +436,8 @@
 		tbWoZiNotePO.id = currentNoteId;
 		tbWoZiNotePO.refMenu = menuId;
 		tbWoZiNotePO.title = $("input.note-title").val();
+		
+		//有bug 
 		$.ajax({
 			url:"<%=request.getContextPath()%>/noteController/add",
 			type:"post",
@@ -593,6 +601,33 @@
             }
         });
 	}
+	
+	
+	function initSearch(){
+		$(".searchMirror ").on("click", function(){
+			$.ajax({
+	         	url: "<%=request.getContextPath()%>/noteSearchController/search",
+	         	dataType:"json",
+	         	data:{"titleOrContent": $("#q").val(),},
+	         	success:function(rs){
+	         		var divs = $("#menu_list>div");
+					if(divs.length>0){
+						divs.remove();
+					}
+					var strLine = "";
+					$.each(rs, function(i,c){
+						console.log(c);
+						var time = c.create_time;//
+						strLine+='<div><i><span id='+c.id+' class="glyphicon glyphicon-list-alt">&nbsp;</span></i><span>'+c.title+'...</span><span style="display:block;color:#8c8c8c;margin-top: 4px;font-size: 12px;line-height: 1.35;">'+time+'</span></div>';
+					});
+					$("#menu_list").append(strLine);
+					addNoteHover();
+	         	}
+	         });
+		});
+	}
+	
+	
 </script>
 </body>
 </html>
