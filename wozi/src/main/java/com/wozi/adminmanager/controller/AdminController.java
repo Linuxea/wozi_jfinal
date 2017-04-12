@@ -25,4 +25,8 @@ public class AdminController extends BaseController {
 		this.renderJson("isSuccess", true);
 	}
 	
+	public void listUsers(){
+		List<Record> rs = this.service.listUser();
+		this.renderJson(rs);
+	}
 }

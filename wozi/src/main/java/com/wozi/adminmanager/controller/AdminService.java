@@ -32,5 +32,11 @@ public class AdminService extends BaseService<Model<?>> {
 		int impact = Db.update(changeSql,status, id);
 		return impact == 1;
 	}
+
+	public List<Record> listUser() {
+		//数据量少
+		String sql = "select * from wozi_user";
+		return Db.find(sql);
+	}
 	
 }
