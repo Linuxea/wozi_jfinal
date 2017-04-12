@@ -74,9 +74,27 @@
 		<button type="button" class="btn btn-info" id="leave">确认留言</button>
 		</div>
 	</div>
-	
-	
+
 </form>
+
+
+<form id="msgs">
+
+<table class="table table-striped">
+	<caption>我的历史留言信息</caption>
+	<thead>
+		<tr>
+			<th>标题</th>
+			<th>内容</th>
+			<th>时间</th>
+		</tr>
+	</thead>
+	<tbody id = "msgBody">
+	</tbody>
+</table>
+
+</form>
+
 </div>
 
 <script>
@@ -84,6 +102,7 @@
 $(function(){
 	funs.init();
 	funs.getUser();
+	funs.historyMsg();
 });
 
 var funs = {
@@ -94,17 +113,6 @@ var funs = {
 			});
 		},
 		
-		listMyMsg: function(){
-			$.ajax({
-		     	url: "<%=request.getContextPath()%>/helpController/listMyMsg",
-		     	dataType:"json",
-		     	success:function(rs){
-		     		if(rs.isSuccess){
-		     			
-		     		}
-		     	}
-		     });
-		},
 		getUser: function(){
 			$.ajax({
 		     	url: "<%=request.getContextPath()%>/userController/getCurrentName",
@@ -123,7 +131,27 @@ var funs = {
 		     	},
 		     	dataType:"json",
 		     	success:function(rs){
-		     		alert("留言成功");
+		     		if(rs.isSuccess){
+		     			$("#msgBody").html("");
+			     		funs.historyMsg();//重新刷新 
+		     		}else{
+		     			alert(rs.msg);
+		     		}
+		     	}
+		     });
+		},
+		//我的历史留言
+		historyMsg: function(){
+			$.ajax({
+		     	url: "<%=request.getContextPath()%>/helpController/listMyMsg",
+		     	dataType:"json",
+		     	success:function(rs){
+		     		//msgBody
+		     		var str = "";
+		     		for(var i in rs){
+		     			str += "<tr><td>"+rs[i].title+"</td><td>"+rs[i].content+"</td><td>"+rs[i].create_time+"</td></tr>";
+		     		}
+		     		$("#msgBody").append(str);
 		     	}
 		     });
 		},

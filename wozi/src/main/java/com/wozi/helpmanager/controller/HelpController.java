@@ -2,6 +2,7 @@ package com.wozi.helpmanager.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Duang;
@@ -36,6 +37,12 @@ public class HelpController extends BaseController {
 	//留言
 	public void leaveMsg(){
 		int id = (int)this.getSession().getAttribute("UID");
+		//留言检测  一天只能留言一条
+		Map<String, Object> map = this.service.isToday(id);
+		if(!(Boolean)map.get("isSuccess")){
+			this.renderJson(map);
+			return;
+		}
 		LeaveMsg msg = new LeaveMsg();
 		String title = this.getPara("title");
 		String content = this.getPara("content");
