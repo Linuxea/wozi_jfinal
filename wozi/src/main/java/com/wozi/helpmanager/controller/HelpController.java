@@ -43,7 +43,8 @@ public class HelpController extends BaseController {
 		msg.set("content", content)
 			.set("create_time", new Date())
 			.set("title", title)
-			.set("user_id", id);
+			.set("user_id", id)
+			.set("status", "0");
 		boolean isSuccess = this.service.add(msg);
 		this.renderJson("isSuccess", isSuccess);
 	}

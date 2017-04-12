@@ -15,7 +15,14 @@ public class AdminController extends BaseController {
 	//列出所有的留言列表给管理员看的
 	public void listMsg(){
 		List<Record> rs = this.service.listMsg();
-		this.renderJson("data",rs);
+		this.renderJson(rs);
 	}	
+	
+	//状态切换
+	public void changeStatus(){
+		int id = this.getParaToInt("id");
+		this.service.changeStatus(id);
+		this.renderJson("isSuccess", true);
+	}
 	
 }

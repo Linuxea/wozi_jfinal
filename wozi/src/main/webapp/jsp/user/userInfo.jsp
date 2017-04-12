@@ -35,7 +35,7 @@
     </div>
     
     <div class="nav navbar-nav navbar-right">
-        	 <button type="button" class="btn btn-default navbar-btn help-btn">帮助</button>
+        	 <button type="button" class="btn btn-default navbar-btn help-btn">留言</button>
     </div>
     
     </div>
