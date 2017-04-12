@@ -55,6 +55,9 @@ public class UserController extends BaseController{
 		if(StringUtils.isNotEmpty(this.getPara("user_password"))){
 			//表示有新的密码
 			um.set("user_password", this.getPara("user_password"));
+			
+			//顺便把session保存的账号信息清一清 要求用户重新登录 
+//			this.getSession().setAttribute("UID", null);
 		}
 		boolean isSuccess = false;
 		isSuccess = this.service.update(um);

@@ -2,6 +2,7 @@ package com.wozi.base;
 
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.wozi.friendmanager.model.FriendModel;
+import com.wozi.helpmanager.model.LeaveMsg;
 import com.wozi.notemanager.model.MenuModel;
 import com.wozi.notemanager.model.NoteModel;
 import com.wozi.pointmanager.model.PointModel;
@@ -24,6 +25,9 @@ public class MappingKit {
 		
 		/**好友关系映射表*/
 		arp.addMapping("WOZI_FRIENDS", "id", FriendModel.class);
+		
+		/**留言信息表*/
+		arp.addMapping("wozi_leave","id", LeaveMsg.class);
 	}
 	
 }

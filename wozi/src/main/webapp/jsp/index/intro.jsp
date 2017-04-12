@@ -49,9 +49,7 @@
 <div class="container">
    <div class="jumbotron">
    <a class="navbar-brand" href="<%=request.getContextPath() %>/jsp/index/index.jsp">
-   <span class="glyphicon glyphicon-home" style="color:#0088cc; font-size: 22px;display:inline;">
-   back
-   </span>
+   <span class="glyphicon glyphicon-home" style="color:#0088cc; font-size: 22px;display:inline;">back</span>
    </a>
     </div>
     <div class="row">

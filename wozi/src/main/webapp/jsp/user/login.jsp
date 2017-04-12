@@ -81,7 +81,7 @@
 			dataType:"json",
 			success:function(rs){
 				if(rs.isSuccess){
-					window.location.href="../note/MyNote.jsp?name=" + rs.data;
+					window.location.href="<%=request.getContextPath() %>/jsp/note/MyNote.jsp";
 				}else{
 					if($(".alert").length){
 						$(".alert").remove();

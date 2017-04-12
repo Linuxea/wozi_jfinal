@@ -13,6 +13,7 @@ import com.jfinal.template.Engine;
 import com.wozi.base.interceptor.GlobalExceptionInterceptor;
 import com.wozi.base.interceptor.LoginInterceptor;
 import com.wozi.friendmanager.controller.FriendController;
+import com.wozi.helpmanager.controller.HelpController;
 import com.wozi.notemanager.controller.MenuController;
 import com.wozi.notemanager.controller.NoteController;
 import com.wozi.searchManager.controller.NoteSearchController;
@@ -34,6 +35,7 @@ public class JMainConfig extends JFinalConfig {
 		me.add("noteController", NoteController.class);
 		me.add("friendController", FriendController.class);
 		me.add("noteSearchController", NoteSearchController.class);
+		me.add("helpController", HelpController.class);
 	}
 
 

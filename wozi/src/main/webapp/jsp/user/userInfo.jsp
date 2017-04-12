@@ -29,6 +29,15 @@
     <div class="navbar-header">
         <a class="navbar-brand"><span class="glyphicon glyphicon-book" style="color:#fff;">&nbsp;</span><strong>我知笔记个人信息</strong></a>
     </div>
+    
+    <div class="nav navbar-nav navbar-right">
+        	 <button type="button" class="btn btn-default navbar-btn chat-btn">聊天室</button>
+    </div>
+    
+    <div class="nav navbar-nav navbar-right">
+        	 <button type="button" class="btn btn-default navbar-btn help-btn">帮助</button>
+    </div>
+    
     </div>
 </nav>
 
