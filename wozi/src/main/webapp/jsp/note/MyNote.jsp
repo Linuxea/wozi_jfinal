@@ -438,10 +438,10 @@
 			},
 			dataType:"json",
 			success:function(rs){
-				if(rs.code==="0") {
+				if(rs.isSuccess) {
 					getNoteListByMenu(currentMenuId);
 					UE.getEditor('editor').setDisabled('fullscreen');
-					//alert("新建或者修改成功");
+					alert("新建或者修改成功");
 				}
 			},
 		});

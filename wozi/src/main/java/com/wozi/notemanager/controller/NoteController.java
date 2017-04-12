@@ -2,8 +2,8 @@ package com.wozi.notemanager.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.jfinal.aop.Before;
 import com.jfinal.aop.Duang;
-import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseController;
 import com.wozi.notemanager.NoteVO;
@@ -11,6 +11,7 @@ import com.wozi.notemanager.model.NoteModel;
 import com.wozi.notemanager.service.NoteService;
 
 /**笔记的controller*/
+@Before(Tx.class)
 public class NoteController extends BaseController {
 	
 	private NoteService service = Duang.duang(NoteService.class, Tx.class);
