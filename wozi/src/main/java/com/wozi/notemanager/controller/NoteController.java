@@ -1,9 +1,12 @@
 package com.wozi.notemanager.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.jfinal.aop.Duang;
+import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseController;
+import com.wozi.notemanager.NoteVO;
 import com.wozi.notemanager.model.NoteModel;
 import com.wozi.notemanager.service.NoteService;
 
@@ -15,10 +18,13 @@ public class NoteController extends BaseController {
 	public void index() {
 	}
 	
+	
 	/**笔记的创建  前端传来所在目录的id*/
 	public void add(){
-		boolean isSuccess = false;
-		this.service.add(this.getModel(NoteModel.class));
+		//tbWoZiNotePOStr
+		String tbWoZiNotePOStr = this.getPara("tbWoZiNotePOStr");
+		NoteVO rs = JSONObject.parseObject(tbWoZiNotePOStr, NoteVO.class);
+		boolean isSuccess  = this.service.add(rs);
 		this.renderJson("isSuccess", isSuccess);
 	}
 	

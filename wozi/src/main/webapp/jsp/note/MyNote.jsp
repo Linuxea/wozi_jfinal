@@ -430,7 +430,7 @@
 		tbWoZiNotePO.refMenu = menuId;
 		tbWoZiNotePO.title = $("input.note-title").val();
 		$.ajax({
-			url:"<%=request.getContextPath()%>/note/noteManager_ajaxAddNote",
+			url:"<%=request.getContextPath()%>/noteController/add",
 			type:"post",
 			data:{
 				"tbWoZiNotePOStr":JSON.stringify(tbWoZiNotePO),

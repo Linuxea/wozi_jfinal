@@ -1,9 +1,12 @@
 package com.wozi.notemanager.service;
 
 
+import java.util.Date;
+
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.wozi.base.BaseService;
+import com.wozi.notemanager.NoteVO;
 import com.wozi.notemanager.model.NoteModel;
 
 public class NoteService extends BaseService<NoteModel>{
@@ -12,6 +15,20 @@ public class NoteService extends BaseService<NoteModel>{
 	public Record findNote(int id) {
 		String sql = "select * from WOZI_NOTE where id = ?";
 		return Db.findFirst(sql, id);
+	}
+
+	
+	/**笔记的创建或更新*/
+	public boolean add(NoteVO rs) {
+		NoteModel nm = new NoteModel();
+		nm.set("create_time", new Date())
+		.set("update_time", new Date())
+		.set("menu_id", rs.getRefMenu() )
+		.set("title", rs.getTitle())
+		.set("content", rs.getContent())
+		.set("name", rs.getTitle())
+		.set("user_id", 1);
+		return super.add(nm);
 	}
 
 }

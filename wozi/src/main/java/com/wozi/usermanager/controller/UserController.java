@@ -50,7 +50,7 @@ public class UserController extends BaseController{
 	/**用户登录*/
 	public void login() {
 		String userName = this.getPara("userName");
-		String userPwd = this.getPara("password");
+		String userPwd = this.getPara("userName");
 		Record record = this.service.login(userName, userPwd);
 		if(record!=null){
 			super.map.put("isSuccess", true);

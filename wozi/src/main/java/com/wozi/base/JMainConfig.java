@@ -11,6 +11,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.wozi.base.interceptor.GlobalExceptionInterceptor;
+import com.wozi.friendmanager.controller.FriendController;
 import com.wozi.notemanager.controller.MenuController;
 import com.wozi.notemanager.controller.NoteController;
 import com.wozi.usermanager.controller.UserController;
@@ -29,6 +30,7 @@ public class JMainConfig extends JFinalConfig {
 		me.add("userController", UserController.class);
 		me.add("menuController", MenuController.class);
 		me.add("noteController", NoteController.class);
+		me.add("friendController", FriendController.class);
 	}
 
 

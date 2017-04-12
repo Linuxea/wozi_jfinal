@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="false" scanPeriod="60 seconds" debug="false">
-    <property name="LOG_HOME" value="/usr/local/apache-tomcat-7.0.72/logs" />
-    <property name="appName" value="choice-BC"></property>
+<configuration scan="false" scanPeriod="60 seconds" debug="true">
+    <property name="LOG_HOME" value="C:/Users/Administrator.SKY-20170312TVX/Desktop/logs" />
+    <property name="appName" value="wozi"></property>
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <Encoding>UTF-8</Encoding>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
         </layout>
     </appender>
-
     <appender name="appLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <Encoding>UTF-8</Encoding>
-        <file>${LOG_HOME}/${appName}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME}/${appName}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/${appName}/${appName}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
             <MaxHistory>365</MaxHistory>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>100MB</maxFileSize>
@@ -23,13 +21,10 @@
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [ %thread ] - [ %-5level ] [ %logger{50} : %line ] - %msg%n</pattern>
         </layout>
     </appender>
-
-    <logger name="com.jfinal" level="info" />
-
+    <logger name="com.jfinal" level="debug" />
     <logger name="com.choicexp" level="debug" additivity="true">
         <appender-ref ref="appLogAppender" />
     </logger>
-
     <root level="info">
         <appender-ref ref="stdout" />
         <appender-ref ref="appLogAppender" />
