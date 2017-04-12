@@ -3,6 +3,8 @@ package com.wozi.notemanager.service;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.wozi.base.BaseService;
@@ -21,7 +23,7 @@ public class NoteService extends BaseService<NoteModel>{
 	/**笔记的创建或更新*/
 	public boolean add(NoteVO rs) {
 		//通过id值来判断
-		if(null!=rs.getId()){
+		if(StringUtils.isNotEmpty(rs.getId())){
 			NoteModel nm = new NoteModel();
 			nm.set("create_time", new Date())
 			.set("id", rs.getId())

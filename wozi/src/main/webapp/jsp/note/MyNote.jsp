@@ -386,14 +386,14 @@
 	
 	function delMenu(currentMenuId) {
 		$.ajax({
-			url:"<%=request.getContextPath()%>/note/noteManager_delMenuNode",
+			url:"<%=request.getContextPath()%>/menuController/del",
 			data:{
 				"currentMenuNodeId":currentMenuId,
 			},
 			dataType:"json",
 			success:function(rs){
-				if(rs.code === "0"){
-					console.log(rs.desc);
+				if(rs.isSuccess){
+					alert("删除成功!共删除了该目录下"+rs.impact+"条日记");
 				}else{
 					alert(rs.desc);
 				}

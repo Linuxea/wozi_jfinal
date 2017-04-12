@@ -29,4 +29,17 @@ public class MenuService extends BaseService<MenuModel> {
 		return Db.find(querySql, user_id, id);
 	}
 
+	public int delNoteByMenuId(String menuId, int userId) {
+		String delSql = "delete from wozi_note where menu_id = ? and user_id = ?";
+		int impact = Db.update(delSql, menuId, userId);//总数几行受影响
+		return impact;
+	}
+
+	public boolean delMenu(String menuId, int userId) {
+		String delSql = "delete from wozi_menu where id=? and user_id = ?";
+		int count = Db.update(delSql, menuId, userId);
+		return count == 1;
+		
+	}
+
 }

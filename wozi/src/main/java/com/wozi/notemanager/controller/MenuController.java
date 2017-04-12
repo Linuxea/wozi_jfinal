@@ -2,7 +2,10 @@ package com.wozi.notemanager.controller;
 
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.jfinal.aop.Before;
 import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseController;
@@ -10,6 +13,7 @@ import com.wozi.notemanager.model.MenuModel;
 import com.wozi.notemanager.service.MenuService;
 
 /**目录的controller*/
+@Before(Tx.class)
 public class MenuController extends BaseController {
 	private MenuService service = Duang.duang(MenuService.class, Tx.class);
 	public void index() {
@@ -46,11 +50,18 @@ public class MenuController extends BaseController {
 		this.renderJson(this.service.findMenu(id));
 	}
 	
-	/**目录的删除*/
+	/**目录的删除与该目录下所有笔记的删除*/
 	public void del() {
-		int menuId = this.getParaToInt("id");
-		boolean isSuccess = this.service.del(new MenuModel().set("id", menuId));
-		this.renderJson("isSuccess", isSuccess);
+		int userId = 1;
+		String menuId = this.getPara("currentMenuNodeId");
+		//删除目录
+		boolean isSuccess = this.service.delMenu(menuId, userId);
+		//删除该目录下的笔记
+		int impact = this.service.delNoteByMenuId(menuId, userId);
+		Map<String,Object> map = new HashMap<>();
+		map.put("impact", impact);
+		map.put("isSuccess", isSuccess);
+		this.renderJson(map);
 	}
 	
 	/**目录重新命名*/
