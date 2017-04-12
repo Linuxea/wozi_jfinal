@@ -18,10 +18,6 @@ public class HelpService extends BaseService<LeaveMsg>{
 		return Db.find(listSql, id);
 	}
 
-	public List<Record> listMsg() {
-		String listSql = "select * from wozi_leave order by create_time desc";
-		return Db.find(listSql);
-	}
 
 	public Map<String, Object> isToday(int id) {
 		Map<String, Object> map  = new HashMap<>();

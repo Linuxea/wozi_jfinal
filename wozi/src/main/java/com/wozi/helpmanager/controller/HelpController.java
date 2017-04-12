@@ -20,12 +20,6 @@ public class HelpController extends BaseController {
 	public void index(){
 	}
 	
-	//列出所有的留言列表给管理员看的
-	public void listMsg(){
-		List<Record> rs = this.service.listMsg();
-		this.renderJson(rs);
-	}
-	
 	//列出自己的留言列表
 	public void listMyMsg(){
 		int id = (int)this.getSession().getAttribute("UID");

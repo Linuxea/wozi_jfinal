@@ -10,6 +10,7 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
+import com.wozi.adminmanager.controller.AdminController;
 import com.wozi.base.interceptor.GlobalExceptionInterceptor;
 import com.wozi.base.interceptor.LoginInterceptor;
 import com.wozi.friendmanager.controller.FriendController;
@@ -36,6 +37,7 @@ public class JMainConfig extends JFinalConfig {
 		me.add("friendController", FriendController.class);
 		me.add("noteSearchController", NoteSearchController.class);
 		me.add("helpController", HelpController.class);
+		me.add("adminController", AdminController.class);
 	}
 
 
