@@ -154,6 +154,7 @@ var id = null;//保存用户id
 $(function(){
 	init();
 	getUser();
+	help();
 });
 
 function init(){
@@ -162,7 +163,7 @@ function init(){
 	});
 	
 	$("#back").on("click",function(){
-		window.location.href="<%=request.getContextPath()%>/jsp/note/MyNote.jsp";
+		window.history.back();
 	});
 }
 
@@ -210,6 +211,14 @@ function updateInfo(){
      	}
      });
 	
+}
+
+
+function help(){
+	$(".help-btn").on("click", function(){
+		//帮助的绑定
+		window.location.href = "<%=request.getContextPath()%>/jsp/help/help.jsp";
+	});
 }
 
 </script>

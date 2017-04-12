@@ -111,6 +111,10 @@ var funs = {
 				//绑定留言事件
 				funs.leave();
 			});
+			
+			$("#back").on("click", function(){
+				window.history.back();
+			});
 		},
 		
 		getUser: function(){
