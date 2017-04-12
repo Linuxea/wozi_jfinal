@@ -487,9 +487,6 @@
 		$.ajax({
 			url:"<%=request.getContextPath()%>/menuController/findMenu",
 			dataType:"json",
-			data: {
-				id:id
-			},
 			success:function(rs) {
 				 $('#jstree').jstree({
 				    	"core": {
@@ -603,7 +600,6 @@
 	
 	function initSearch(){
 		$(".searchMirror ").on("click", function(){
-			alert("search ing....");
 			$.ajax({
 	         	url: "<%=request.getContextPath()%>/noteSearchController/search",
 	         	dataType:"json",

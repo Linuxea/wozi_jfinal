@@ -11,6 +11,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.wozi.base.interceptor.GlobalExceptionInterceptor;
+import com.wozi.base.interceptor.LoginInterceptor;
 import com.wozi.friendmanager.controller.FriendController;
 import com.wozi.notemanager.controller.MenuController;
 import com.wozi.notemanager.controller.NoteController;
@@ -54,6 +55,7 @@ public class JMainConfig extends JFinalConfig {
 
 	@Override
 	public void configInterceptor(Interceptors me) {
+		me.add(new LoginInterceptor());
 		me.add(new GlobalExceptionInterceptor());
 	}
 

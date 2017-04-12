@@ -55,6 +55,8 @@ public class UserController extends BaseController{
 		if(record!=null){
 			super.map.put("isSuccess", true);
 			super.map.put("id", record.get("id"));
+			int id = record.get("id");
+			this.getSession().setAttribute("UID", id);//将用户的id放在session中
 		}else{
 			super.map.put("isSuccess", false);
 			super.map.put("msg", "no this people!");

@@ -23,6 +23,7 @@ public class MenuController extends BaseController {
 	/**目录的添加*/
 	public void add(){
 		//directMenuParentId   newNodeId
+		int userId = (int) this.getSession().getAttribute("UID");
 		String directMenuParentId = this.getPara("directMenuParentId");
 		String newNodeId = this.getPara("newNodeId");
 		MenuModel model = this.getModel(MenuModel.class);
@@ -31,7 +32,7 @@ public class MenuController extends BaseController {
 			.set("text", "new node")
 			.set("create_time", new Date())
 			.set("update_time", new Date())
-			.set("user_id", 1);
+			.set("user_id", userId);
 		this.service.add(model);
 		this.renderJson("msg","create menu ok");
 	}
@@ -46,7 +47,7 @@ public class MenuController extends BaseController {
 	
 	/**用户所属目录的查找*/
 	public void findMenu() {
-		int id = 1;//this.getParaToInt("id");
+		int id = (int) this.getSession().getAttribute("UID");
 		this.renderJson(this.service.findMenu(id));
 	}
 	
