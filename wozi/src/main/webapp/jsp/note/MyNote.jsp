@@ -600,6 +600,7 @@
 	
 	function initSearch(){
 		$(".searchMirror ").on("click", function(){
+			if($("#q").val()==="")return;
 			$.ajax({
 	         	url: "<%=request.getContextPath()%>/noteSearchController/search",
 	         	dataType:"json",

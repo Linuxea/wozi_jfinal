@@ -15,11 +15,11 @@
     <nav class="navbar" role="navigation">
 	<div class="container-fluid">
     <div class="navbar-header">
-        <a class="navbar-brand" href="jsp/index/index.html">我知笔记</a>
+        <a class="navbar-brand" href="<%=request.getContextPath() %>/jsp/index/index.jsp">我知笔记</a>
     </div>
     <div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="jsp/index/intro.html">介绍</a></li>
+            <li class="active"><a href="<%=request.getContextPath() %>/jsp/index/intro.jsp">介绍</a></li>
             <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     Java <b class="caret"></b>
