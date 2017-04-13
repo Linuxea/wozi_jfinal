@@ -13,7 +13,7 @@ public class MenuService extends BaseService<MenuModel> {
 
 	/**查找当前登录用户所有的目录信息*/
 	public List<Record> findMenu(int id) {
-		String sql = "select * from WOZI_MENU where user_id = ?";
+		String sql = "select * from WOZI_MENU where user_id = ? order by create_time desc";
 		return Db.find(sql, id);
 	}
 
@@ -27,7 +27,8 @@ public class MenuService extends BaseService<MenuModel> {
 	public List<Record> findNode(String id, int user_id) {
 		String querySql = "select * from wozi_note "
 				+ " where user_id = ?"
-				+ " and menu_id = ?";
+				+ " and menu_id = ? "
+				+ " order by create_time desc";
 		return Db.find(querySql, user_id, id);
 	}
 
