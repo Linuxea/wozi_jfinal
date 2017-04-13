@@ -1,4 +1,4 @@
-package com.wozi.adminmanager.controller;
+package com.wozi.adminmanager.service;
 
 import java.util.HashMap;
 import java.util.List;

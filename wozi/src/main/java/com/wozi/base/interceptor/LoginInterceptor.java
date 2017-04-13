@@ -1,12 +1,17 @@
 package com.wozi.base.interceptor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 
 /**用户拦截器*/
 public class LoginInterceptor implements Interceptor {
-
+	
+	private Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
+	
 	@Override
 	public void intercept(Invocation inv) {
 		Controller controller = inv.getController();
@@ -18,10 +23,10 @@ public class LoginInterceptor implements Interceptor {
 				//表示没登录 跳转到登录页面
 				controller.render("/jsp/user/login.jsp");
 			}else{
-				System.out.println("通过登录拦截");
 				inv.invoke();
 			}
 		}
+		System.out.println("via global Exception Interceptor:"+ this.getClass().getName());
 	}
 
 }

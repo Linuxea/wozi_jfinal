@@ -6,6 +6,7 @@ import java.util.Map;
 import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
+import com.wozi.adminmanager.service.AdminService;
 import com.wozi.base.BaseController;
 
 public class AdminController extends BaseController {
