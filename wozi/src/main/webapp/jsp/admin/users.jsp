@@ -57,9 +57,13 @@
 	</tbody>
 </table>
 </form>
-<div style="height:250px;width:500px;display:inline;">
-<div id="EForm" style="height:250px;width:500px;"></div>
-<div id="EForm2" style="height:250px;width:500px;"></div>
+<div style="height:250px;width:900px;">
+<div style="height:250px;width:450px;">
+	<div id="EForm" style="height:250px;width:450px;"></div>
+</div>
+<div style="height:250px;width:450px;">
+	<div id="EForm2" style="height:250px;width:450px;"></div>
+</div>
 </div>
 </div>
 <script src="<%=request.getContextPath()%>/plugins/js/jquery-3.1.1.js"></script>
@@ -215,7 +219,7 @@
 					            },
 					            yAxis: {},
 					            series: [{
-					                name: '分布',
+					                name: 'age',
 					                type: 'bar',
 					                data: value,
 					            }]
