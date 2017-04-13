@@ -5,8 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>我的笔记首页</title>
-  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
-	<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" /> -->
+  		<link rel="stylesheet" href="<%=request.getContextPath()%>/css/note/jstree.css" />
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/plugins/swet/sweetalert.css" >
 	<!-- jqContext begin -->
     <link href="../../plugins/jqContextMenu/src/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
     <link href="../../plugins/jqContextMenu/screen.css" rel="stylesheet" type="text/css" />
@@ -270,14 +272,15 @@
 	</div>
 <!-- 笔记编辑主体结束 -->
 </div>
-<script src="https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<!-- jqContext begin -->
+<script src="<%=request.getContextPath()%>/plugins/js/jquery-3.1.1.js"></script>
 <script src="../../plugins/jqContextMenu/src/jquery.ui.position.js" type="text/javascript"></script>
 <script src="../../plugins/jqContextMenu/src/jquery.contextMenu.js" type="text/javascript"></script>
 <script src="../../plugins/jqContextMenu/screen.js" type="text/javascript"></script>
 <script src="../../plugins/jqContextMenu/prettify/prettify.js" type="text/javascript"></script>
 <!-- jqContext end -->
-<script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="<%=request.getContextPath()%>/plugins/swet/sweetalert-dev.js"></script>
+<script src="<%=request.getContextPath()%>/plugins/swet/sweetalert.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="../../ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="../../ueditor.all.js"> </script>

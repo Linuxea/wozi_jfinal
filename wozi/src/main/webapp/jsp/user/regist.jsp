@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<title>注册页面</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/plugins/swet/sweetalert.css" >
 <style>
 	span.necessary{
 		color:red;
@@ -110,9 +111,11 @@
 	</div>
 </form>
 </div>
-<script src="https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/plugins/js/jquery-3.1.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="../../plugins/js/Jquery-Form.js"></script>
+<script src="<%=request.getContextPath()%>/plugins/swet/sweetalert-dev.js"></script>
+<script src="<%=request.getContextPath()%>/plugins/swet/sweetalert.min.js"></script>
 <script>
 	$(document).on("click","#submit",function(){
 		var name = $("input[name='userModel.user_name']").val();
@@ -126,44 +129,22 @@
 			if($(".alert").length){
 				$(".alert").remove();
 			}
-			var appendStr = "<div class=\"alert alert-warning\">"+
-			"<a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>"+
-			"<strong>警告！</strong>关键字段不能为空</div>";
-			$(".msg").append(appendStr);
+			sweetAlert("Ohhh...","关键字段不能为空", "error");
 			return;
 		}
 		
 		if(first!==second){
-			if($(".alert").length){
-				$(".alert").remove();
-			}
-			var appendStr = "<div class=\"alert alert-warning\">"+
-			"<a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>"+
-			"<strong>警告！</strong>密码不一致</div>";
-			$(".msg").append(appendStr);
+			sweetAlert("Ohhh...","密码不一致", "error");
 			return;
 		}
 		$("#registForm").ajaxSubmit({
 			url:"<%=request.getContextPath() %>/userController/add",
 			dataType:"json",
 			success:function(rs){
-				if(rs.code==="0"){
-					var appendStr = "<div class=\"alert alert-success\">"+
-					"<a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>"+
-					"<strong></strong>"+ 
-					rs.desc +
-					"</div>";
-					$(".msg").append(appendStr);
+				if(rs.isSuccess){
+					sweetAlert("Congratulate!", rs.msg, "success");
 				}else{
-					if($(".alert").length){
-						$(".alert").remove();
-					}
-					var appendStr = "<div class=\"alert alert-warning\">"+
-					"<a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>"+
-					"<strong>警告！</strong>"+ 
-					rs.desc +
-					"</div>";
-					$(".msg").append(appendStr);
+					sweetAlert("Ohhh...", rs.msg, "error");
 				}
 			}
 		});

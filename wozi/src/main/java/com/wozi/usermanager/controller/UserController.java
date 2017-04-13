@@ -28,16 +28,16 @@ public class UserController extends BaseController{
 		boolean isOk = this.service.checkNotNull(model);
 		Map<String,Object> resultMap = new HashMap<>();
 		if(!isOk){
-			resultMap.put("code", -1);
-			resultMap.put("msg", "关键字段不能为空!");
+			resultMap.put("isSuccess", false);
+			resultMap.put("msg", "关键字段不能为空");
 		}else{
 			model.set("create_time", new Date())
 			.set("update_time", new Date());
 		int id = (int) this.service.getId(model,"id");
 		//注册成功新目录一个root根目录
 		this.service.newRoot(id);
-		resultMap.put("desc", "恭喜！注册成功");
-		resultMap.put("code", 0);
+		resultMap.put("msg", "注册成功");
+		resultMap.put("isSuccess", true);
 		resultMap.put("id", id);
 		}
 		this.renderJson(resultMap);
