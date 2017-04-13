@@ -34,7 +34,7 @@ public class HelpService extends BaseService<LeaveMsg>{
 		String seSql = "select create_time from wozi_leave where user_id = ?"
 				+ " and id = ?";
 		Date date = Db.queryDate(seSql, id, maxId);
-		if(System.currentTimeMillis() - date.getTime() <= 24*60*60*60){
+		if(System.currentTimeMillis() - date.getTime() <= 24*60*60*1000){
 			//还没过24小时
 			map.put("isSuccess", false);
 			map.put("msg", "请再过24小时留言~");
