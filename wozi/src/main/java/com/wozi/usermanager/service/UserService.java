@@ -13,7 +13,7 @@ import com.wozi.base.BaseService;
 import com.wozi.notemanager.model.MenuModel;
 import com.wozi.usermanager.model.UserModel;
 
-public class UserService extends BaseService<Model> {
+public class UserService extends BaseService<Model<?>> {
 
 	/**用户存在返回true,否则返回fasle*/
 	public Record login(String userName, String pwd) {

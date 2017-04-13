@@ -96,6 +96,7 @@
 			     		}
 			     		$("#msgBody").append(str);
 			     		funs.detail();
+			     		funs.colorCh();
 			     	}
 			     });
 			},
@@ -103,6 +104,15 @@
 				$("#msgBody>tr").on("click", function(){
 					var id = $(this).find("td:eq(4)").text();
 					window.location.href="detail.jsp?id="+id;
+				});
+			},
+			colorCh: function(){
+				var oldColor= null;
+				$("#msgBody>tr").hover(function(){
+					oldColor=$(this).css("background");
+					$(this).css("background", "lightgray");
+				}, function(){
+					$(this).css("background", oldColor);
 				});
 			},
 			eInit: function(){
