@@ -1,6 +1,7 @@
 package com.wozi.adminmanager.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.Record;
@@ -35,6 +36,18 @@ public class AdminController extends BaseController {
 		int id = this.getParaToInt("id");
 		Record rs = this.service.getDetail(id);
 		this.renderJson(rs);
+	}
+	
+	//获取用户性别人数图
+	public void sexData(){
+		Map<String, Object> rsMp = this.service.getSexData();
+		this.renderJson(rsMp);
+	}
+	
+	//获取用户年龄分布情况
+	public void ageData(){
+		Map<String, Object> rsMp = this.service.getAgeData();
+		this.renderJson(rsMp);
 	}
 	
 }

@@ -57,11 +57,20 @@
 	</tbody>
 </table>
 </form>
+<div style="height:250px;width:500px;display:inline;">
+<div id="EForm" style="height:250px;width:500px;"></div>
+<div id="EForm2" style="height:250px;width:500px;"></div>
 </div>
+</div>
+<script src="<%=request.getContextPath()%>/plugins/js/jquery-3.1.1.js"></script>
+<script src="<%=request.getContextPath()%>/plugins/echart/echarts.js"></script>
 <script>
+	var myChart = null;
+	
 	$(function(){
 		funs.init();
 		funs.getUser();
+		funs.eInit();
 	});
 	
 	var funs = {
@@ -94,6 +103,129 @@
 					window.location.href="detail.jsp?id="+id;
 				});
 			},
+			eInit: function(){
+				myChart = echarts.init(document.getElementById('EForm'));
+				myChart2 = echarts.init(document.getElementById('EForm2'));
+				myChart.showLoading();
+				myChart2.showLoading();
+				funs.eSetData();
+				funs.secondChart();
+			},
+			eSetData : function(){
+				var data = null;
+				$.ajax({
+					url:"<%=request.getContextPath()%>/adminController/sexData",
+					type:"post",
+					success: function(rs){
+						data = rs.data;
+						option = {
+							    backgroundColor: '#c23531',
+
+							    title: {
+							        text: '用户性别分布',
+							        left: 'center',
+							        top: 20,
+							        textStyle: {
+							            color: '#ccc'
+							        }
+							    },
+
+							    tooltip : {
+							        trigger: 'item',
+							        formatter: "{a} <br/>{b} : {c} ({d}%)"
+							    },
+
+							    visualMap: {
+							        show: false,
+							        min: 80,
+							        max: 600,
+							        inRange: {
+							            colorLightness: [0, 1]
+							        }
+							    },
+							    series : [
+							        {
+							            name:'访问来源',
+							            type:'pie',
+							            radius : '55%',
+							            center: ['50%', '50%'],
+							            data:data,
+							            roseType: 'angle',
+							            label: {
+							                normal: {
+							                    textStyle: {
+							                        color: 'rgba(255, 255, 255, 0.3)'
+							                    }
+							                }
+							            },
+							            labelLine: {
+							                normal: {
+							                    lineStyle: {
+							                        color: 'rgba(255, 255, 255, 0.3)'
+							                    },
+							                    smooth: 0.2,
+							                    length: 10,
+							                    length2: 20
+							                }
+							            },
+							            itemStyle: {
+							                normal: {
+							                    color: 'orange',
+							                    shadowBlur: 200,
+							                    shadowColor: 'green'
+							                }
+							            },
+
+							            animationType: 'scale',
+							            animationEasing: 'elasticOut',
+							            animationDelay: function (idx) {
+							                return Math.random() * 200;
+							            }
+							        }
+							    ]
+							};
+
+					        // 使用刚指定的配置项和数据显示图表。
+					        myChart.setOption(option);
+					        myChart.hideLoading();
+
+					}
+				});
+			},
+			secondChart : function(){
+				var name = null;
+				var value = null;
+				$.ajax({
+					url:"<%=request.getContextPath()%>/adminController/ageData",
+					type:"post",
+					success: function(rs){
+						name = rs.name;
+						value = rs.value;
+						
+						var option = {
+					            title: {
+					                text: '年龄分布图'
+					            },
+					            tooltip: {},
+					            legend: {
+					                data:['age']
+					            },
+					            xAxis: {
+					                data: name,
+					            },
+					            yAxis: {},
+					            series: [{
+					                name: '分布',
+					                type: 'bar',
+					                data: value,
+					            }]
+					        };
+						myChart2.setOption(option);
+						myChart2.hideLoading();
+			
+					}
+				});
+			}
 			
 			
 	}

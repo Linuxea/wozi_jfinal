@@ -1,6 +1,8 @@
 package com.wozi.adminmanager.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
@@ -42,6 +44,44 @@ public class AdminService extends BaseService<Model<?>> {
 	public Record getDetail(int id) {
 		String sql = "select * from wozi_user where id = ?";
 		return Db.findFirst(sql, id);
+	}
+
+	public Map<String, Object> getSexData() {
+		long boyCount = this.getSexData("boy");
+		long girlCount = this.getSexData("girl");
+		Record boy = new Record().set("name", "boy").set("value", boyCount);
+		Record girl = new Record().set("name", "girl").set("value", girlCount);
+		Record[] rs = new Record[]{boy,girl};
+		Map<String, Object> rsMap = new HashMap<>();
+		rsMap.put("data", rs);
+		return rsMap;
+	}
+	
+	private long getSexData(String sex){
+		String sql = "select count(*) from wozi_user where sex = ?";
+		return Db.queryLong(sql, sex);
+	}
+
+	//["0-10","11-20","21-25","26-28","28-30","30-"]
+	public Map<String, Object> getAgeData() {
+		//两个数组 第一个存在名称 第二个相同下标位置存放int数值
+		String[] nameArr = new String[]{"0-10","11-20","21-25","26-28","28-30","30-"};
+		long[] ageRange = new long[nameArr.length];
+		ageRange[0] = this.rangAge(0, 10);
+		ageRange[1] = this.rangAge(11, 20);
+		ageRange[2] = this.rangAge(21, 25);
+		ageRange[3] = this.rangAge(26, 28);
+		ageRange[4] = this.rangAge(28, 30);
+		ageRange[5] = this.rangAge(30, 500);
+		Map<String,Object> rsMap = new HashMap<>();
+		rsMap.put("name", nameArr);
+		rsMap.put("value", ageRange);
+		return rsMap;
+	}
+	
+	public long rangAge(int ageStart, int ageEnd){
+		String querySql = "select count(*) from wozi_user where age>? and age< ?";
+		return Db.queryLong(querySql, ageStart, ageEnd);
 	}
 	
 }
