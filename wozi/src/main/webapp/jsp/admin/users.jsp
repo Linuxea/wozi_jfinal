@@ -48,8 +48,6 @@
 			<th>性别</th>
 			<th>年龄</th>
 			<th>邮箱</th>
-			<th>创建时间</th>
-			<th>最后修改时间</th>
 			<th style="display:none;">id</th>
 		</tr>
 	</thead>
@@ -91,8 +89,8 @@
 			     		var str = "";
 			     		for(var i in rs){
 			     			str += "<tr><td>"+rs[i].user_name+"</td><td>"+rs[i].sex+"<td>"+rs[i].age+"</td><td>"+rs[i].email+"</td>";
-			     			str += "<td>"+rs[i].create_time+"</td>";
-			     			str += "<td>"+rs[i].update_time+"</td>";
+// 			     			str += "<td>"+rs[i].create_time+"</td>";
+// 			     			str += "<td>"+rs[i].update_time+"</td>";
 			     			str += "<td style=\"display:none;\">"+rs[i].id+"</td>";
 			     			str +="</tr>";
 			     		}
@@ -103,7 +101,7 @@
 			},
 			detail: function(){
 				$("#msgBody>tr").on("click", function(){
-					var id = $(this).find("td:eq(6)").text();
+					var id = $(this).find("td:eq(4)").text();
 					window.location.href="detail.jsp?id="+id;
 				});
 			},

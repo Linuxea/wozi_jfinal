@@ -2,6 +2,7 @@ package com.wozi.usermanager.service;
 
 
 import java.util.Date;
+import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -25,7 +26,7 @@ public class UserService extends BaseService<Model> {
 	public boolean checkNotNull(UserModel model) {
 		if(StringUtils.isEmpty(model.getStr("user_name")) ||
 				StringUtils.isEmpty(model.getStr("sex")) ||
-				StringUtils.isEmpty(model.getStr("age")) ||
+				Objects.isNull(model.getInt("age")) ||
 				StringUtils.isEmpty(model.getStr("user_password"))){
 			return false;
 		}
