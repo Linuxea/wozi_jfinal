@@ -37,7 +37,7 @@ public class HelpService extends BaseService<LeaveMsg>{
 		if(System.currentTimeMillis() - date.getTime() <= 24*60*60*1000){
 			//还没过24小时
 			map.put("isSuccess", false);
-			map.put("msg", "请再过24小时留言~");
+			map.put("msg", "请在上次留言24小时后再次留言~");
 		}else{
 			map.put("isSuccess", true);
 		}

@@ -26,8 +26,7 @@ public class NoteController extends BaseController {
 		//tbWoZiNotePOStr
 		String tbWoZiNotePOStr = this.getPara("tbWoZiNotePOStr");
 		NoteVO rs = JSONObject.parseObject(tbWoZiNotePOStr, NoteVO.class);
-		boolean isSuccess  = this.service.add(rs, userId);
-		this.renderJson("isSuccess", isSuccess);
+		this.renderJson(this.service.add(rs, userId));
 	}
 	
 	/**笔记的修改*/

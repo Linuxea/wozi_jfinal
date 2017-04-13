@@ -281,7 +281,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="<%=request.getContextPath()%>/plugins/swet/sweetalert-dev.js"></script>
 <script src="<%=request.getContextPath()%>/plugins/swet/sweetalert.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script> -->
+<script src="<%=request.getContextPath()%>/plugins/js/jstree.js"></script>
 <script type="text/javascript" charset="utf-8" src="../../ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="../../ueditor.all.js"> </script>
 <script type="text/javascript" charset="utf-8" src="../../lang/zh-cn/zh-cn.js"></script>
@@ -337,8 +338,6 @@
 					}
 					var strLine = "";
 					$.each(rs, function(i,c){
-						console.log("fuck");
-						console.log(c);
 						var time = c.create_time;//
 						strLine+='<div><i><span id='+c.id+' class="glyphicon glyphicon-list-alt">&nbsp;</span></i><span>'+c.title+'...</span><span style="display:block;color:#8c8c8c;margin-top: 4px;font-size: 12px;line-height: 1.35;">'+time+'</span></div>';
 					});
@@ -356,10 +355,15 @@
 			data:{"directMenuParentId":parnetId,"newNodeId":newNodeId},
 			dataType:"json",
 			success:function(rs){
-				//成功
+				swal({
+					  title: "Good job!",
+					  text: "创建目录成功!",
+					  timer: 1000,
+					  showConfirmButton: false
+					});
 			},
 			fail:function(){
-				console.log("error..");
+				swal("Ohh!", "创建目录失败!", "error")
 			}
 		});
 	}
@@ -377,44 +381,67 @@
 				"newTextName":newTextName,
 			},
 			success:function(rs) {
-				if(rs.code==="0") {
-					console.log(rs.desc);
-				}else{
-					console.log(rs.desc);
-				}
+				//pass
 			},
 			fail:function(){
-				console.log("error..");
+				swal("Ohh!", "系统故障!", "error");
 			}
 		});
 	}
 	
 	function delMenu(currentMenuId) {
-		$.ajax({
-			url:"<%=request.getContextPath()%>/menuController/del",
-			data:{
-				"currentMenuNodeId":currentMenuId,
+		swal({
+			  title: "你确定删除该目录以及目录下所有的笔记吗?",
+			  text: "删除操作执行后将无法恢复!",
+			  type: "warning",
+			  showCancelButton: true,
+			  confirmButtonColor: "#DD6B55",
+			  confirmButtonText: "是的!我确定",
+			  cancelButtonText: "不,我取消",
+			  closeOnConfirm: false,
+			  closeOnCancel: false
 			},
-			dataType:"json",
-			success:function(rs){
-				if(rs.isSuccess){
-					alert("删除成功!共删除了该目录下"+rs.impact+"条日记");
+			function(isConfirm){
+				if(isConfirm){
+					$.ajax({
+						url:"<%=request.getContextPath()%>/menuController/del",
+						data:{
+							"currentMenuNodeId":currentMenuId,
+						},
+						dataType:"json",
+						success:function(rs){
+							if(rs.isSuccess){
+								swal("删除目录成功!", "共删除了该目录下"+rs.impact+"条日记", "success");
+								var divs = $("#menu_list>div");
+								if(divs.length>0){
+									divs.remove();
+								}
+							}else{
+								swal("删除目录失败!", rs.msg, "error");
+							}
+						},
+						fail:function(){
+							swal("Ohh!", "系统故障!", "error");
+						},
+					});
 				}else{
-					alert(rs.msg);
+					swal("Cancelled", "Your imaginary file is safe :)", "error");
+		
 				}
-				location.reload();
-			},
-			fail:function(){
 				
-			},
-		});
+			});
 	}
 	
 	//创建笔记
 	$(document).on("click",".note-create", function(){
 		currentNoteId = "";
 		if(typeof currentMenuId ==="undefined"){
-			alert("请选择目录");
+			swal({
+				  title: "请选择目录",
+				  text: "请选择需要创建笔记的目录",
+				  timer: 1000,
+				  showConfirmButton: false
+				});
 		}else {
 			var str = '<div><i><span class="glyphicon glyphicon-list-alt">&nbsp;</span></i><span>标题1</span><span style="display:block;color:#8c8c8c;margin-top: 4px;font-size: 12px;line-height: 1.35;">时间标签</span></div>';
 			$("#menu_list").prepend(str);
@@ -448,7 +475,21 @@
 				if(rs.isSuccess) {
 					getNoteListByMenu(currentMenuId);
 					UE.getEditor('editor').setDisabled('fullscreen');
-					alert("新建或者修改成功");
+					if(rs.isUpdate){
+						swal({
+							  title: "修改成功!",
+							  text: "笔记修改成功",
+							  timer: 1000,
+							  showConfirmButton: false
+							});
+					}else{
+						swal({
+							  title: "添加成功!",
+							  text: "笔记添加成功.",
+							  timer: 1000,
+							  showConfirmButton: false
+							});
+					}
 				}
 			},
 		});
@@ -482,7 +523,6 @@
 	function findNode(){
 		//查找笔记
 		$(document).on(".zu-top-search-input","keyup", function(){
-			console.log("aaa");
 		});
 	}
 	
@@ -528,29 +568,21 @@
 				    .bind("create_node.jstree", function(data, e){//创建新目录节点
 				    	e.node.text = "newNode";//新创建节点的默认名称
 				    	var id = randomId();
-						console.log("createa node successfully!");
-						console.log(e);//e 的 parent 表示新创建的目录的父目录!
 						createMenuNode(e.parent, e.node.id);//e.node.id为自动生成的id
 						currentMenuId = e.node.id;
 					})
 					.bind("rename_node.jstree", function(data, e){//修改节点名称
-						console.log("rename..");
-						console.log("当前选中的是"+currentMenuId);
-						console.log(e);//e.old oldname  e.text  newName
 						reNameMenuNode(currentMenuId, e.text);
 						//document.location.reload();//当前页面 解决一个问题的暂时方法 2016-12-19
 					})
 					.bind("delete_node.jstree", function(data, e){//delete_node
-						console.log(e);//e.node.id  存放着欲删除的目录id
 						delMenu(e.node.id);
 						currentMenuId = undefined;
 					})
 					.bind("select_node.jstree", function (e, data) {
-				       // console.log(data.changed.selected); // 左键右键点击目录的id
 				        currentMenuId = data.node.id;//保存当前选中的目录id
 				        menuId = data.node.id;
 				        getNoteListByMenu(currentMenuId);
-				        //console.log(data.changed.deselected); // 跳出某个目录的id
 				    });
 			}
 		});

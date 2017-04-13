@@ -2,6 +2,8 @@ package com.wozi.notemanager.service;
 
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -21,7 +23,8 @@ public class NoteService extends BaseService<NoteModel>{
 
 	
 	/**笔记的创建或更新*/
-	public boolean add(NoteVO rs, int userId) {
+	public Map<String, Object> add(NoteVO rs, int userId) {
+		Map<String,Object> map = new HashMap<>();
 		//通过id值来判断
 		if(StringUtils.isNotEmpty(rs.getId())){
 			NoteModel nm = new NoteModel();
@@ -33,7 +36,8 @@ public class NoteService extends BaseService<NoteModel>{
 			.set("content", rs.getContent())
 			.set("name", rs.getTitle())
 			.set("user_id", userId);
-			return super.update(nm);
+			map.put("isSuccess", super.update(nm));
+			map.put("isUpdate", true);
 		}else{
 			NoteModel nm = new NoteModel();
 			nm.set("create_time", new Date())
@@ -43,8 +47,10 @@ public class NoteService extends BaseService<NoteModel>{
 			.set("content", rs.getContent())
 			.set("name", rs.getTitle())
 			.set("user_id", userId);
-			return super.add(nm);
+			map.put("isSuccess", super.add(nm));
+			map.put("isAdd", true);
 		}
+		return map;
 	}
 
 }

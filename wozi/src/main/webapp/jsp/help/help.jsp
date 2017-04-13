@@ -5,9 +5,13 @@
 <head>
 	<meta charset="utf-8"> 
 	<title>帮助模块</title>
-	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
-	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/plugins/swet/sweetalert.css" >
+	<script src="<%=request.getContextPath()%>/plugins/js/jquery-3.1.1.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/plugins/swet/sweetalert-dev.js"></script>
+	<script src="<%=request.getContextPath()%>/plugins/swet/sweetalert.min.js"></script>
 	<style>
 	.container-fluid {
     background: #337ab7;
@@ -136,10 +140,15 @@ var funs = {
 		     	dataType:"json",
 		     	success:function(rs){
 		     		if(rs.isSuccess){
+		     			swal({
+		     				  title: "Sweet!",
+		     				  text: "感谢您的留言！管理员将会尽快查看",
+		     				  imageUrl: "<%=request.getContextPath()%>/images/good.jpg",
+		     				});
 		     			$("#msgBody").html("");
 			     		funs.historyMsg();//重新刷新 
 		     		}else{
-		     			alert(rs.msg);
+						swal(rs.msg);
 		     		}
 		     	}
 		     });
