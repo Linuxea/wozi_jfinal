@@ -13,6 +13,7 @@ import com.jfinal.template.Engine;
 import com.wozi.adminmanager.controller.AdminController;
 import com.wozi.base.interceptor.GlobalExceptionInterceptor;
 import com.wozi.base.interceptor.LoginInterceptor;
+import com.wozi.base.plugins.ChatServerPlugin;
 import com.wozi.friendmanager.controller.FriendController;
 import com.wozi.helpmanager.controller.HelpController;
 import com.wozi.notemanager.controller.MenuController;
@@ -54,7 +55,10 @@ public class JMainConfig extends JFinalConfig {
 		arp.setShowSql(true);
 		// 所有映射在 MappingKit 中自动化搞定
 		MappingKit.mapping(arp);
-		me.add(arp);		
+		me.add(arp);
+		
+		/**聊天服务器启动*/
+		me.add(new ChatServerPlugin());
 	}
 
 	@Override

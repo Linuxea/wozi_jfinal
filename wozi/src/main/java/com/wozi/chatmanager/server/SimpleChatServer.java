@@ -8,7 +8,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-public class SimpleChatServer {
+public class SimpleChatServer implements Runnable{
 
     private int port;
 
@@ -16,7 +16,7 @@ public class SimpleChatServer {
         this.port = port;
     }
 
-    public void run() throws Exception {
+    public void go() throws Exception {
         
         EventLoopGroup bossGroup = new NioEventLoopGroup(); // (1)
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -50,9 +50,18 @@ public class SimpleChatServer {
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
         } else {
-            port = 8080;
+            port = 9999;
         }
         new SimpleChatServer(port).run();
 
     }
+
+	@Override
+	public void run() {
+		try {
+			this.go();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
