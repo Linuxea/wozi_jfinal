@@ -28,6 +28,7 @@ public class MappingKit {
 		
 		/**留言信息表*/
 		arp.addMapping("wozi_leave","id", LeaveMsg.class);
+		
 	}
 	
 }
