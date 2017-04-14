@@ -28,8 +28,6 @@ public class SimpleChatServer implements Runnable{
              .option(ChannelOption.SO_BACKLOG, 128)          // (5)
              .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
             
-    		System.out.println("SimpleChatServer 启动了");
-    		
             // 绑定端口，开始接收进来的连接
             ChannelFuture f = b.bind(port).sync(); // (7)
 
@@ -40,7 +38,6 @@ public class SimpleChatServer implements Runnable{
         } finally {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
-            
     		System.out.println("SimpleChatServer 关闭了");
         }
     }

@@ -9,9 +9,9 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-public class SimpleChatClient {
+public class SimpleChatClient implements Runnable {
 	public static void main(String[] args) throws Exception{
-	        new SimpleChatClient("localhost", 8080).run();
+	        new SimpleChatClient("localhost", 12345).run();
 	    }
 	
 	    private final String host;
@@ -22,7 +22,7 @@ public class SimpleChatClient {
 	        this.port = port;
 	    }
 	
-	    public void run() throws Exception{
+	    public void go() throws Exception{
 	        EventLoopGroup group = new NioEventLoopGroup();
 	        try {
 	            Bootstrap bootstrap  = new Bootstrap()
@@ -41,4 +41,13 @@ public class SimpleChatClient {
 	        }
 	
 	    }
+
+		@Override
+		public void run() {
+			try {
+				this.go();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
     }

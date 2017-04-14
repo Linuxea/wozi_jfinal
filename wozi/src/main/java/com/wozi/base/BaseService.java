@@ -31,5 +31,5 @@ public class BaseService<T extends Model<?>> {
 		model.save();
 		return model.get(idName);
 	}
-
+	
 }

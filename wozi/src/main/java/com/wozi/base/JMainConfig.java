@@ -18,6 +18,7 @@ import com.wozi.adminmanager.controller.AdminController;
 import com.wozi.base.interceptor.GlobalExceptionInterceptor;
 import com.wozi.base.interceptor.LoginInterceptor;
 import com.wozi.base.plugins.ChatServerPlugin;
+import com.wozi.chatmanager.controller.ChatController;
 import com.wozi.friendmanager.controller.FriendController;
 import com.wozi.helpmanager.controller.HelpController;
 import com.wozi.notemanager.controller.MenuController;
@@ -45,6 +46,7 @@ public class JMainConfig extends JFinalConfig {
 		me.add("noteSearchController", NoteSearchController.class);
 		me.add("helpController", HelpController.class);
 		me.add("adminController", AdminController.class);
+		me.add("chatController", ChatController.class);
 	}
 
 
@@ -71,7 +73,11 @@ public class JMainConfig extends JFinalConfig {
 		me.add(arp);
 		
 		/**聊天服务器启动*/
-//		me.add(new ChatServerPlugin());
+		me.add(new ChatServerPlugin());
+		
+		/**redis*/
+//		RedisPlugin rp = new RedisPlugin("jedis", "127.0.0.1","9090");
+//		me.add(rp);
 	}
 
 	@Override

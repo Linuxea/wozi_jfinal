@@ -11,6 +11,7 @@ public class BaseController extends Controller{
 	
 	public Map<String,Object> map = new HashMap<>();
 	
+	
 	public void index(){
 		//跳转到登录页面
 		this.renderJsp("/jsp/user/login.jsp");
