@@ -12,7 +12,6 @@ import com.wozi.base.BaseController;
 import com.wozi.helpmanager.model.LeaveMsg;
 import com.wozi.helpmanager.service.HelpService;
 
-@Before(Tx.class)
 public class HelpController extends BaseController {
 	
 	private HelpService service = Duang.duang(HelpService.class, Tx.class);
@@ -28,6 +27,7 @@ public class HelpController extends BaseController {
 		
 	}
 	
+	@Before(Tx.class)
 	//留言
 	public void leaveMsg(){
 		int id = (int)this.getSession().getAttribute("UID");

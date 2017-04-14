@@ -7,8 +7,10 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseService;
 import com.wozi.notemanager.NoteVO;
 import com.wozi.notemanager.model.NoteModel;
@@ -21,7 +23,8 @@ public class NoteService extends BaseService<NoteModel>{
 		return Db.findFirst(sql, id);
 	}
 
-	
+
+	@Before(Tx.class)
 	/**笔记的创建或更新*/
 	public Map<String, Object> add(NoteVO rs, int userId) {
 		Map<String,Object> map = new HashMap<>();

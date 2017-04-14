@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseService;
 import com.wozi.notemanager.model.MenuModel;
 
@@ -17,6 +19,7 @@ public class MenuService extends BaseService<MenuModel> {
 		return Db.find(sql, id);
 	}
 
+	@Before(Tx.class)
 	public void reName(String currentMenuNodeId, String newTextName,int userId) {
 		String upDateSql = "update wozi_menu set text = ? "
 				+ " where id = ? "
@@ -32,12 +35,15 @@ public class MenuService extends BaseService<MenuModel> {
 		return Db.find(querySql, user_id, id);
 	}
 
+	@Before(Tx.class)
 	public int delNoteByMenuId(String menuId, int userId) {
 		String delSql = "delete from wozi_note where menu_id = ? and user_id = ?";
 		int impact = Db.update(delSql, menuId, userId);//总数几行受影响
 		return impact;
 	}
 
+	
+	@Before(Tx.class)
 	public boolean delMenu(String menuId, int userId) {
 		String delSql = "delete from wozi_menu where id=? and user_id = ?";
 		int count = Db.update(delSql, menuId, userId);

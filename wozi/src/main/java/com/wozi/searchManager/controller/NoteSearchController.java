@@ -8,7 +8,6 @@ import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseController;
 import com.wozi.searchManager.service.NoteSearchService;
 
-@Before(Tx.class)
 public class NoteSearchController extends BaseController {
 	
 	private NoteSearchService service = new NoteSearchService();

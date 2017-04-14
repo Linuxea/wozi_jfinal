@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.jfinal.aop.Before;
 import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -22,6 +23,7 @@ public class UserController extends BaseController{
 		this.renderJson("msg","hello!wozi_super is coming...");
 	}
 	
+	@Before(Tx.class)
 	/**用户的注册添加*/
 	public void add(){
 		UserModel model = this.getModel(UserModel.class);
@@ -43,6 +45,7 @@ public class UserController extends BaseController{
 		this.renderJson(resultMap);
 	}
 	
+	@Before(Tx.class)
 	/**用户信息的修改*/
 	public void update() {
 		UserModel um = new UserModel();//自己封装 :(

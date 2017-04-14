@@ -6,9 +6,11 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseService;
 import com.wozi.notemanager.model.MenuModel;
 import com.wozi.usermanager.model.UserModel;
@@ -33,7 +35,8 @@ public class UserService extends BaseService<Model<?>> {
 			
 		return true;
 	}
-
+	
+	@Before(Tx.class)
 	public void newRoot(int id) {
 		MenuModel mm = new MenuModel();
 		mm.set("id", "j1.0")

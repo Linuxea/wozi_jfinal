@@ -13,13 +13,13 @@ import com.wozi.notemanager.model.MenuModel;
 import com.wozi.notemanager.service.MenuService;
 
 /**目录的controller*/
-@Before(Tx.class)
 public class MenuController extends BaseController {
 	private MenuService service = Duang.duang(MenuService.class, Tx.class);
 	public void index() {
 		
 	}
 	
+	@Before(Tx.class)
 	/**目录的添加*/
 	public void add(){
 		//directMenuParentId   newNodeId
@@ -37,6 +37,7 @@ public class MenuController extends BaseController {
 		this.renderJson("msg","create menu ok");
 	}
 	
+	@Before(Tx.class)
 	/**目录名称的修改*/
 	public void update() {
 		MenuModel model = this.getModel(MenuModel.class);
@@ -51,6 +52,7 @@ public class MenuController extends BaseController {
 		this.renderJson(this.service.findMenu(id));
 	}
 	
+	@Before(Tx.class)
 	/**目录的删除与该目录下所有笔记的删除*/
 	public void del() {
 		int userId = (int) this.getSession().getAttribute("UID");
@@ -71,6 +73,7 @@ public class MenuController extends BaseController {
 		this.renderJson(map);
 	}
 	
+	@Before(Tx.class)
 	/**目录重新命名*/
 	public void reName(){
 		int id = (int) this.getSession().getAttribute("UID");

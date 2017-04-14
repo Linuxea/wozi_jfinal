@@ -11,7 +11,6 @@ import com.wozi.notemanager.model.NoteModel;
 import com.wozi.notemanager.service.NoteService;
 
 /**笔记的controller*/
-@Before(Tx.class)
 public class NoteController extends BaseController {
 	
 	private NoteService service = Duang.duang(NoteService.class, Tx.class);
@@ -19,7 +18,7 @@ public class NoteController extends BaseController {
 	public void index() {
 	}
 	
-	
+	@Before(Tx.class)
 	/**笔记的创建  前端传来所在目录的id*/
 	public void add(){
 		int userId = (int) this.getSession().getAttribute("UID");
@@ -29,6 +28,7 @@ public class NoteController extends BaseController {
 		this.renderJson(this.service.add(rs, userId));
 	}
 	
+	@Before(Tx.class)
 	/**笔记的修改*/
 	public void edit(){
 		boolean isSuccess = false;
@@ -37,6 +37,7 @@ public class NoteController extends BaseController {
 		this.renderJson("isSuccess", isSuccess);
 	}
 	
+	@Before(Tx.class)
 	/**笔记的删除*/
 	public void del() {
 		boolean isSuccess = false;
