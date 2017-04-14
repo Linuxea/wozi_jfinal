@@ -72,7 +72,7 @@
 </div>
 <script src="<%=request.getContextPath()%>/plugins/js/jquery-3.1.1.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="../../plugins/js/Jquery-Form.js"></script>
+<script src="<%=request.getContextPath()%>/plugins/js/Jquery-Form.js"></script>
 <script>
 
 	$(document).on("click","#ajaxLogin", function(){
