@@ -86,7 +86,11 @@ public class UserController extends BaseController{
 		
 	}
 	
-	/**不提供用户注销*/
+	/**用户注销*/
+	public void logOut(){
+		this.getSession().invalidate();
+		this.renderJson("isSuccess", true);
+	}
 	
 	
 	/**返回当前登录人名称*/
