@@ -1,19 +1,18 @@
 package com.wozi.base.interceptor;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
-import com.wozi.base.BaseController;
 
 /**用户拦截器*/
 public class LoginInterceptor implements Interceptor {
 	
 	private Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void intercept(Invocation inv) {
 		Controller controller = inv.getController();
@@ -22,9 +21,9 @@ public class LoginInterceptor implements Interceptor {
 			inv.invoke();
 		}else{
 			if( null ==  controller.getSession().getAttribute("UID") ){
-				//表示没登录 跳转到登录页面
+				logger.info("催促别人去登录...");
 				controller.render("/jsp/user/login.jsp");
-//				controller.forwardAction("com.wozi.base.BaseController");
+				return;
 			}else{
 				inv.invoke();
 			}

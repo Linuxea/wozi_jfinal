@@ -359,6 +359,9 @@
 					},
 				});
 			},
+			addFriend : function(){
+				window.location.href="<%=request.getContextPath()%>/jsp/chat/add.jsp";
+			}
 			
 	}
 	
