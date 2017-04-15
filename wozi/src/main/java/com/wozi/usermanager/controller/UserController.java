@@ -11,6 +11,7 @@ import com.jfinal.aop.Before;
 import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
+import com.jfinal.upload.UploadFile;
 import com.wozi.base.BaseController;
 import com.wozi.usermanager.model.UserModel;
 import com.wozi.usermanager.service.UserService;
@@ -98,5 +99,11 @@ public class UserController extends BaseController{
 		int userId = (int) this.getSession().getAttribute("UID");
 		Record rs = this.service.findUser(userId);
 		this.renderJson(rs);
+	}
+	
+	/**上传头像*/
+	public void upHeadPic(){
+		this.getFile("headPic", "/images/head/");
+		this.renderJson("isSuccess", true);
 	}
 }

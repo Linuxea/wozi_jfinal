@@ -50,6 +50,16 @@
 		<!-- 留空白 好看 -->
 	</div>
 	<form class="form-horizontal" role="form">
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">头像地址</label>
+<!-- 		<form id="picUp" enctype="multipart/form-data"> -->
+<!-- 			<div class="col-sm-10"> -->
+<!-- 			<input class="form-control" id="user_name" type="file"> -->
+<!-- 		</div> -->
+<!-- 		</form> -->
+	</div>
+	
 	<div class="form-group">
 		<label class="col-sm-2 control-label">用户名</label>
 		<div class="col-sm-10">
@@ -150,7 +160,6 @@
 	
 </form>
 </div>
-
 <script>
 var id = null;//保存用户id
 
@@ -207,6 +216,7 @@ function updateInfo(){
      	success:function(rs){
      		if(rs.isSuccess){
      			getUser();
+//      			upPic();
      			$("#newPwd").val("");
      			swal({
      				  title: "修改个人信息成功!",
@@ -219,7 +229,6 @@ function updateInfo(){
      		}
      	}
      });
-	
 }
 
 
@@ -229,6 +238,19 @@ function help(){
 		window.location.href = "<%=request.getContextPath()%>/jsp/help/help.jsp";
 	});
 }
+
+//头像上传
+// function upPic(){
+// 	$.ajaxSubmit({
+<%-- 		url:"<%=request.getContextPath()%>/userController/upHeadPic", --%>
+// 		type:"post",
+// 		success:function(rs){
+// 			if(rs.isSuccess){
+// 				//头像上传成功
+// 			}
+// 		}
+// 	});
+// }
 
 </script>
 </body>
