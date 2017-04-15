@@ -1,7 +1,6 @@
 package com.wozi.chatmanager.controller;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -53,6 +52,7 @@ public class ChatController extends BaseController {
 			return;//cautious
 		}
 		
+		this.getSession().setAttribute("online", true);//设置为在线
 		String currentUserName = null;
 		try {
 			new Thread(new SimpleChatClient("localhost", 12345)).start();
@@ -96,29 +96,15 @@ public class ChatController extends BaseController {
 	
 	
 	//我要上线!!!!!!!!!
-	//感觉这个没必要
-	//如果session是每个客户端一个相互独立的副本的话
 	//只需要一个标识位来判断该用户是登录的即可
-	@SuppressWarnings("unchecked")
 	private boolean isOn(){
-		int id = (int) this.getSession().getAttribute("UID");
-		Set<Integer> online = (Set<Integer>) this.getSession().getAttribute("onList");
-		if(null == online){
+		Boolean isOn = (Boolean) this.getSession().getAttribute("online");
+		if(null == isOn){
 			//表示还没有这个对象 自然没有这个人
-			Set<Integer> sets = new HashSet<>();
-			sets.add(id);//将当前用户放进去
-			this.getSession().setAttribute("onList", sets);
+			return false;
 		}else{
-			if(online.contains(id)){
-				//已经上线了
-				return true;
-			}else{
-				Set<Integer> onlineSet = (Set<Integer>) this.getSession().getAttribute("onList");
-				onlineSet.add(id);
-				this.getSession().setAttribute("onList", onlineSet);
-			}
+			return true;
 		}
-		return false;
 	}
 
 }
