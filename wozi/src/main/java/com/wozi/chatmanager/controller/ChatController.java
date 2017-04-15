@@ -40,7 +40,7 @@ public class ChatController extends BaseController {
 	//发送信息
 	public void sent(){
 		int to = this.getParaToInt("to");//sent to who
-		
+		String content = this.getPara("content");
 	}
 	
 	
@@ -49,7 +49,6 @@ public class ChatController extends BaseController {
 	public void touch(){
 		if(this.isOn()){
 			//表示此人已经在线上了
-//			this.renderJson("msg","你已经在线上了!!!");
 			this.renderJson("isSuccess", true);
 			return;//cautious
 		}
