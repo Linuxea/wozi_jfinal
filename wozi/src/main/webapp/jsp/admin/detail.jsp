@@ -113,7 +113,6 @@
 		<div class="col-sm-5">
 			<button type="button" class="btn btn-info" id="back">返回</button>
 		</div>
-		
 	</div>
 	
 	

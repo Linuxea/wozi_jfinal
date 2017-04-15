@@ -258,6 +258,13 @@
 			 
 			 </textarea>
 			</div> 
+			
+			<div class="form-group">
+				<div class="col-sm-5">
+					<button type="button" class="btn btn-default navbar-btn" id="send">send</button>
+				</div>
+			</div>
+			
 		</div>
 		
 		
@@ -331,7 +338,7 @@
 					success: function(rs){
 						if(rs.isSuccess){
 							
-						},
+						}
 					},
 					fail : function(){
 						
@@ -345,7 +352,7 @@
 					success: function(rs){
 						if(rs.isSuccess){
 							
-						},
+						}
 					},
 					fail : function(){
 						
