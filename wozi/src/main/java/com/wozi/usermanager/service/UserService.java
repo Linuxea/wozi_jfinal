@@ -70,4 +70,10 @@ public class UserService extends BaseService<Model<?>> {
 		}
 	}
 
+	public String getPic(int userId) {
+		String sql = "select head_path from wozi_head_pic where"
+				+ " user_id = ?";
+		return Db.queryStr(sql,userId);
+	}
+
 }

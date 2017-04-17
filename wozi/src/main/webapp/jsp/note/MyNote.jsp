@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>我的笔记首页</title>
-<!--   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" /> -->
-  		<link rel="stylesheet" href="<%=request.getContextPath()%>/css/note/jstree.css" />
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+<%--   		<link rel="stylesheet" href="<%=request.getContextPath()%>/css/note/jstree.css" /> --%>
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/plugins/swet/sweetalert.css" >
 	<!-- jqContext begin -->
@@ -225,8 +225,11 @@
     	</div>
         <!--向右对齐-->
         <div class="nav navbar-nav navbar-right">
-        	 <button type="button" class="btn btn-default navbar-btn user-btn">
-        	 	<!--  此处显示当前登录用户名称  -->
+<!--         	 <button type="button" class="btn btn-default navbar-btn user-btn"> -->
+<!--         	 	 此处显示当前登录用户名称  -->
+<!--          	</button> -->
+         	<button type="button" class="btn btn-default navbar-btn  user-btn">
+         		<img id="headPic" class="img-rounded" height='35px' width='35px' src="<%=request.getContextPath() %>/images/head/ac345982b2b7d0a239f5040ccdef76094b369a6610.jpg"/>
          	</button>
         </div>
     </div>
@@ -281,8 +284,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="<%=request.getContextPath()%>/plugins/swet/sweetalert-dev.js"></script>
 <script src="<%=request.getContextPath()%>/plugins/swet/sweetalert.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script> -->
-<script src="<%=request.getContextPath()%>/plugins/js/jstree.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+<%-- <script src="<%=request.getContextPath()%>/plugins/js/jstree.js"></script> --%>
 <script type="text/javascript" charset="utf-8" src="../../ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="../../ueditor.all.js"> </script>
 <script type="text/javascript" charset="utf-8" src="../../lang/zh-cn/zh-cn.js"></script>
@@ -317,6 +320,7 @@
 		addDel();
 		initSearch();//搜索功能
 		getCurrentName();
+		getPic();
 	  });
 	
 	//点击用户名称跳转到用户信息详情页面
@@ -664,9 +668,23 @@
          	dataType:"json",
          	success:function(rs){
          		//将当前登录人名称
-         		$(".user-btn").text(rs.user_name);
+//          		$(".user-btn").text(rs.user_name);
          	}
          });
+	}
+	
+	function getPic(){
+		$.ajax({
+	     	url: "<%=request.getContextPath()%>/userController/getPic",
+	     	dataType:"json",
+	     	success:function(rs){
+	     		if(rs.isSuccess){
+	     			$("#headPic").prop("src","<%=request.getContextPath()%>/"+rs.path);
+	     		}else{
+	     			alert("systemerror!");
+	     		}
+	     	}
+	     });
 	}
 	
 	

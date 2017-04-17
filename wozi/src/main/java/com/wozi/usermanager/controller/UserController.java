@@ -2,8 +2,6 @@ package com.wozi.usermanager.controller;
 
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Duang;
-import com.jfinal.kit.FileKit;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.upload.UploadFile;
@@ -115,7 +112,16 @@ public class UserController extends BaseController{
 		//save into db  => f.getFileName()
 		String newFile = "E:\\git-home\\wozi_jfinal\\wozi\\src\\main\\webapp\\images\\head\\" + uf.getFileName();
 		FileUtils.copyFile(fis, new File(newFile));
-		this.service.editHeadPic(userId, uf.getUploadPath()+uf.getFileName());
+		this.service.editHeadPic(userId, "images\\head\\"+uf.getFileName());
 		this.renderJson("isSuccess", true);
+	}
+	
+	/**获取头像地址*/
+	public void getPic(){
+		int userId = (int) this.getSession().getAttribute("UID");
+		String path = this.service.getPic(userId);
+		super.map.put("isSuccess", true);
+		super.map.put("path", path);
+		this.renderJson(map);
 	}
 }
