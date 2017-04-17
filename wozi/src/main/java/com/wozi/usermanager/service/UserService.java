@@ -13,6 +13,7 @@ import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseService;
 import com.wozi.notemanager.model.MenuModel;
+import com.wozi.usermanager.model.HeadPic;
 import com.wozi.usermanager.model.UserModel;
 
 public class UserService extends BaseService<Model<?>> {
@@ -52,6 +53,21 @@ public class UserService extends BaseService<Model<?>> {
 	public Record findUser(int userId) {
 		String querySql = "select * from wozi_user where id = ?";
 		return Db.findFirst(querySql, userId);
+	}
+
+	//save or update head pic
+	public void editHeadPic(int userId, String pathName) {
+		String sql  = "select count(*) from wozi_head_pic where user_id = ?";
+		long count = Db.queryLong(sql, userId);
+		if(count == 0){
+			HeadPic hp  = new HeadPic();
+			hp.set("user_id", userId).set("head_path", pathName);
+			this.add(hp);
+		}else{
+			String upSql = "update wozi_head_pic set head_path = ?"
+					+ " where user_id = ?";
+			Db.update(upSql, pathName, userId);
+		}
 	}
 
 }

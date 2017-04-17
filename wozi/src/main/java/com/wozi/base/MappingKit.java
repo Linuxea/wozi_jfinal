@@ -6,6 +6,7 @@ import com.wozi.helpmanager.model.LeaveMsg;
 import com.wozi.notemanager.model.MenuModel;
 import com.wozi.notemanager.model.NoteModel;
 import com.wozi.pointmanager.model.PointModel;
+import com.wozi.usermanager.model.HeadPic;
 import com.wozi.usermanager.model.UserModel;
 
 public class MappingKit {
@@ -28,6 +29,9 @@ public class MappingKit {
 		
 		/**留言信息表*/
 		arp.addMapping("wozi_leave","id", LeaveMsg.class);
+		
+		/**头像信息表*/
+		arp.addMapping("wozi_head_pic","id", HeadPic.class);
 		
 	}
 	
