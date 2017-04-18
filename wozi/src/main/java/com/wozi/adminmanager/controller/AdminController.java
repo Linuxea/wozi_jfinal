@@ -3,12 +3,12 @@ package com.wozi.adminmanager.controller;
 import java.util.List;
 import java.util.Map;
 
-import com.jfinal.aop.Before;
 import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.adminmanager.service.AdminService;
 import com.wozi.base.BaseController;
+import com.wozi.usermanager.model.UserModel;
 
 public class AdminController extends BaseController {
 	
@@ -50,6 +50,13 @@ public class AdminController extends BaseController {
 	public void ageData(){
 		Map<String, Object> rsMp = this.service.getAgeData();
 		this.renderJson(rsMp);
+	}
+	
+	//管理员删除用户接口
+	public void delUser(){
+		int id = this.getParaToInt("id");
+		boolean isSuccess = this.service.del(new UserModel().set("id", id));
+		this.renderJson("isSuccess", isSuccess);
 	}
 	
 }
