@@ -108,6 +108,9 @@ public class UserController extends BaseController{
 	public void upHeadPic() throws IOException{
 		int userId = (int) this.getSession().getAttribute("UID");
 		UploadFile uf = this.getFile("headPic", "/images/head/");
+		if(null ==  uf){
+			return;//表示没选择头像
+		}
 		File fis = new File(uf.getUploadPath()+uf.getFileName());
 		//save into db  => f.getFileName()
 		String newFile = "E:\\git-home\\wozi_jfinal\\wozi\\src\\main\\webapp\\images\\head\\" + uf.getFileName();
