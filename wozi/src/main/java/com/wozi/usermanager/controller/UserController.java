@@ -19,6 +19,7 @@ import com.wozi.base.BaseController;
 import com.wozi.pointmanager.model.PointModel;
 import com.wozi.usermanager.model.UserModel;
 import com.wozi.usermanager.service.UserService;
+import com.wozi.utils.impl.PointImpl;
 
 public class UserController extends BaseController{
 	
@@ -142,6 +143,7 @@ public class UserController extends BaseController{
 		int point = this.service.getPoint(userId);
 		super.map.put("isSuccess", true);
 		super.map.put("point", point);
+		super.map.put("class", new PointImpl().rulePoint(point));
 		this.renderJson(map);
 	}
 }
