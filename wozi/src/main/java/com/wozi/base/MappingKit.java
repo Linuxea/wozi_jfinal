@@ -1,6 +1,7 @@
 package com.wozi.base;
 
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.wozi.adminmanager.model.UserStopModel;
 import com.wozi.friendmanager.model.FriendModel;
 import com.wozi.helpmanager.model.LeaveMsg;
 import com.wozi.notemanager.model.MenuModel;
@@ -32,6 +33,9 @@ public class MappingKit {
 		
 		/**头像信息表*/
 		arp.addMapping("wozi_head_pic","id", HeadPic.class);
+		
+		/**用户禁止表*/
+		arp.addMapping("wozi_user_stop", "id", UserStopModel.class);
 		
 	}
 	

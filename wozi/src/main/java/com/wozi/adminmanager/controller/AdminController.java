@@ -6,6 +6,7 @@ import java.util.Map;
 import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
+import com.wozi.adminmanager.model.UserStopModel;
 import com.wozi.adminmanager.service.AdminService;
 import com.wozi.base.BaseController;
 import com.wozi.usermanager.model.UserModel;
@@ -57,6 +58,12 @@ public class AdminController extends BaseController {
 		int id = this.getParaToInt("id");
 		boolean isSuccess = this.service.del(new UserModel().set("id", id));
 		this.renderJson("isSuccess", isSuccess);
+	}
+	
+	//管理员禁止用户接口
+	public void stopUser(){
+		int id = this.getParaToInt("id");
+		this.service.stopUser(id);
 	}
 	
 }

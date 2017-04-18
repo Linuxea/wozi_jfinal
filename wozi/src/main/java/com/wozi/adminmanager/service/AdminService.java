@@ -7,6 +7,7 @@ import java.util.Map;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Record;
+import com.wozi.adminmanager.model.UserStopModel;
 import com.wozi.base.BaseService;
 
 public class AdminService extends BaseService<Model<?>> {
@@ -82,6 +83,24 @@ public class AdminService extends BaseService<Model<?>> {
 	public long rangAge(int ageStart, int ageEnd){
 		String querySql = "select count(*) from wozi_user where age>? and age< ?";
 		return Db.queryLong(querySql, ageStart, ageEnd);
+	}
+
+	public boolean stopUser(int id) {
+		String changeSql = "insert into wozi_user_stop(user_id) values(?)";
+		Db.update(changeSql, id);
+		return true;
+	}
+	
+	public boolean changeUserStatus(int id){
+		String changeSql = "delete from wozi_user_stop where user_id = ?";
+		Db.update(changeSql, id);
+		return true;
+	}
+	
+	public boolean isStop(int id){
+		String sql = "select count(*) from wozi_user_stop where user_id = ?";
+		long count = Db.queryLong(sql, id);
+		return count > 0;
 	}
 	
 }
