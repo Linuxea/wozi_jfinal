@@ -7,7 +7,6 @@ import java.util.Map;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Record;
-import com.wozi.adminmanager.model.UserStopModel;
 import com.wozi.base.BaseService;
 
 public class AdminService extends BaseService<Model<?>> {
