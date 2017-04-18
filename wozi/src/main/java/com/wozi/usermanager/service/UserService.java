@@ -76,4 +76,9 @@ public class UserService extends BaseService<Model<?>> {
 		return Db.queryStr(sql,userId);
 	}
 
+	public int getPoint(int userId) {
+		String sql = "select point from wozi_user_point where user_id = ?";
+		return Db.queryInt(sql, userId);
+	}
+
 }

@@ -135,4 +135,13 @@ public class UserController extends BaseController{
 		super.map.put("path", path);
 		this.renderJson(map);
 	}
+	
+	/**获取当前人积分信息*/
+	public void getPoint(){
+		int userId = (int) this.getSession().getAttribute("UID");
+		int point = this.service.getPoint(userId);
+		super.map.put("isSuccess", true);
+		super.map.put("point", point);
+		this.renderJson(map);
+	}
 }
