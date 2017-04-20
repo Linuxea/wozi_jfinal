@@ -6,7 +6,6 @@ import java.util.Map;
 import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
-import com.wozi.adminmanager.model.UserStopModel;
 import com.wozi.adminmanager.service.AdminService;
 import com.wozi.base.BaseController;
 import com.wozi.usermanager.model.UserModel;

@@ -10,9 +10,9 @@
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/plugins/swet/sweetalert.css" >
 	<!-- jqContext begin -->
-    <link href="../../plugins/jqContextMenu/src/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
-    <link href="../../plugins/jqContextMenu/screen.css" rel="stylesheet" type="text/css" />
-    <link href="../../plugins/jqContextMenu/prettify/prettify.sunburst.css" rel="stylesheet" type="text/css" />
+    <link href="<%=request.getContextPath()%>/plugins/jqContextMenu/src/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+    <link href="<%=request.getContextPath()%>/plugins/jqContextMenu/screen.css" rel="stylesheet" type="text/css" />
+    <link href="<%=request.getContextPath()%>/plugins/jqContextMenu/prettify/prettify.sunburst.css" rel="stylesheet" type="text/css" />
 <style>
 	.container-fluid {
     background: #337ab7;
@@ -229,7 +229,7 @@
 <!--         	 	 此处显示当前登录用户名称  -->
 <!--          	</button> -->
          	<button type="button" class="btn btn-default navbar-btn  user-btn">
-         		<img id="headPic" class="img-rounded" height='35px' width='35px' src="<%=request.getContextPath() %>/images/head/ac345982b2b7d0a239f5040ccdef76094b369a6610.jpg"/>
+         		<img id="headPic" class="img-rounded" height='35px' width='35px' src=""/>
          	</button>
         </div>
     </div>
@@ -275,11 +275,11 @@
 	</div>
 <!-- 笔记编辑主体结束 -->
 </div>
-<script src="<%=request.getContextPath()%>/plugins/js/jquery-3.1.1.js"></script>
-<script src="../../plugins/jqContextMenu/src/jquery.ui.position.js" type="text/javascript"></script>
-<script src="../../plugins/jqContextMenu/src/jquery.contextMenu.js" type="text/javascript"></script>
-<script src="../../plugins/jqContextMenu/screen.js" type="text/javascript"></script>
-<script src="../../plugins/jqContextMenu/prettify/prettify.js" type="text/javascript"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script><!-- 版本不能太高 -->
+<script src="<%=request.getContextPath()%>/plugins/jqContextMenu/src/jquery.ui.position.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/plugins/jqContextMenu/src/jquery.contextMenu.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/plugins/jqContextMenu/screen.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/plugins/jqContextMenu/prettify/prettify.js" type="text/javascript"></script>
 <!-- jqContext end -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="<%=request.getContextPath()%>/plugins/swet/sweetalert-dev.js"></script>
