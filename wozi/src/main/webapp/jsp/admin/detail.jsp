@@ -6,8 +6,14 @@
 	<meta charset="utf-8"> 
 	<title>用户具体信息</title>
 	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
-	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script> -->
+<!-- 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/plugins/swet/sweetalert.css" >
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script><!-- 版本不能太高 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="<%=request.getContextPath()%>/plugins/swet/sweetalert-dev.js"></script>
+<script src="<%=request.getContextPath()%>/plugins/swet/sweetalert.min.js"></script>
 	<style>
 	.container-fluid {
     background: #337ab7;
@@ -113,6 +119,10 @@
 		<div class="col-sm-5">
 			<button type="button" class="btn btn-info" id="back">返回</button>
 		</div>
+		
+		<div class="col-sm-5">
+		<button type="button" class="btn btn-danger" id="del">删除</button>
+		</div>
 	</div>
 	
 	
@@ -131,6 +141,10 @@
 			init: function(){
 				$("#back").on("click", function(){
 					window.history.back();
+				});
+				
+				$("#del").on("click", function(){
+					funs.del(id);
 				});
 			},
 			getDetail: function(){
@@ -155,6 +169,48 @@
 						}
 			     	}
 			     });
+			},
+			
+			del : function(user_id){
+				swal({
+					  title: "你确定删除该用户信息吗?",
+					  text: "删除操作执行后将无法恢复!",
+					  type: "warning",
+					  showCancelButton: true,
+					  confirmButtonColor: "#DD6B55",
+					  confirmButtonText: "是的!我确定",
+					  cancelButtonText: "不,我取消",
+					  closeOnConfirm: false,
+					  closeOnCancel: false
+					},
+					function(isConfirm){
+						if(isConfirm){
+							$.ajax({
+								url:"<%=request.getContextPath()%>/adminController/delUser",
+								data:{
+									"id":user_id,
+								},
+								dataType:"json",
+								success:function(rs){
+									if(rs.isSuccess){
+										swal("删除成功!", "", "success");
+										setTimeout(function(){
+											window.history.back();
+										}, 1000);
+									}else{
+										swal("删除失败!", rs.msg, "error");
+									}
+								},
+								fail:function(){
+									swal("Ohh!", "系统故障!", "error");
+								},
+							});
+						}else{
+							swal("Cancelled", "当前用户安全存留下来", "error");
+				
+						}
+						
+					});
 			},
 	}
 

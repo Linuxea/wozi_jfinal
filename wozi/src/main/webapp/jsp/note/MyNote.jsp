@@ -459,6 +459,7 @@
 	});
 	
 	$(document).on("click",".note-save", function(){
+		debugger;
 		var htmlContent = UE.getEditor('editor').getAllHtml();
 		
 		var tbWoZiNotePO = {};
