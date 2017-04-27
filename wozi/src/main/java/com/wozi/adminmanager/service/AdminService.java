@@ -16,7 +16,18 @@ public class AdminService extends BaseService<Model<?>> {
 				+ " left join wozi_user "
 				+ " on wozi_leave.user_id = wozi_user.id "
 				+ " order by create_time desc";
-		return Db.find(listSql);
+		List<Record> rs = null;
+		rs =  Db.find(listSql);
+		this.checkNull(rs);
+		return rs;
+	}
+
+	private void checkNull(List<Record> rs) {
+		for(Record temp: rs){
+			if(null == temp.getStr("user_name")){
+				temp.set("user_name", "(该用户已经被管理员删除)");
+			}
+		}
 	}
 
 	public void changeStatus(int id) {

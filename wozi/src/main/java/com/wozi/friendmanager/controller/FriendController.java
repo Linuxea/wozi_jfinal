@@ -111,6 +111,14 @@ public class FriendController extends BaseController{
 		this.renderJson(rs);
 	}
 	
+	/**列出我的好友*/
+	public void list(){
+		int id = (int) this.getSession().getAttribute("UID");//当前人id
+		map.put("isSuccess", true);
+		map.put("list", this.service.list(id));
+		this.renderJson(map);
+	}
+	
 	
 	
 }

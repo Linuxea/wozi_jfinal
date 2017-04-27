@@ -1,6 +1,7 @@
 package com.wozi.friendmanager.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import com.jfinal.plugin.activerecord.Db;
@@ -46,5 +47,35 @@ public class FriendService  extends BaseService<FriendModel>{
 		String sql = "select * from WOZI_NOTE_SHARE where fromId = ?";
 		return Db.find(sql);
 	}
+
+	public List<Record> list(int id) {
+		String sql = "select * from wozi_friends where add_side = ?"
+				+ " or added_side = ? and added_pass = 'true' order by create_time desc";
+		List<Record> rs = Db.find(sql, id, id);
+		this.filter(id, rs);//过滤掉自己一方
+		return rs;
+	}
+
+	private void filter(int id, List<Record> rs) {
+		for(Record temp: rs){
+			int one = temp.getInt("add_side");
+			int another = temp.getInt("added_side");
+			if(id != one){
+				temp.set("only", one);
+				temp.set("onlyName", getName(one));
+			}else{
+				temp.set("only", another);
+				temp.set("onlyName", getName(another));
+			}
+		}
+		
+		//循环查询获取对方信息
+	}
+	
+	private String getName(int id){
+		String sql = "select user_name from wozi_user where id = ?";
+		return Db.queryStr(sql, id);
+	}
+	
 
 }

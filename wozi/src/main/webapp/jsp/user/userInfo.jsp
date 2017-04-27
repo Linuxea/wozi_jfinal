@@ -34,7 +34,7 @@
     </div>
     
     <div class="nav navbar-nav navbar-right">
-        	 <button type="button" class="btn btn-default navbar-btn chat-btn">聊天室</button>
+        	 <button type="button" class="btn btn-default navbar-btn chat-btn">我的好友</button>
     </div>
     
     <div class="nav navbar-nav navbar-right">
