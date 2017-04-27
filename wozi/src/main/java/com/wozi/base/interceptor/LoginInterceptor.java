@@ -1,6 +1,8 @@
 package com.wozi.base.interceptor;
 
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +24,9 @@ public class LoginInterceptor implements Interceptor {
 		}else{
 			if( null ==  controller.getSession().getAttribute("UID") ){
 				logger.info("催促别人去登录...");
-				controller.render("/jsp/user/login.jsp");
+//				controller.render("/jsp/user/login.jsp");
+				HttpServletResponse hsp = controller.getResponse();
+				hsp.setHeader("Location","/jsp/user/login.jsp");//try this to redicret
 				return;
 			}else{
 				inv.invoke();
