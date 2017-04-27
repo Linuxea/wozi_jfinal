@@ -36,7 +36,7 @@ public class PointImpl implements IPoint {
 	}
 	
 	
-	/**統計當前用戶的所用當前積分總和*/
+	/**統計當前用戶的所有積分總和*/
 	public String countPoint(int userId){
 		int sum = this.service.countPoint(userId);
 		return this.rulePoint(sum);
