@@ -2,7 +2,9 @@ package com.wozi.friendmanager.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import com.google.common.collect.*;
 import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -78,5 +80,37 @@ public class FriendController extends BaseController{
 			.set("create_time", new Date());
 		this.service.add(model);
 	}
+	
+	/**分享笔记*/
+	public void share(){
+		int noteId = this.getParaToInt("noteId");
+		int id = (int) this.getSession().getAttribute("UID");//当前人id
+		int to = this.getParaToInt("toId");//对方id 目前做成一个的
+		
+		boolean isSuccess = this.service.share(noteId, id, to);
+		Map<String, Object> returnMap = Maps.newHashMap();
+		returnMap.put("isSuccess", isSuccess);
+		this.renderJson(returnMap);
+	}
+	
+	/**查看別人給我分享的筆記*/
+	public void shareToMe(){
+		int id = (int) this.getSession().getAttribute("UID");//当前人id
+		
+		List<Record> rs = this.service.shareToMe(id);
+		
+		this.renderJson(rs);
+	}
+	
+	/**查看我分享給別人的筆記*/
+	public void shareFromMe(){
+		int id = (int) this.getSession().getAttribute("UID");//当前人id
+		
+		List<Record> rs = this.service.shareFromMe(id);
+		
+		this.renderJson(rs);
+	}
+	
+	
 	
 }

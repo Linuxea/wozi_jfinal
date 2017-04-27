@@ -30,4 +30,21 @@ public class FriendService  extends BaseService<FriendModel>{
 		return Db.find(sql, id);
 	}
 
+	
+	public boolean share(int noteId, int id, int to) {
+		String sql = "insert into WOZI_NOTE_SHARE (noteId, fromId, toId)"
+				+ " values (?,?,?)";
+		return Db.update(sql,noteId, id, to) == 1;
+	}
+
+	public List<Record> shareToMe(int id) {
+		String sql = "select * from WOZI_NOTE_SHARE where toId = ?";
+		return Db.find(sql);
+	}
+
+	public List<Record> shareFromMe(int id) {
+		String sql = "select * from WOZI_NOTE_SHARE where fromId = ?";
+		return Db.find(sql);
+	}
+
 }
