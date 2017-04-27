@@ -1,29 +1,36 @@
 package com.wozi.utils.service;
 
+import java.util.List;
+
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
+import com.jfinal.plugin.activerecord.Record;
 import com.wozi.base.BaseService;
 
 public class PointService extends BaseService<Model<?>>{
 
-	public boolean addPoint(int id, int point) {
-		String sql = "update wozi_user_point set  point+=? where user_id = ?";
-		int count = Db.update(sql, point);
+	
+	public boolean opPoint(int id, int point) {
+		String sql = "insert into wozi_user_point(user_id,point) values(?,?) ";
+		int count = Db.update(sql, id, point);
 		return count == 1;
 	}
 
-	public boolean subPoint(int id, int point) {
-		String sql = "select point from wozi_user_point where user_id  =?";
-		int count = Db.queryInt(sql, id);
-		String newSql = null;
-		if(point>count){
-			//全部扣除
-			newSql = "update wozi_user_point set point = 0 where user_id = ?";
-		}else{
-			newSql = "update wozi_user_point set point-=? where user_id = ?";
+	
+
+	public List<Record> listTrace(int id) {
+		String sql = "select * from wozi_user_point where userId = ? order by create_time desc";
+		return Db.find(sql, id);
+	}
+
+	public int countPoint(int userId) {
+		String sql = "select point from wozi_user_point where userId = ? ";
+		List<Record> rs = Db.find(sql, userId);
+		int sum = 0;
+		for(Record temp: rs){
+			sum += temp.getInt("point");
 		}
-		int infect = Db.update(newSql, id);
-		return infect == 0;
+		return sum;
 	}
 	
 	

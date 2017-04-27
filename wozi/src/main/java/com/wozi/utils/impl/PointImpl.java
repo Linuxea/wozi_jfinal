@@ -1,7 +1,9 @@
 package com.wozi.utils.impl;
 
-import com.jfinal.aop.Before;
+import java.util.List;
+
 import com.jfinal.aop.Duang;
+import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.utils.interfaces.IPoint;
 import com.wozi.utils.service.PointService;
@@ -9,18 +11,6 @@ import com.wozi.utils.service.PointService;
 public class PointImpl implements IPoint {
 	
 	private PointService service = Duang.duang(PointService.class, Tx.class);
-	
-	@Before(Tx.class)
-	@Override
-	public void addPoint(int id, int point) {
-		this.service.addPoint(id, point);
-	}
-
-	@Before(Tx.class)
-	@Override
-	public void subPoint(int id, int point) {
-		this.service.subPoint(id, point);
-	}
 
 	@Override
 	public String rulePoint(int point) {
@@ -37,6 +27,25 @@ public class PointImpl implements IPoint {
 			title = "传说";
 		}
 		return title;
+	}
+	
+	
+	/* 列出用戶積分歷史變化情況*/
+	public List<Record> pointTrace(int id){
+		return this.service.listTrace(id);
+	}
+	
+	
+	/**統計當前用戶的所用當前積分總和*/
+	public String countPoint(int userId){
+		int sum = this.service.countPoint(userId);
+		return this.rulePoint(sum);
+	}
+
+
+	@Override
+	public boolean opPoint(int id, int point) {
+		return this.service.opPoint(id, point);
 	}
 
 }
