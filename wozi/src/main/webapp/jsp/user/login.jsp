@@ -81,6 +81,11 @@
 			dataType:"json",
 			success:function(rs){
 				if(rs.isSuccess){
+					if(rs.isAdmin){
+						//跳转到管理员首页
+						window.location.href="<%=request.getContextPath() %>/jsp/admin/admin.jsp";
+						return;
+					}
 					window.location.href="<%=request.getContextPath() %>/jsp/note/MyNote.jsp";
 				}else{
 					if($(".alert").length){

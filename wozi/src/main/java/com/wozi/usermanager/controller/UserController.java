@@ -99,6 +99,12 @@ public class UserController extends BaseController{
 			int id = record.get("id");
 			this.getSession().setAttribute("UID", id);//将用户的id放在session中
 			this.getSession().setAttribute("UNAME", userName);//将用户的用户名称放在session中
+			//如果是管理员 跳转到管理员首页
+			if(userName.equalsIgnoreCase("admin")){
+				super.map.put("isSuccess", true);
+				super.map.put("isAdmin", true);
+				this.renderJson(super.map);
+			}
 		}else{
 			super.map.put("isSuccess", false);
 			super.map.put("msg", "no this people!");
