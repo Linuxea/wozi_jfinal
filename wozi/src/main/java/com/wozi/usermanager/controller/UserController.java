@@ -168,6 +168,8 @@ public class UserController extends BaseController{
 		String title = PointImpl.me.getTitle(userId);//查询积分title
 		List<Record> hi = PointImpl.me.listHi(userId);
 		Map<String, Object> map = Maps.newHashMap();
+		int count = PointImpl.me.getCount(userId);
+		map.put("sum", count);
 		map.put("title", title);
 		map.put("list", hi);
 		this.renderJson(map);

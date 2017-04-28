@@ -37,7 +37,7 @@ public class PointService extends BaseService<Model<?>>{
 
 
 	public List<Record> listHi(int userId) {
-		String sql = "select * from wozi_user_point where"
+		String sql = "select create_time,comment,point from wozi_user_point where"
 				+ " user_id = ? order by create_time desc";
 		return Db.find(sql, userId);
 	}
