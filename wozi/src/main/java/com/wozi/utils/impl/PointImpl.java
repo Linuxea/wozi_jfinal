@@ -20,11 +20,11 @@ public class PointImpl implements IPoint {
 		String title = null;
 		if(point == 0 ){
 			title = "潜水";
-		}else if(point>0 && point <100){
+		}else if(point>0 && point <5000){
 			title = "冒泡";
-		}else if(point>100 && point <500){
+		}else if(point>5000 && point <10000){
 			title = "专家";
-		}else if(point>500 && point <1000){
+		}else if(point>10000 && point <50000){
 			title = "教授";
 		}else{
 			title = "传说";
@@ -53,9 +53,18 @@ public class PointImpl implements IPoint {
 
 	@Override
 	public List<Record> listHi(int userId) {
-		String sql = "select * from wozi_user_point where"
-				+ " user_id = ? order by create_time desc";
-		return Db.find(sql, userId);
+		return this.service.listHi(userId);
+	}
+
+
+	@Override
+	public int getCount(int userId) {
+		return this.service.getCount(userId);
+	}
+	
+	@Override
+	public String getTitle(int userId){
+		return this.rulePoint(getCount(userId));
 	}
 
 }

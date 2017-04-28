@@ -11,6 +11,7 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.collect.Maps;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.Record;
@@ -164,8 +165,12 @@ public class UserController extends BaseController{
 	/**我的历史积分足迹*/
 	public void pointTrace(){
 		int userId = (int) this.getSession().getAttribute("UID");
+		String title = PointImpl.me.getTitle(userId);//查询积分title
 		List<Record> hi = PointImpl.me.listHi(userId);
-		this.renderJson(hi);
+		Map<String, Object> map = Maps.newHashMap();
+		map.put("title", title);
+		map.put("list", hi);
+		this.renderJson(map);
 	}
 	
 	

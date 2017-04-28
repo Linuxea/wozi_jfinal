@@ -33,7 +33,21 @@ public class PointService extends BaseService<Model<?>>{
 		}
 		return sum;
 	}
-	
+
+
+
+	public List<Record> listHi(int userId) {
+		String sql = "select * from wozi_user_point where"
+				+ " user_id = ? order by create_time desc";
+		return Db.find(sql, userId);
+	}
+
+
+
+	public int getCount(int userId) {
+		String sql = "select sum(point) from wozi_user_point where user_id = ?";
+		return Integer.valueOf(Db.queryBigDecimal(sql, userId).toString());
+	}
 	
 
 }

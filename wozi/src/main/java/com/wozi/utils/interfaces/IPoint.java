@@ -20,5 +20,11 @@ public interface IPoint {
 	//列出积分变化历史表
 	List<Record> listHi(int userId);
 	
+	//获取所有积分总和
+	int getCount(int userId);
+	
+	//获取积分称号
+	String getTitle(int userId);
+	
 	
 }
