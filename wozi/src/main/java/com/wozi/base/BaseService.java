@@ -1,6 +1,9 @@
 package com.wozi.base;
 
 
+import java.util.Map;
+
+import com.google.common.collect.Maps;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Table;
 import com.jfinal.plugin.activerecord.TableMapping;
@@ -11,7 +14,7 @@ import com.jfinal.plugin.activerecord.TableMapping;
  *@version   1.0
  *@author    linuxea
  */
-
+@SuppressWarnings("unchecked")
 public class BaseService<T extends Model<?>> {
 	
 	/**model save*/
@@ -29,15 +32,29 @@ public class BaseService<T extends Model<?>> {
 		return model.update();
 	}
 	
-	@SuppressWarnings("unchecked")
+	
 	/**model return newID*/
 	protected <R> R  saveAndGetKey(T model) {
 		String idColName = keyPrimaryColumnName(model);
 		if(model.save()){
 			return (R) model.get(idColName);
+		}
+		
+		return null;
+		
+	}
+	
+	protected <K, V> Map<K,V> saveAndGetSomeColumnsValues(T model, String...params){
+		Map<K,V> map = Maps.newHashMap();
+		if(model.save()){
+			for(int i = 0;i<params.length;i++){
+				map.put((K)params[i],(V)model.get(params[i]));
+			}
 		}else{
 			return null;
 		}
+		
+		return map;
 		
 	}
 	
