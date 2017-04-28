@@ -14,6 +14,7 @@ import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseService;
 import com.wozi.notemanager.NoteVO;
 import com.wozi.notemanager.model.NoteModel;
+import com.wozi.utils.impl.PointImpl;
 
 public class NoteService extends BaseService<NoteModel>{
 
@@ -52,6 +53,9 @@ public class NoteService extends BaseService<NoteModel>{
 			.set("user_id", userId);
 			map.put("isSuccess", super.add(nm));
 			map.put("isAdd", true);
+		}
+		if((boolean) map.get("isSuccess")){
+			PointImpl.me.opPoint(userId, 4, "创建笔记添加4分");//创建笔记添加4分
 		}
 		return map;
 	}

@@ -11,6 +11,7 @@ import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseController;
 import com.wozi.notemanager.model.MenuModel;
 import com.wozi.notemanager.service.MenuService;
+import com.wozi.utils.impl.PointImpl;
 
 /**目录的controller*/
 public class MenuController extends BaseController {
@@ -24,6 +25,7 @@ public class MenuController extends BaseController {
 	public void add(){
 		//directMenuParentId   newNodeId
 		int userId = (int) this.getSession().getAttribute("UID");
+		PointImpl.me.opPoint(userId, 2, "目录创建获得2分");
 		String directMenuParentId = this.getPara("directMenuParentId");
 		String newNodeId = this.getPara("newNodeId");
 		MenuModel model = this.getModel(MenuModel.class);
@@ -40,6 +42,8 @@ public class MenuController extends BaseController {
 	@Before(Tx.class)
 	/**目录名称的修改*/
 	public void update() {
+		int id = (int)this.getSession().getAttribute("UID");
+		PointImpl.me.opPoint(id, 1, "目录名称修改获得1分");
 		MenuModel model = this.getModel(MenuModel.class);
 		boolean isSuccess = false;
 		isSuccess = this.service.update(model);
@@ -56,6 +60,9 @@ public class MenuController extends BaseController {
 	/**目录的删除与该目录下所有笔记的删除*/
 	public void del() {
 		int userId = (int) this.getSession().getAttribute("UID");
+		
+		PointImpl.me.opPoint(userId, 1, "删除目录获得1分");
+		
 		String menuId = this.getPara("currentMenuNodeId");
 		/**目录的删除检查 根目录不能删除,有子目录的不能删除*/
 		Map<String, Object> checkMap = this.service.checkMenu(menuId, userId);
@@ -77,6 +84,9 @@ public class MenuController extends BaseController {
 	/**目录重新命名*/
 	public void reName(){
 		int id = (int) this.getSession().getAttribute("UID");
+		
+		PointImpl.me.opPoint(id, 1, "目录重新命名获得1分");
+		
 		String currentMenuNodeId  = this.getPara("currentMenuNodeId");
 		String newTextName = this.getPara("newTextName");
 		this.service.reName(currentMenuNodeId, newTextName, id);

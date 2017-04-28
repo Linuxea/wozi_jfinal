@@ -8,7 +8,7 @@ package com.wozi.utils.interfaces;
 public interface IPoint {
 	
 	//积分操作
-	boolean opPoint(int id, int point);
+	boolean opPoint(int id, int point, String comment);
 	
 	//积分上升规则 
 	String rulePoint(int point);

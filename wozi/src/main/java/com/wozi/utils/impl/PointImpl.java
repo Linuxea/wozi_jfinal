@@ -11,7 +11,9 @@ import com.wozi.utils.service.PointService;
 public class PointImpl implements IPoint {
 	
 	private PointService service = Duang.duang(PointService.class, Tx.class);
-
+	
+	public static PointImpl me = new PointImpl();
+	
 	@Override
 	public String rulePoint(int point) {
 		String title = null;
@@ -43,9 +45,8 @@ public class PointImpl implements IPoint {
 	}
 
 
-	@Override
-	public boolean opPoint(int id, int point) {
-		return this.service.opPoint(id, point);
+	public boolean opPoint(int id, int point, String comment) {
+		return this.service.opPoint(id, point, comment);
 	}
 
 }

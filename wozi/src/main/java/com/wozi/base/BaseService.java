@@ -1,6 +1,7 @@
 package com.wozi.base;
 
 import com.jfinal.plugin.activerecord.Model;
+import com.wozi.utils.impl.PointImpl;
 
 /**curd base service*/
 public class BaseService<T extends Model<?>> {

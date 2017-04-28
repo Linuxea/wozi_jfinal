@@ -9,6 +9,7 @@ import com.wozi.base.BaseController;
 import com.wozi.notemanager.NoteVO;
 import com.wozi.notemanager.model.NoteModel;
 import com.wozi.notemanager.service.NoteService;
+import com.wozi.utils.impl.PointImpl;
 
 /**笔记的controller*/
 public class NoteController extends BaseController {
@@ -22,6 +23,7 @@ public class NoteController extends BaseController {
 	/**笔记的创建  前端传来所在目录的id*/
 	public void add(){
 		int userId = (int) this.getSession().getAttribute("UID");
+		PointImpl.me.opPoint(userId, 5, "添加笔记获得5分");//添加笔记获得5分
 		//tbWoZiNotePOStr
 		String tbWoZiNotePOStr = this.getPara("tbWoZiNotePOStr");
 		NoteVO rs = JSONObject.parseObject(tbWoZiNotePOStr, NoteVO.class);
@@ -31,6 +33,8 @@ public class NoteController extends BaseController {
 	@Before(Tx.class)
 	/**笔记的修改*/
 	public void edit(){
+		int userId = (int) this.getSession().getAttribute("UID");
+		PointImpl.me.opPoint(userId, +2, "修改笔记添加2分");//修改笔记添加2分
 		boolean isSuccess = false;
 		NoteModel model = this.getModel(NoteModel.class);
 		isSuccess = this.service.update(model);
@@ -43,12 +47,14 @@ public class NoteController extends BaseController {
 		boolean isSuccess = false;
 		int id = this.getParaToInt("currentNoteId");
 		isSuccess = this.service.del(new NoteModel().set("id", id));
+		PointImpl.me.opPoint(id, +1, "删除笔记获得1分");//删除笔记获得1分
 		this.renderJson("isSuccess", isSuccess);
 	}
 	
 	/**点击目录查找笔记*/
 	public void find(){
 		int id = this.getParaToInt("currentNoteId");
+		PointImpl.me.opPoint(id, +2, "查找笔记添加两分");//查找笔记
 		this.renderJson(this.service.findNote(id));
 	}
 	

@@ -51,12 +51,7 @@ public class UserController extends BaseController{
 				//注册成功新目录一个root根目录
 				this.service.newRoot(id);
 				//注册成功添加用户积分基础为零
-				PointModel pm = new PointModel()
-					.set("user_id", id)
-					.set("point", 0)
-					.set("create_time", new Date())
-					.set("update_time", new Date());
-				this.service.add(pm);
+				PointImpl.me.opPoint(id, 100, "创建账号获得100分");//创建账号获得100分
 				resultMap.put("msg", "注册成功");
 				resultMap.put("isSuccess", true);
 				resultMap.put("id", id);
@@ -85,6 +80,10 @@ public class UserController extends BaseController{
 		}
 		boolean isSuccess = false;
 		isSuccess = this.service.update(um);
+		if(isSuccess){
+			int id = (int)this.getSession().getAttribute("UID");
+			PointImpl.me.opPoint(id, 5, "更新账号获得5分");
+		}
 		this.renderJson("isSuccess", isSuccess);
 	}
 	
@@ -105,6 +104,7 @@ public class UserController extends BaseController{
 				super.map.put("isAdmin", true);
 				this.renderJson(super.map);
 			}
+			PointImpl.me.opPoint(id, 5, "登录账号获得5分");
 		}else{
 			super.map.put("isSuccess", false);
 			super.map.put("msg", "no this people!");

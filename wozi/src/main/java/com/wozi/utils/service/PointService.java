@@ -1,5 +1,6 @@
 package com.wozi.utils.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.jfinal.plugin.activerecord.Db;
@@ -10,9 +11,9 @@ import com.wozi.base.BaseService;
 public class PointService extends BaseService<Model<?>>{
 
 	
-	public boolean opPoint(int id, int point) {
-		String sql = "insert into wozi_user_point(user_id,point) values(?,?) ";
-		int count = Db.update(sql, id, point);
+	public boolean opPoint(int id, int point,String comment) {
+		String sql = "insert into wozi_user_point(user_id,point,create_time,update_time,status,comment) values(?,?,?,?,?,?) ";
+		int count = Db.update(sql, id, point,new Date(), new Date(), 1,comment);
 		return count == 1;
 	}
 
