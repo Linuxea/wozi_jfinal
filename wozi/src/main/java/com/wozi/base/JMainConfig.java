@@ -73,7 +73,7 @@ public class JMainConfig extends JFinalConfig {
 		me.add(arp);
 		
 		/**聊天服务器启动*/
-		me.add(new ChatServerPlugin());
+//		me.add(new ChatServerPlugin());
 		
 		/**redis*/
 //		RedisPlugin rp = new RedisPlugin("jedis", "127.0.0.1","9090");

@@ -80,5 +80,12 @@ public class UserService extends BaseService<Model<?>> {
 		String sql = "select point from wozi_user_point where user_id = ?";
 		return Db.queryInt(sql, userId);
 	}
+	
+	
+	public boolean isExist(String userName){
+		String sql = "select count(*) from wozi_user where user_name = ? for update";
+		return Db.queryLong(sql, userName)>0;
+	}
+	
 
 }

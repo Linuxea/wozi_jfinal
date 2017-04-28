@@ -124,6 +124,7 @@
 		var sex = $("input[name='userModel.sex']").val();
 		var first = $("input[name='userModel.user_password']").val();
 		var second = $("input[name=confirmPassword]").val();
+		var email = $("input[name='userModel.email']").val();
 		
 		if(name===''|| pwd=== '' || age === '' || sex === '' || first === '' || second === ''){
 			if($(".alert").length){
@@ -137,6 +138,19 @@
 			sweetAlert("Ohhh...","密码不一致", "error");
 			return;
 		}
+		
+		if(!parseInt(age)){
+			sweetAlert("Ohhh...","请输入正确年龄", "error");
+			return;
+		}
+		
+		var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+		var isok= reg.test(email );
+		if (!isok) {
+			sweetAlert("Ohhh...","请输入正确邮箱", "error");
+			return;
+		}      
+
 		$("#registForm").ajaxSubmit({
 			url:"<%=request.getContextPath() %>/userController/add",
 			dataType:"json",

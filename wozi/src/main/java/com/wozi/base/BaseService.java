@@ -26,10 +26,11 @@ public class BaseService<T extends Model<?>> {
 		return isSuccess;
 	}
 	
-	/**model return newID*/
-	public Object getId(T model, String idName) {
+	/**model return newID
+	 * @return */
+	public <R> R getId(T model, String idName) {
 		model.save();
-		return model.get(idName);
+		return (R)model.get(idName);
 	}
 	
 }

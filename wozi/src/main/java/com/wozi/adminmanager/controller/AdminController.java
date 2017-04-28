@@ -56,6 +56,8 @@ public class AdminController extends BaseController {
 	public void delUser(){
 		int id = this.getParaToInt("id");
 		boolean isSuccess = this.service.del(new UserModel().set("id", id));
+		//把其它的资料一并删除!
+		this.service.delAbout(id);
 		this.renderJson("isSuccess", isSuccess);
 	}
 	

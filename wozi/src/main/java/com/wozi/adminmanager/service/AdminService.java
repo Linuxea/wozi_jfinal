@@ -112,5 +112,26 @@ public class AdminService extends BaseService<Model<?>> {
 		long count = Db.queryLong(sql, id);
 		return count > 0;
 	}
+
+	//删除关于用户的一切
+	public void delAbout(int id) {
+		String delMenu = "delete from wozi_menu where user_id = ?";
+		Db.update(delMenu, id);
+		
+		String delNote = "delete from wozi_note where user_id = ?";
+		Db.update(delNote, id);
+		
+		String delPoint = "delete from wozi_user_point where user_id = ?";
+		Db.update(delPoint, id);
+		
+		String delleave = "delete from wozi_leave where user_id = ?";
+		Db.update(delleave, id);
+		
+		String delHead = "delete from wozi_head_pic where user_id = ?";
+		Db.update(delHead, id);
+		
+		String delFri = "delete from wozi_friends where add_side = ? or added_side = ?";
+		Db.update(delFri, id, id);
+	}
 	
 }

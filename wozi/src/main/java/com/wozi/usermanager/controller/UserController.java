@@ -32,29 +32,37 @@ public class UserController extends BaseController{
 	@Before(Tx.class)
 	/**用户的注册添加*/
 	public void add(){
-		UserModel model = this.getModel(UserModel.class);
-		boolean isOk = this.service.checkNotNull(model);
 		Map<String,Object> resultMap = new HashMap<>();
-		if(!isOk){
+		UserModel model = this.getModel(UserModel.class);
+		
+		boolean isExist = this.service.isExist(model.getStr("user_name"));
+		if(isExist){
 			resultMap.put("isSuccess", false);
-			resultMap.put("msg", "关键字段不能为空");
+			resultMap.put("msg", "用户名已被人注册");
 		}else{
-			model.set("create_time", new Date())
-			.set("update_time", new Date());
-		int id = (int) this.service.getId(model,"id");
-		//注册成功新目录一个root根目录
-		this.service.newRoot(id);
-		//注册成功添加用户积分基础为零
-		PointModel pm = new PointModel()
-			.set("user_id", id)
-			.set("point", 0)
-			.set("create_time", new Date())
-			.set("update_time", new Date());
-		this.service.add(pm);
-		resultMap.put("msg", "注册成功");
-		resultMap.put("isSuccess", true);
-		resultMap.put("id", id);
+				boolean isOk = this.service.checkNotNull(model);
+				if(!isOk){
+					resultMap.put("isSuccess", false);
+					resultMap.put("msg", "关键字段不能为空");
+				}else{
+					model.set("create_time", new Date())
+					.set("update_time", new Date());
+				int id =  this.service.getId(model,"id");
+				//注册成功新目录一个root根目录
+				this.service.newRoot(id);
+				//注册成功添加用户积分基础为零
+				PointModel pm = new PointModel()
+					.set("user_id", id)
+					.set("point", 0)
+					.set("create_time", new Date())
+					.set("update_time", new Date());
+				this.service.add(pm);
+				resultMap.put("msg", "注册成功");
+				resultMap.put("isSuccess", true);
+				resultMap.put("id", id);
+			}
 		}
+		
 		this.renderJson(resultMap);
 	}
 	
