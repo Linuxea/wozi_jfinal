@@ -54,7 +54,6 @@ public class NoteController extends BaseController {
 	/**点击目录查找笔记*/
 	public void find(){
 		int id = this.getParaToInt("currentNoteId");
-		PointImpl.me.opPoint(id, +2, "查找笔记添加两分");//查找笔记
 		this.renderJson(this.service.findNote(id));
 	}
 	

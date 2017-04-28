@@ -3,7 +3,6 @@ package com.wozi.utils.impl;
 import java.util.List;
 
 import com.jfinal.aop.Duang;
-import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.utils.interfaces.IPoint;
