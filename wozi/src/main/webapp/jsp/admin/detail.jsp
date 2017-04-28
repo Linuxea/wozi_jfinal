@@ -153,20 +153,24 @@
 			     	dataType:"json",
 			     	data:{id:id},
 			     	success:function(rs){
-			     		console.log(rs);
-			     		$("#user_name").val(rs.user_name);
-			     		$("#age").val(rs.age);
-			     		$("#oldPwd").val(rs.user_password);
-						$("#create_time").val(rs.create_time);
-						$("#update_time").val(rs.update_time)
-						$("#email").val(rs.email);
-						$("#intro").val(rs.intro);
-						id = rs.id;
-						if(rs.sex ==="boy"){
-							$("#sex>option:eq(0)").prop("selected", true);
-						}else{
-							$("#sex>option:eq(1)").prop("selected", true);
-						}
+			     		if(rs.isSuccess){
+			     			var rs = rs.rs;
+			     			$("#user_name").val(rs.user_name);
+				     		$("#age").val(rs.age);
+				     		$("#oldPwd").val(rs.user_password);
+							$("#create_time").val(rs.create_time);
+							$("#update_time").val(rs.update_time)
+							$("#email").val(rs.email);
+							$("#intro").val(rs.intro);
+							id = rs.id;
+							if(rs.sex ==="boy"){
+								$("#sex>option:eq(0)").prop("selected", true);
+							}else{
+								$("#sex>option:eq(1)").prop("selected", true);
+							}
+			     		}else{
+			     			
+			     		}
 			     	}
 			     });
 			},

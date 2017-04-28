@@ -15,9 +15,9 @@ import com.jfinal.plugin.druid.DruidStatViewHandler;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
 import com.wozi.adminmanager.controller.AdminController;
+import com.wozi.base.interceptor.AuthInterceptor;
 import com.wozi.base.interceptor.GlobalExceptionInterceptor;
 import com.wozi.base.interceptor.LoginInterceptor;
-import com.wozi.base.plugins.ChatServerPlugin;
 import com.wozi.chatmanager.controller.ChatController;
 import com.wozi.friendmanager.controller.FriendController;
 import com.wozi.helpmanager.controller.HelpController;
@@ -82,6 +82,7 @@ public class JMainConfig extends JFinalConfig {
 
 	@Override
 	public void configInterceptor(Interceptors me) {
+		me.add(new AuthInterceptor());
 		me.add(new LoginInterceptor());
 		me.add(new GlobalExceptionInterceptor());
 	}
