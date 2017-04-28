@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
@@ -16,7 +17,6 @@ import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.upload.UploadFile;
 import com.wozi.base.BaseController;
-import com.wozi.pointmanager.model.PointModel;
 import com.wozi.usermanager.model.UserModel;
 import com.wozi.usermanager.service.UserService;
 import com.wozi.utils.impl.PointImpl;
@@ -160,4 +160,14 @@ public class UserController extends BaseController{
 		super.map.put("class", new PointImpl().rulePoint(point));
 		this.renderJson(map);
 	}
+	
+	/**我的历史积分足迹*/
+	public void pointTrace(){
+		int userId = (int) this.getSession().getAttribute("UID");
+		List<Record> hi = PointImpl.me.listHi(userId);
+		this.renderJson(hi);
+	}
+	
+	
+	
 }

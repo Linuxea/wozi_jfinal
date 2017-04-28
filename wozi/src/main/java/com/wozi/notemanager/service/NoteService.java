@@ -54,9 +54,6 @@ public class NoteService extends BaseService<NoteModel>{
 			map.put("isSuccess", super.add(nm));
 			map.put("isAdd", true);
 		}
-		if((boolean) map.get("isSuccess")){
-			PointImpl.me.opPoint(userId, 4, "创建笔记添加4分");//创建笔记添加4分
-		}
 		return map;
 	}
 

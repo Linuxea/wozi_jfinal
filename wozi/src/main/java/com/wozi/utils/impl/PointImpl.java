@@ -3,6 +3,7 @@ package com.wozi.utils.impl;
 import java.util.List;
 
 import com.jfinal.aop.Duang;
+import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.utils.interfaces.IPoint;
@@ -47,6 +48,14 @@ public class PointImpl implements IPoint {
 
 	public boolean opPoint(int id, int point, String comment) {
 		return this.service.opPoint(id, point, comment);
+	}
+
+
+	@Override
+	public List<Record> listHi(int userId) {
+		String sql = "select * from wozi_user_point where"
+				+ " user_id = ? order by create_time desc";
+		return Db.find(sql, userId);
 	}
 
 }
