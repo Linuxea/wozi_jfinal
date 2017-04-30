@@ -49,6 +49,7 @@
         <ul class="nav navbar-nav" id="subMenu">
             <li id="users" class="active"><a href="#">所有用户</a></li>
             <li id="msgs"><a href="#">所有留言</a></li>
+           	<li id="moniter"><a href="#">sql监控</li>
         </ul>
     </div>
     </div>
@@ -91,6 +92,11 @@
 				
 				$("#subMenu>li").on("click", function(){
 					$(this).addClass("active").siblings("li").removeClass("active");
+				});
+				
+				///druid/index.html
+				$("#moniter").on("click", function(){
+					funs.jump("<%=request.getContextPath()%>/druid/index.html");
 				});
 			},
 			jump: function(src){
