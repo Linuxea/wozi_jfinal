@@ -48,7 +48,7 @@
 		<span style="font-size:20px;" id="sumPoint"></span>
 		<span id="title" style="font-size:20px;"></span>
 	</caption>
-	<thead>
+	<thead> 
 		<tr>
 			<th>编号</th>
 			<th>积分变化</th>
