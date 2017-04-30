@@ -5,10 +5,12 @@
 <head>
 	<meta charset="utf-8"> 
 	<title>管理员中心</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" >
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/plugins/swet/sweetalert.css" >
 	<script src="<%=request.getContextPath()%>/plugins/js/jquery-3.1.1.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+	<script src="<%=request.getContextPath()%>/js/all.js"></script>
 	<script src="<%=request.getContextPath()%>/plugins/swet/sweetalert-dev.js"></script>
 	<script src="<%=request.getContextPath()%>/plugins/swet/sweetalert.min.js"></script>
 	<style>
@@ -64,7 +66,7 @@
 
 
 
-	<iframe id="outer" src="<%=request.getContextPath()%>/jsp/admin/users.jsp" style="width:1360px;height:586px;">
+	<iframe id="outer" src="<%=request.getContextPath()%>/jsp/admin/users.jsp" style="width:1345px;height:586px;">
 		
 	</iframe>
 	
