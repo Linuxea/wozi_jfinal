@@ -49,6 +49,7 @@
     </div>
     <div>
         <ul class="nav navbar-nav" id="subMenu">
+        	<li id="index"><a href="#">返回我的笔记</a></li>
            	<li id="info" class="active"><a href="#">我的信息</a></li>
            	<li id="leave"><a href="#">留言</a></li>
            	<li id="friend"><a href="#">好友</a></li>
@@ -80,6 +81,10 @@
 			bindEvent:function(){
 				$("#info").on("click", function(){
 					funs.jump("<%=request.getContextPath()%>/jsp/user/userInfo.jsp");
+				});
+				
+				$("#index").on("click", function(){
+					window.location.href="<%=request.getContextPath()%>/jsp/note/MyNote.jsp";
 				});
 				
 				$("#leave").on("click", function(){
