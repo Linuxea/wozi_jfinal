@@ -27,22 +27,22 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation">
-	<div class="container-fluid"> 
-    <div class="navbar-header">
-        <a class="navbar-brand"><span class="glyphicon glyphicon-book" style="color:#fff;">&nbsp;</span><strong>我知笔记个人信息</strong></a>
-    </div>
+<!-- <nav class="navbar navbar-default" role="navigation"> -->
+<!-- 	<div class="container-fluid">  -->
+<!--     <div class="navbar-header"> -->
+<!--         <a class="navbar-brand"><span class="glyphicon glyphicon-book" style="color:#fff;">&nbsp;</span><strong>我知笔记个人信息</strong></a> -->
+<!--     </div> -->
     
-    <div class="nav navbar-nav navbar-right">
-        	 <button type="button" class="btn btn-default navbar-btn chat-btn">我的好友</button>
-    </div>
+<!--     <div class="nav navbar-nav navbar-right"> -->
+<!--         	 <button type="button" class="btn btn-default navbar-btn chat-btn">我的好友</button> -->
+<!--     </div> -->
     
-    <div class="nav navbar-nav navbar-right">
-        	 <button type="button" class="btn btn-default navbar-btn help-btn">留言</button>
-    </div>
+<!--     <div class="nav navbar-nav navbar-right"> -->
+<!--         	 <button type="button" class="btn btn-default navbar-btn help-btn">留言</button> -->
+<!--     </div> -->
     
-    </div>
-</nav>
+<!--     </div> -->
+<!-- </nav> -->
 
 
 <div class="container main">
@@ -50,7 +50,6 @@
 		<!-- 留空白 好看 -->
 	</div>
 	<form class="form-horizontal" role="form">
-	
 	<div class="form-group">
 <!-- 		<label class="col-sm-2 control-label">头像地址</label> -->
 <!-- 		<form id="picUp" enctype="multipart/form-data"> -->

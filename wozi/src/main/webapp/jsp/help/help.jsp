@@ -28,14 +28,14 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation">
-	<div class="container-fluid"> 
-    <div class="navbar-header">
-        <a class="navbar-brand"><span class="glyphicon glyphicon-book" style="color:#fff;">&nbsp;</span><strong>留言中心</strong></a>
-    </div>
+<!-- <nav class="navbar navbar-default" role="navigation"> -->
+<!-- 	<div class="container-fluid">  -->
+<!--     <div class="navbar-header"> -->
+<!--         <a class="navbar-brand"><span class="glyphicon glyphicon-book" style="color:#fff;">&nbsp;</span><strong>留言中心</strong></a> -->
+<!--     </div> -->
     
-    </div>
-</nav>
+<!--     </div> -->
+<!-- </nav> -->
 
 
 <div class="container main">

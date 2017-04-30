@@ -325,7 +325,7 @@
 	
 	//点击用户名称跳转到用户信息详情页面
 	$(document).on("click","button.user-btn", function(){
-		window.location.href = "<%=request.getContextPath()%>/jsp/user/userInfo.jsp";
+		window.location.href = "<%=request.getContextPath()%>/jsp/user/zone.jsp";
 	});
 	
 	//点击目录获取该目录下的笔记列表
