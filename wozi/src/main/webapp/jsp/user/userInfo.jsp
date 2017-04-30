@@ -147,9 +147,9 @@
 	
 	<div class="form-group">
 		<label class="col-sm-2 control-label"></label>
-		<div class="col-sm-5">
-			<button type="button" class="btn btn-info" id="back">返回</button>
-		</div>
+<!-- 		<div class="col-sm-5"> -->
+<!-- 			<button type="button" class="btn btn-info" id="back">返回</button> -->
+<!-- 		</div> -->
 		
 		<div class="col-sm-5">
 		<button type="button" class="btn btn-info" id="update">确认修改</button>
