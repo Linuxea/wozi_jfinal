@@ -38,9 +38,9 @@
 
 
 <div class="container main">
-	<div class="panel-heading">
-		<!-- 留空白 好看 -->
-	</div>
+<!-- 	<div class="panel-heading"> -->
+<!-- 		<!-- 留空白 好看 --> 
+<!-- 	</div> -->
 
 <form id="msgs">
 <table class="table table-striped">
@@ -59,10 +59,10 @@
 </table>
 </form>
 <div style="height:250px;width:900px;">
-<div style="height:250px;width:450px;">
+<div style="height:250px;width:450px;float:left;">
 	<div id="EForm" style="height:250px;width:450px;"></div>
 </div>
-<div style="height:250px;width:450px;">
+<div style="height:250px;width:450px;float:left;padding-left:2px;">
 	<div id="EForm2" style="height:250px;width:450px;"></div>
 </div>
 </div>

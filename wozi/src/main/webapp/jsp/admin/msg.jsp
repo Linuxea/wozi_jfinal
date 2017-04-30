@@ -38,9 +38,9 @@
 
 
 <div class="container main">
-	<div class="panel-heading">
-		<!-- 留空白 好看 -->
-	</div>
+<!-- 	<div class="panel-heading"> -->
+<!-- 		<!-- 留空白 好看 --> 
+<!-- 	</div> -->
 
 <form id="msgs">
 

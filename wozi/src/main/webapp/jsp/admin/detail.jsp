@@ -41,9 +41,9 @@
 
 
 <div class="container main">
-	<div class="panel-heading">
-		<!-- 留空白 好看 -->
-	</div>
+<!-- 	<div class="panel-heading"> -->
+<!-- 		<!-- 留空白 好看 --> 
+<!-- 	</div> -->
 	<form class="form-horizontal" role="form">
 	<div class="form-group">
 		<label class="col-sm-2 control-label">用户名</label>
