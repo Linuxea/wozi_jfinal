@@ -171,6 +171,7 @@ public class UserController extends BaseController{
 		List<Record> hi = PointImpl.me.listHi(userId);
 		Map<String, Object> map = Maps.newHashMap();
 		int count = PointImpl.me.getCount(userId);
+		map.put("isSuccess", true);
 		map.put("sum", count);
 		map.put("title", title);
 		map.put("list", hi);

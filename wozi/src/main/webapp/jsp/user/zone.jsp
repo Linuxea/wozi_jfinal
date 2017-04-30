@@ -52,6 +52,7 @@
         	<li id="index"><a href="#">返回我的笔记</a></li>
            	<li id="info" class="active"><a href="#">我的信息</a></li>
            	<li id="leave"><a href="#">留言</a></li>
+           	<li id="point"><a href="#">历史积分</a></li>
            	<li id="friend"><a href="#">好友</a></li>
         </ul>
     </div>
@@ -98,6 +99,10 @@
 				///druid/index.html
 				$("#friend").on("click", function(){
 					funs.jump("<%=request.getContextPath()%>/jsp/friend/listFriend.jsp");
+				});
+				
+				$("#point").on("click", function(){
+					funs.jump("<%=request.getContextPath()%>/jsp/user/point.jsp");
 				});
 			},
 			jump: function(src){
