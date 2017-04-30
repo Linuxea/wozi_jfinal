@@ -132,6 +132,12 @@ public class AdminService extends BaseService<Model<?>> {
 		
 		String delFri = "delete from wozi_friends where add_side = ? or added_side = ?";
 		Db.update(delFri, id, id);
+		
+	}
+
+	public String findAdmin(int id) {
+		String adminName = "select user_name from wozi_user where id = ?";
+		return Db.queryStr(adminName, id);
 	}
 	
 }

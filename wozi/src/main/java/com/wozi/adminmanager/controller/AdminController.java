@@ -59,8 +59,8 @@ public class AdminController extends BaseController {
 	//管理员删除用户接口
 	public void delUser(){
 		int id = this.getParaToInt("id");
-		
-		if(id == 0){
+		String adminName = this.service.findAdmin(id);
+		if(adminName.equalsIgnoreCase("admin")){
 			//这是管理员的账号 不能删除
 			Map<String, Object> map = Maps.newHashMap();
 			map.put("isSuccess", false);

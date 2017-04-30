@@ -51,6 +51,8 @@ public class UserController extends BaseController{
 				int id =  this.service.getId(model,"id");
 				//注册成功新目录一个root根目录
 				this.service.newRoot(id);
+				//默认头像
+				this.service.addPic(id);
 				//注册成功添加用户积分基础为零
 				PointImpl.me.opPoint(id, 100, "创建账号获得100分");//创建账号获得100分
 				resultMap.put("msg", "注册成功");

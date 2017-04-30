@@ -86,6 +86,11 @@ public class UserService extends BaseService<Model<?>> {
 		String sql = "select count(*) from wozi_user where user_name = ? for update";
 		return Db.queryLong(sql, userName)>0;
 	}
+
+	public void addPic(int id) {
+		String add = "insert into wozi_head_pic(user_id, head_path) values(?,?)";
+		Db.update(add,id,"/images/head/default.jpg");	
+	}
 	
 
 }
