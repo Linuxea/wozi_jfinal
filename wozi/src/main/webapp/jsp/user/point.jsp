@@ -50,6 +50,7 @@
 	</caption>
 	<thead> 
 		<tr>
+			<th>dbId</th>
 			<th>编号</th>
 			<th>积分变化</th>
 			<th>说明</th>
@@ -60,18 +61,19 @@
 	</tbody>
 </table>
 </form>
-<div style="height:250px;width:900px;">
-<div style="height:250px;width:450px;float:left;">
-	<div id="EForm" style="height:250px;width:450px;"></div>
-</div>
-<div style="height:250px;width:450px;float:left;padding-left:2px;">
-	<div id="EForm2" style="height:250px;width:450px;"></div>
-</div>
-</div>
+<!-- <ul class="pager"> -->
+<!--     <li class="previous" id="previous" ><a href="#">&larr; 上一页</a></li> -->
+<!--     <li class="next" id="next" ><a href="#">下一页 &rarr;</a></li> -->
+<!-- </ul> -->
 </div>
 <script src="<%=request.getContextPath()%>/plugins/js/jquery-3.1.1.js"></script>
 <script src="<%=request.getContextPath()%>/plugins/echart/echarts.js"></script>
 <script>
+	
+	//每页默认显示10条
+	var maxId = null;
+	var op = null;//next previous
+	var num = 10;
 	
 	$(function(){
 		funs.init();
@@ -98,12 +100,15 @@
 							$("#msgBody").html("");//clear old content
 							for(var i in list){
 								str +="<tr>";
+								str +="<th>"+(list[i].id)+"</th>";
 								str +="<th>"+(i)+"</th>";
-								str +="<th>"+(list[i].point)+"</th>";
+								str +="<th>"+(list[i].point>0?"+"+list[i].point:list[i].point)+"</th>";
 								
 								str +="<th>"+list[i].comment+"</th>";
 								str +="<th>"+list[i].create_time+"</th>";
 								str +="</tr>";
+								
+								maxId = list[i].id;
 							}
 							$("#msgBody").append(str);
 						}else{
@@ -115,6 +120,13 @@
 					},
 				});
 			},
+			
+			previous: function(){
+				$("#previous").on("click", function(){
+					//绑定上一页按钮
+					op = "previous";
+				});
+			}
 	}
 	
 </script>
