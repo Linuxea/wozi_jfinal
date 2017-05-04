@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.collect.*;
+import com.google.common.collect.Maps;
 import com.jfinal.aop.Duang;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -34,7 +34,7 @@ public class FriendController extends BaseController{
 	/**发出好友请求*/
 	public void addFriend(){
 		//根据当前登录人获取其个人id
-		int id = 0;
+		int id = (int) this.getSession().getAttribute("UID");
 		int addedId = this.getParaToInt("addedId");
 		FriendModel model = new FriendModel();
 		model.set("add_side", id)
@@ -72,7 +72,7 @@ public class FriendController extends BaseController{
 	
 	/**向别人发出好友请求*/
 	public void sent(){
-		int selfId = 0;//自己的id
+		int selfId = (int) this.getSession().getAttribute("UID");//自己的id
 		int id = this.getParaToInt("id");//你想要添加的那个人的id
 		FriendModel model = new FriendModel();
 		model.set("add_side", selfId)
