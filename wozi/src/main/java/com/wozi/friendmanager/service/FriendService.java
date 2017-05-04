@@ -1,15 +1,14 @@
 package com.wozi.friendmanager.service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Record;
 import com.wozi.base.BaseService;
-import com.wozi.friendmanager.model.FriendModel;
 
-public class FriendService  extends BaseService<FriendModel>{
+public class FriendService  extends BaseService<Model<?>>{
 
 	public List<Record> findFriends(int sex, int age, String orderBy) {
 		String sql = "select * from WOZI_USER where 1=1 ";
@@ -75,6 +74,11 @@ public class FriendService  extends BaseService<FriendModel>{
 	private String getName(int id){
 		String sql = "select user_name from wozi_user where id = ?";
 		return Db.queryStr(sql, id);
+	}
+
+	public List<Record> getMsg(int id) {
+		String sql = "select * from wozi_msg where receiverId = ? order by create_time desc";
+		return Db.find(sql, id);
 	}
 	
 

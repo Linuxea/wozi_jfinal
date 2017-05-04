@@ -179,5 +179,11 @@ public class UserController extends BaseController{
 	}
 	
 	
+	/**time line*/
+	public void timeLine(){
+		int id = (int) this.getSession().getAttribute("UID");
+		
+	}
+	
 	
 }

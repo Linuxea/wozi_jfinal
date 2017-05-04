@@ -10,6 +10,7 @@ import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.wozi.base.BaseController;
 import com.wozi.friendmanager.model.FriendModel;
+import com.wozi.friendmanager.model.MsgModel;
 import com.wozi.friendmanager.service.FriendService;
 
 /**用户好友模块*/
@@ -119,6 +120,22 @@ public class FriendController extends BaseController{
 		this.renderJson(map);
 	}
 	
+	/**给我的好友留言*/
+	public void sendMsg(){
+		int id = (int) this.getSession().getAttribute("UID");//当前人id
+		int toId = this.getParaToInt("id");
+		String content  = this.getPara("content");
+		MsgModel model = new MsgModel().set("sendId",id).set("receiverId", toId).set("content", content).set("create_time", new Date());
+		boolean isSent = this.service.add(model);
+		this.renderJson("isSuccess",isSent);
+	}
 	
+	/**每隔一段时间去获取别人给我的留言信息*
+	 */
+	public void getMsg(){
+		int id = (int) this.getSession().getAttribute("UID");//当前人id
+		List<Record> lis = this.service.getMsg(id);
+		this.renderJson(lis);
+	}
 	
 }
