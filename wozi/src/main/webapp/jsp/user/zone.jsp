@@ -25,6 +25,10 @@
 	.navbar-default .navbar-brand {
     color: #fff;
 }
+	#subMenu a{
+		color:white;
+		font-weight:bold;
+	}
 	</style>
 </head>
 <body>

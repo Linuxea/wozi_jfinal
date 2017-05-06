@@ -14,6 +14,21 @@
   <script type="text/javascript" language="javascript" src="http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js"></script> 
   <!-- HTML代码片段中请勿添加<body>标签 //--> 
   </head>
+  
+  
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">操作</a>
+    </div>
+    <div>
+        <ul class="nav navbar-nav" id="">
+        	<li id=""><a href="#">***</a></li>
+        </ul>
+    </div>
+    </div>
+</nav>
+  
   <div id="container"> 
    <!-- 定义一个表格元素 --> 
    <table id="example" class="table table-striped table-bordered"> 
@@ -38,6 +53,9 @@
       },
       //每页显示三条数据
       pageLength: 3,
+      "language": {
+    	  "url":"<%=request.getContextPath()%>/json/ln.json"
+      },
       columns: [{
           "data": null //此列不绑定数据源，用来显示序号
       },
