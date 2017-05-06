@@ -82,7 +82,7 @@ public class JMainConfig extends JFinalConfig {
 
 	@Override
 	public void configInterceptor(Interceptors me) {
-		me.add(new AuthInterceptor());
+//		me.add(new AuthInterceptor());
 		me.add(new LoginInterceptor());
 		me.add(new GlobalExceptionInterceptor());
 	}
