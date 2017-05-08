@@ -74,6 +74,14 @@ public class FriendService  extends BaseService<Model<?>>{
 		String sql = "select * from WOZI_USER where 1=1 ";
 		return Db.find(sql);
 	}
+
+
+	//是否已经发送过添加请求
+	public boolean isSent(int selfId, int id) {
+		String sql = "select count(*) from wozi_friends where add_side = ?"
+				+ " and added_side = ?";
+		return Db.queryLong(sql,selfId, id)>0;
+	}
 	
 
 }

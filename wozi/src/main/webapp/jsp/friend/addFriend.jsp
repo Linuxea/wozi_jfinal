@@ -86,7 +86,23 @@
 			  });
 		  },
 		  add:function(){
-			//btn-add
+			  //提取出所想要添加的那个人的id
+			  var id = rowData.id;
+			  $.ajax({
+				  url:"<%=request.getContextPath()%>/friendController/sent",
+				  data:{id:id},
+				  type:"post",
+				  success:function(rs){
+					  if(rs.isSuccess){
+						  swal(rs.msg, rs.msg, "success");
+					  }else{
+						  swal(rs.msg, rs.msg, "error");
+					  }
+				  },
+				  error:function(){
+					  alert("system error");
+				  }
+			  });
 		  },
 		  table:function(){
 			 t =  $('#example').DataTable({

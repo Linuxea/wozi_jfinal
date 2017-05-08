@@ -75,8 +75,27 @@ public class FriendController extends BaseController{
 		FriendModel model = new FriendModel();
 		model.set("add_side", selfId)
 			.set("added_side", id)
-			.set("create_time", new Date());
-		this.service.add(model);
+			.set("create_time", new Date())
+			.set("update_time", new Date());
+		
+		boolean isSent = this.service.isSent(selfId, id);
+		
+		if(isSent){
+			map.put("isSuccess", false);
+			map.put("msg", "之前已经发送添加请求了");
+		}else{
+			boolean isOk = this.service.add(model);
+			if(isOk){
+				map.put("isSuccess", isOk);
+				map.put("msg", "发送添加成功");
+			}else{
+				map.put("isSuccess", isOk);
+				map.put("msg", "发送添加失败");
+			}
+		}
+		
+		this.renderJson(map);
+		
 	}
 	
 	/**分享笔记*/
