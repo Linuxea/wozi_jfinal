@@ -10,17 +10,6 @@ import com.wozi.base.BaseService;
 
 public class FriendService  extends BaseService<Model<?>>{
 
-	public List<Record> findFriends(int sex, int age, String orderBy) {
-		String sql = "select * from WOZI_USER where 1=1 ";
-		if(!Objects.isNull(sex)){
-			sql+=" and sex = ? ";
-		}
-		if(!Objects.isNull(age)){
-			sql+=" and age = ?";
-		}
-		sql += " order by ?";
-		return Db.find(sql, sex, age, orderBy);
-	}
 
 	/**列出别人对你的好友请求列表*/
 	public List<Record> listRequire(int id) {
@@ -79,6 +68,11 @@ public class FriendService  extends BaseService<Model<?>>{
 	public List<Record> getMsg(int id) {
 		String sql = "select * from wozi_msg where receiverId = ? order by create_time desc";
 		return Db.find(sql, id);
+	}
+
+	public List<Record> findFriends() {
+		String sql = "select * from WOZI_USER where 1=1 ";
+		return Db.find(sql);
 	}
 	
 

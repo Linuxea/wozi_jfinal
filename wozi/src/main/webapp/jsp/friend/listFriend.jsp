@@ -23,7 +23,8 @@
     </div>
     <div>
         <ul class="nav navbar-nav" id="">
-        	<li id=""><a href="#">***</a></li>
+        	<li id=""><a href="#">添加好友</a></li>
+        	<li id=""><a href="#">分享笔记</a></li>
         </ul>
     </div>
     </div>

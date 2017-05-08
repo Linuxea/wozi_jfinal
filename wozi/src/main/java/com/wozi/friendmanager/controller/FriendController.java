@@ -25,11 +25,8 @@ public class FriendController extends BaseController{
 	
 	//根据条件过滤寻找好友
 	public void find(){
-		int sex = this.getParaToInt("sex");
-		int age = this.getParaToInt("age");
-		String orderField = this.getPara("orderField");
-		List<Record> list = this.service.findFriends(sex, age, orderField);
-		this.renderJson("friends", list);
+		List<Record> list = this.service.findFriends();
+		this.renderJson("data", list);
 	}
 	
 	/**发出好友请求*/
