@@ -37,8 +37,9 @@ public class FriendService  extends BaseService<Model<?>>{
 	}
 
 	public List<Record> list(int id) {
-		String sql = "select * from wozi_friends where add_side = ?"
-				+ " or added_side = ? and added_pass = 'true' order by create_time desc";
+		String sql = "select * from wozi_friends where "
+				+ " added_pass = 'true' and add_side = ?"
+				+ " or added_side = ?  order by create_time desc";
 		List<Record> rs = Db.find(sql, id, id);
 		this.filter(id, rs);//过滤掉自己一方
 		return rs;
