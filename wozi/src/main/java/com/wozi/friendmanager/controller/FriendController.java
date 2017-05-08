@@ -63,9 +63,9 @@ public class FriendController extends BaseController{
 	
 	/**列出别人请求添加你为好友的信息列表*/
 	public void listRequire(){
-		int id = 0;//当前登录者的id
+		int id = (int) this.getSession().getAttribute("UID");//当前登录者的id
 		List<Record> list = this.service.listRequire(id);
-		this.renderJson(list);
+		this.renderJson("data",list);
 	}
 	
 	/**向别人发出好友请求*/

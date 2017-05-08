@@ -14,8 +14,9 @@ public class FriendService  extends BaseService<Model<?>>{
 	/**列出别人对你的好友请求列表*/
 	public List<Record> listRequire(int id) {
 		String sql = "select * from WOZI_FRIENDS "
+				+ " left join wozi_user on wozi_user.id = WOZI_FRIENDS.add_side "
 				+ " where added_side = ?"
-				+ " and added_pass = null";
+				+ " and added_pass = 'false'";
 		return Db.find(sql, id);
 	}
 
