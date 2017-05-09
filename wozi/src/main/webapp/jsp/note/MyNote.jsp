@@ -189,9 +189,11 @@
     	padding-right:0;
     	padding-bottom:0;
     }
+    .bg{display:none;position:fixed;width:100%;height:100%;background:#000;z-index:2;top:0;left:0;opacity:0.7;}
 	</style>
 </head>
 <body>
+<div class="bg"></div>
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid"> 
     <div class="navbar-header">
