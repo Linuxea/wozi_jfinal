@@ -620,19 +620,40 @@
     function addDel(){
     	$.contextMenu({
             selector: '#menu_list>div', 
-            callback: function(key, options) {
-                var nodeId = $(this).find("i>span").attr("id");
-                $.ajax({
-                	url: "<%=request.getContextPath()%>/noteController/del",
-                	dataType:"json",
-                	data:{"currentNoteId":nodeId},
-                	success:function(rs){
-                			getNoteListByMenu(currentMenuId);//重新加载日记列表
-                	}
-                });
+            callback: function(key, options) {//应该是根据key值或options值来确定是哪个item
+            	var nodeId = $(this).find("i>span").attr("id");
+            	if(key==="delete"){
+                   $.ajax({
+                   	url: "<%=request.getContextPath()%>/noteController/del",
+                   	dataType:"json",
+                   	data:{"currentNoteId":nodeId},
+                   	success:function(rs){
+                   			getNoteListByMenu(currentMenuId);//重新加载日记列表
+                   	}
+                   });
+               }else if(key === "share"){//这里应该做成弹窗的形势
+            	   //这里用来做分享
+            	   $.ajax({
+            		  url:"<%=request.getContextPath()%>/friendController/share", 
+            		  data:{"noteId":nodeId},
+            		  type:"post",
+            		  success:function(rs){
+            			  if(rs.isSuccess){
+            				  
+            			  }else{
+            				  
+            			  }
+            		  },
+            		  error:function(){
+            			  
+            		  },
+            	   });
+            	   
+               }
             },
             items: {
                 "delete": {name: "删除", icon: "delete"},
+                "share":{name:"分享",icon:""},
             }
         });
 	}
@@ -640,7 +661,7 @@
 	
 	function initSearch(){
 		$(".searchMirror ").on("click", function(){
-			if($("#q").val()==="")return;
+			if($("#q").val()==="")return;//没有关键词不响应  google搜索也是这么干的
 			$.ajax({
 	         	url: "<%=request.getContextPath()%>/noteSearchController/search",
 	         	dataType:"json",
