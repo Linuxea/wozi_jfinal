@@ -61,8 +61,6 @@ public class MenuController extends BaseController {
 	public void del() {
 		int userId = (int) this.getSession().getAttribute("UID");
 		
-		PointImpl.me.opPoint(userId, 1, "删除目录获得1分");
-		
 		String menuId = this.getPara("currentMenuNodeId");
 		/**目录的删除检查 根目录不能删除,有子目录的不能删除*/
 		Map<String, Object> checkMap = this.service.checkMenu(menuId, userId);
@@ -70,6 +68,7 @@ public class MenuController extends BaseController {
 			this.renderJson(checkMap);
 			return;
 		}
+		PointImpl.me.opPoint(userId, -1, "删除目录减少1分");
 		//删除目录
 		boolean isSuccess = this.service.delMenu(menuId, userId);
 		//删除该目录下的笔记

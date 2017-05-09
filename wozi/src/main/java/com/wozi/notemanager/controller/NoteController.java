@@ -47,7 +47,7 @@ public class NoteController extends BaseController {
 		boolean isSuccess = false;
 		int id = this.getParaToInt("currentNoteId");
 		isSuccess = this.service.del(new NoteModel().set("id", id));
-		PointImpl.me.opPoint(id, +1, "删除笔记获得1分");//删除笔记获得1分
+		PointImpl.me.opPoint(id, -1, "删除笔记减少1分");//删除笔记减少1分
 		this.renderJson("isSuccess", isSuccess);
 	}
 	
