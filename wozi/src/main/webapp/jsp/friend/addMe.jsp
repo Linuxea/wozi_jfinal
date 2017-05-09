@@ -104,6 +104,25 @@
 				  }
 			  });
 		  },
+		  deny: function(){
+			//提取出所想要拒绝的那个人的id
+			  var id = rowData.id;
+			  $.ajax({
+				  url:"<%=request.getContextPath()%>/friendController/deny",
+				  data:{id:id},
+				  type:"post",
+				  success:function(rs){
+					  if(rs.isSuccess){
+						  swal(rs.msg, rs.msg, "success");
+					  }else{
+						  swal(rs.msg, rs.msg, "error");
+					  }
+				  },
+				  error:function(){
+					  alert("system error");
+				  }
+			  });
+		  },
 		  table:function(){
 			 t =  $('#example').DataTable({
 			      ajax: {

@@ -57,7 +57,10 @@ public class FriendController extends BaseController{
 		int id = this.getParaToInt("id");
 		FriendModel model = new FriendModel();
 		model.set("id", id);
-		this.service.del(model);		
+		this.service.del(model);
+		super.map.put("isSuccess", true);
+		super.map.put("msg", "拒绝他(她)们成功");
+		this.renderJson(super.map);
 	}
 	
 	/**列出别人请求添加你为好友的信息列表*/
