@@ -9,6 +9,7 @@
 <%--   		<link rel="stylesheet" href="<%=request.getContextPath()%>/css/note/jstree.css" /> --%>
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/plugins/swet/sweetalert.css" >
+	<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.css" /> 
 	<!-- jqContext begin -->
     <link href="<%=request.getContextPath()%>/plugins/jqContextMenu/src/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
     <link href="<%=request.getContextPath()%>/plugins/jqContextMenu/screen.css" rel="stylesheet" type="text/css" />
@@ -198,7 +199,7 @@
 	    z-index:9999;
 	    top:0;
 	    left:0;
-	    opacity:0.7;
+	    opacity:1;
     }
 	</style>
 </head>
@@ -209,7 +210,8 @@
    	 	<thead> 
      		<tr> 
      			<th></th> 
-      			<th>名称</th> 
+      			<th>名称</th>
+      			<th></th>
      		</tr> 
     	</thead> 
     	<tbody></tbody> 
@@ -294,6 +296,8 @@
 <script type="text/javascript" charset="utf-8" src="../../ueditor.all.js"> </script>
 <script type="text/javascript" charset="utf-8" src="../../lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="../../plugins/js/common.js"></script>
+<script src="http://cdn.gbtags.com/datatables/1.10.5/js/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" language="javascript" src="http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 <script>
 
 	var params = window.location.search;
@@ -710,6 +714,7 @@
 	
 	//Load出我的朋友 
 	function loadPeople(){
+		show();
 		 t = $('#example').DataTable({
 		      ajax: {
 		          //指定数据源
@@ -730,19 +735,7 @@
 		    	  "data":null,
 		      }
 		      ],
-		      "columnDefs": [{
-		          // "visible": false,
-		          //"targets": 0
-		      },
-		      {
-		          "render": function(data, type, row, meta) {
-		              //渲染 把数据源中的标题和url组成超链接
-//		               return '<a href="' + data + '" target="_blank">' + row.title + '</a>';
-						return "<button type=\"button\" class=\"btn btn-info btn-share\" onClick='share()'>分享</button>";
-		          },
-		          //指定是第三列
-		          "targets": 2
-		      }]
+		      
 		  });
 		 
 		  //前台添加序号

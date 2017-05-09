@@ -100,7 +100,7 @@
 							}
 						});
 				});  
-			}, 2000);
+			}, 1000);
 		  },
 		  cli: function(){
 			  $("#example tbody").on("click", "tr", function(){
