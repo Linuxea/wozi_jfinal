@@ -17,7 +17,7 @@ public class NoteSearchController extends BaseController {
 	
 	public void search(){
 		int userId = (int) this.getSession().getAttribute("UID");
-		PointImpl.me.opPoint(userId, +2, "查找笔记添加两分");//查找笔记
+		PointImpl.me.opPoint(userId, +1, "查找笔记添加一分");//查找笔记
 		//通过题目或者内容来搜索 返回笔记的id,title,createTime
 		String titleOrContent = this.getPara("titleOrContent");
 		List<Record> rs = this.service.findNote(titleOrContent, userId);
