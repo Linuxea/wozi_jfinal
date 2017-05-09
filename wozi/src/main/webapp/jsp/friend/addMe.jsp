@@ -55,6 +55,7 @@
 		  },
 		  bindEvent: function(){
 			setTimeout(function(){
+				//同意
 				$("button.btn-add").on("click", function(){
 					swal({
 						  title: "确认同意该好友吗?",
@@ -77,6 +78,28 @@
 							}
 						});
 				});  
+				
+				//拒绝
+				$("button.btn-deny").on("click", function(){
+					swal({
+						  title: "确认拒绝该某某吗?",
+						  text: "",
+						  type: "success",
+						  showCancelButton: true,
+						  confirmButtonColor: "#DD6B55",
+						  confirmButtonText: "是的!我确定",
+						  cancelButtonText: "不,我取消",
+						  closeOnConfirm: false,
+						  closeOnCancel: false
+						},
+						function(isConfirm){
+							if(isConfirm){
+								funs.deny();
+							}else{
+								swal("Cancelled", "", "error");
+							}
+						});
+				});  
 			}, 1000);
 		  },
 		  cli: function(){
@@ -95,6 +118,7 @@
 				  success:function(rs){
 					  if(rs.isSuccess){
 						  swal(rs.msg, rs.msg, "success");
+						  t.ajax.reload();//重新加载
 					  }else{
 						  swal(rs.msg, rs.msg, "error");
 					  }
@@ -114,6 +138,7 @@
 				  success:function(rs){
 					  if(rs.isSuccess){
 						  swal(rs.msg, rs.msg, "success");
+						  t.ajax.reload();//重新加载
 					  }else{
 						  swal(rs.msg, rs.msg, "error");
 					  }
