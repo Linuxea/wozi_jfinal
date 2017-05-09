@@ -189,11 +189,34 @@
     	padding-right:0;
     	padding-bottom:0;
     }
-    .bg{display:none;position:fixed;width:100%;height:100%;background:#000;z-index:2;top:0;left:0;opacity:0.7;}
+    .bg{
+	    display:none;
+	    position:fixed;
+	    width:100%;
+	    height:100%;
+	    background:#000;
+	    z-index:9999;
+	    top:0;
+	    left:0;
+	    opacity:0.7;
+    }
 	</style>
 </head>
 <body>
-<div class="bg"></div>
+<div class="bg">
+
+	 <table id="example" class="table table-striped table-bordered"> 
+   	 	<thead> 
+     		<tr> 
+     			<th></th> 
+      			<th>名称</th> 
+     		</tr> 
+    	</thead> 
+    	<tbody></tbody> 
+    <!-- tbody是必须的 --> 
+   	</table> 
+	
+</div>
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid"> 
     <div class="navbar-header">
@@ -301,6 +324,7 @@
 	var currentNoteId = "";//保存当前编辑的笔记
 	var id = null;//保存用户的Id
 	
+	var rowData = null;//用来存放balabala
 
 	$("a.navbar-brand").hover(function(){
 		//覆盖掉移动到该文字上面的默认样式
@@ -461,7 +485,6 @@
 	});
 	
 	$(document).on("click",".note-save", function(){
-		debugger;
 		var htmlContent = UE.getEditor('editor').getAllHtml();
 		
 		var tbWoZiNotePO = {};
@@ -635,22 +658,7 @@
                    });
                }else if(key === "share"){//这里应该做成弹窗的形势
             	   //这里用来做分享
-            	   $.ajax({
-            		  url:"<%=request.getContextPath()%>/friendController/share", 
-            		  data:{"noteId":nodeId},
-            		  type:"post",
-            		  success:function(rs){
-            			  if(rs.isSuccess){
-            				  
-            			  }else{
-            				  
-            			  }
-            		  },
-            		  error:function(){
-            			  
-            		  },
-            	   });
-            	   
+            	   loadPeople();
                }
             },
             items: {
@@ -710,6 +718,98 @@
 	     	}
 	     });
 	}
+	
+	
+	function show(){
+		$("div.bg").css("display","block");
+	}
+	
+	function hide(){
+		$("div.bg").css("display","none");
+	}
+	
+	//Load出我的朋友 
+	function loadPeople(){
+		 var t = $('#example').DataTable({
+		      ajax: {
+		          //指定数据源
+		          url: "<%=request.getContextPath()%>/friendController/list"
+		      },
+		      //每页显示三条数据
+		      pageLength: 3,
+		      "language": {
+		    	  "url":"<%=request.getContextPath()%>/json/ln.json"
+		      },
+		      columns: [{
+		          "data": null, //此列不绑定数据源，用来显示序号
+		      },
+		      {
+		          "data": "onlyName",
+		      },
+		      {
+		    	  "data":null,
+		      }
+		      ],
+		      "columnDefs": [{
+		          // "visible": false,
+		          //"targets": 0
+		      },
+		      {
+		          "render": function(data, type, row, meta) {
+		              //渲染 把数据源中的标题和url组成超链接
+//		               return '<a href="' + data + '" target="_blank">' + row.title + '</a>';
+						return "<button type=\"button\" class=\"btn btn-info btn-share\" onClick='share()'>分享</button>";
+		          },
+		          //指定是第三列
+		          "targets": 2
+		      }]
+		  });
+		 
+		  //前台添加序号
+		  t.on('order.dt search.dt',
+		  function() {
+		      t.column(0, {
+		          "search": 'applied',
+		          "order": 'applied'
+		      }).nodes().each(function(cell, i) {
+		          cell.innerHTML = i + 1;
+		      });
+		  }).draw();
+		  
+		  //添加点击事件
+		  cc();
+	}
+	
+	
+	function share(){
+		var toId = rowData.id;
+		$.ajax({
+  		  url:"<%=request.getContextPath()%>/friendController/share", 
+  		  data:{"noteId":nodeId,"toId":toId},
+  		  type:"post",
+  		  success:function(rs){
+  			  if(rs.isSuccess){
+  				  //分享成功啦
+  				swal("分享成功啦!", "分享成功啦", "success");
+  			  }else{
+  				  //分享失败啦
+  				swal("分享失败!", "分享失败", "error");
+  			  }
+  		  },
+  		  error:function(){
+  			  //system error
+  			swal("系统错误!", "系统没救了,请在留言区通知管理员，非常感谢", "error");
+  		  },
+  	   });
+	}
+	
+	
+	function cc(){
+	  $("#example tbody").on("click", "tr", function(){
+		  rowData = t.row(this).data();
+		  console.log(rowData);//haha
+	  });
+}
 	
 	
 </script>
