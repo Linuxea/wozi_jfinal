@@ -47,7 +47,7 @@ public class FriendController extends BaseController{
 		int id = this.getParaToInt("id");
 		FriendModel model = new FriendModel();
 		model.set("id", id)
-		.set("added_pass", "1");
+		.set("added_pass", "true");
 		this.service.update(model);
 	}
 	
@@ -56,9 +56,8 @@ public class FriendController extends BaseController{
 		//传来那条好友申请添加记录的id
 		int id = this.getParaToInt("id");
 		FriendModel model = new FriendModel();
-		model.set("id", id)
-		.set("added_pass", "2");
-		this.service.update(model);		
+		model.set("id", id);
+		this.service.del(model);		
 	}
 	
 	/**列出别人请求添加你为好友的信息列表*/
