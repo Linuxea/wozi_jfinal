@@ -303,6 +303,7 @@
 	var currentNoteId = "";//保存当前编辑的笔记
 	var id = null;//保存用户的Id
 	
+	var t = null;//用来存在datatables数据
 	var rowData = null;//用来存放balabala
 
 	$("a.navbar-brand").hover(function(){
@@ -709,7 +710,7 @@
 	
 	//Load出我的朋友 
 	function loadPeople(){
-		 var t = $('#example').DataTable({
+		 t = $('#example').DataTable({
 		      ajax: {
 		          //指定数据源
 		          url: "<%=request.getContextPath()%>/friendController/list"
