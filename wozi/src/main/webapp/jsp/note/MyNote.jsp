@@ -222,24 +222,6 @@
     <div class="navbar-header">
         <a class="navbar-brand"><span class="glyphicon glyphicon-book" style="color:#fff;">&nbsp;</span><strong>我知笔记</strong></a>
     </div>
-        <!--向左对齐-->
-       <!--  <ul class="nav navbar-nav navbar-left">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    Java
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">jmeter</a></li>
-                    <li><a href="#">EJB</a></li>
-                    <li><a href="#">Jasper Report</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">分离的链接</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">另一个分离的链接</a></li>
-                </ul>
-            </li>
-        </ul> -->
        <div>
        		<form method="GET" class="navbar-form navbar-left zu-top-search-form" role="search" id="zh-top-search-form">
             	<div class="form-group">
@@ -250,9 +232,6 @@
     	</div>
         <!--向右对齐-->
         <div class="nav navbar-nav navbar-right">
-<!--         	 <button type="button" class="btn btn-default navbar-btn user-btn"> -->
-<!--         	 	 此处显示当前登录用户名称  -->
-<!--          	</button> -->
          	<button type="button" class="btn btn-default navbar-btn  user-btn">
          		<img id="headPic" class="img-rounded" height='35px' width='35px' src=""/>
          	</button>
