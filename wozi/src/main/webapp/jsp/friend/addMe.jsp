@@ -100,7 +100,7 @@
 							}
 						});
 				});  
-			}, 1000);
+			}, 2000);
 		  },
 		  cli: function(){
 			  $("#example tbody").on("click", "tr", function(){
@@ -112,7 +112,7 @@
 			  //提取出所想要添加的那个人的id
 			  var id = rowData.id;
 			  $.ajax({
-				  url:"<%=request.getContextPath()%>/friendController/sent",
+				  url:"<%=request.getContextPath()%>/friendController/accept",
 				  data:{id:id},
 				  type:"post",
 				  success:function(rs){

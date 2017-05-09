@@ -43,23 +43,23 @@ public class FriendController extends BaseController{
 	
 	/**接受别人的好友添加请求*/
 	public void accept(){
-		//传来那条好友申请添加记录的id
-		int id = this.getParaToInt("id");
-		FriendModel model = new FriendModel();
-		model.set("id", id)
-		.set("added_pass", "true");
-		this.service.update(model);
+		int id = (int) this.getSession().getAttribute("UID");//当前登录者的id
+		int otherId = this.getParaToInt("id");
+		boolean isSuccess = this.service.accept(id, otherId);
+		super.map.put("isSuccess", isSuccess);
+		super.map.put("msg", "同意"+(isSuccess?"成功":"失败"));
+		this.renderJson(super.map);
 	}
 	
 	/**拒绝别人的好友添加请求*/
 	public void deny(){
-		//传来那条好友申请添加记录的id
-		int id = this.getParaToInt("id");
-		FriendModel model = new FriendModel();
-		model.set("id", id);
-		this.service.del(model);
-		super.map.put("isSuccess", true);
-		super.map.put("msg", "拒绝他(她)们成功");
+		int id = (int) this.getSession().getAttribute("UID");//当前登录者的id
+		int otherId = this.getParaToInt("id");
+		
+		boolean isSuccess = this.service.del(id, otherId);
+		
+		super.map.put("isSuccess", isSuccess);
+		super.map.put("msg", "拒绝他(她)们"+(isSuccess?"成功":"失败"));
 		this.renderJson(super.map);
 	}
 	

@@ -1,7 +1,7 @@
 package com.wozi.friendmanager.service;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
@@ -83,6 +83,23 @@ public class FriendService  extends BaseService<Model<?>>{
 		String sql = "select count(*) from wozi_friends where add_side = ?"
 				+ " and added_side = ?";
 		return Db.queryLong(sql,selfId, id)>0;
+	}
+
+
+	public boolean del(int id, int otherId) {
+		String delSql = "delete from wozi_friends "
+				+ " where wozi_friends.added_side = ?"
+				+ " and wozi_friends.add_side = ?";
+		return Db.update(delSql, id, otherId) == 1;
+	}
+
+
+	public boolean accept(int id, int otherId) {
+		String sql = "update wozi_friends "
+				+ " set wozi_friends.added_pass = 'true' "
+				+ " , update_time = ?"
+				+ " where added_side = ? and add_side = ?";
+		return Db.update(sql,new Date(),id,otherId)==1;
 	}
 	
 
