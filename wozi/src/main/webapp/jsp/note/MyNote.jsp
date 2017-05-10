@@ -195,7 +195,7 @@
 	    position:fixed;
 	    width:100%;
 	    height:100%;
-	    background:#000;
+	    background:white;
 	    z-index:9999;
 	    top:0;
 	    left:0;
@@ -206,7 +206,7 @@
 <body>
 <div class="bg">
 
-	 <table id="example" class="table table-striped table-bordered"> 
+	 <table id="example"> 
    	 	<thead> 
      		<tr> 
      			<th></th> 
@@ -715,6 +715,9 @@
 	//Load出我的朋友 
 	function loadPeople(){
 		show();
+		
+		window.location.href="<%=request.getContextPath()%>/jsp/share/share.jsp?noteId="+currentNoteId;
+		return;
 		 t = $('#example').DataTable({
 		      ajax: {
 		          //指定数据源
