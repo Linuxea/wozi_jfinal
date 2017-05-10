@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>在线搜索好友</title>
+<title>我的好友</title>
 <!-- 此例子是结合bootstrap的Datatables，暂且定位为最基本的例子吧 -->
 <!-- 引入必须的css和js文件 -->
   <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" /> 

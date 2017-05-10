@@ -39,15 +39,24 @@ public class FriendService  extends BaseService<Model<?>>{
 
 	public List<Record> list(int id) {
 		String sql = "select * from wozi_friends where "
-				+ " added_pass = 'true' and add_side = ?"
+				+ " add_side = ?"
 				+ " or added_side = ?  order by create_time desc";
 		List<Record> rs = Db.find(sql, id, id);
 		this.filter(id, rs);//过滤掉自己一方
+		
+		for(Record temp:rs){
+			if(!temp.getStr("added_pass").equalsIgnoreCase("true")){
+				rs.remove(temp);//去除掉不同意的人
+				continue;
+			}
+		}
+		
 		return rs;
 	}
 
 	private void filter(int id, List<Record> rs) {
 		for(Record temp: rs){
+			
 			int one = temp.getInt("add_side");
 			int another = temp.getInt("added_side");
 			if(id != one){
