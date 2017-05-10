@@ -38,21 +38,56 @@ public class JMainConfig extends JFinalConfig {
 
 	@Override
 	public void configRoute(Routes me) {
+		/**
+		 * 基礎模塊
+		 */
 		me.add("baseController", BaseController.class);
+		
+		/**
+		 * 用戶模塊 
+		 */
 		me.add("userController", UserController.class);
+		
+		/**
+		 * 菜單模塊
+		 */
 		me.add("menuController", MenuController.class);
+		
+		/**
+		 * 筆記模塊 
+		 */
 		me.add("noteController", NoteController.class);
+		
+		/**
+		 * 社交模塊 
+		 */
 		me.add("friendController", FriendController.class);
+		
+		/**
+		 * 筆記搜索模塊
+		 */
 		me.add("noteSearchController", NoteSearchController.class);
+		
+		/**
+		 * 幫助模塊
+		 */
 		me.add("helpController", HelpController.class);
+		
+		/**
+		 * 後臺模塊 
+		 */
 		me.add("adminController", AdminController.class);
+		
+		/**
+		 * 聊天模塊
+		 */
 		me.add("chatController", ChatController.class);
 	}
 
 
 	@Override
 	public void configPlugin(Plugins me) {
-		// 配置C3p0数据库连接池插件
+		// 配置druid数据库连接池插件
 		DruidPlugin druidPlugin = 
 				new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
 		
@@ -83,20 +118,19 @@ public class JMainConfig extends JFinalConfig {
 	@Override
 	public void configInterceptor(Interceptors me) {
 //		me.add(new AuthInterceptor());
-		me.add(new LoginInterceptor());
-		me.add(new GlobalExceptionInterceptor());
+		me.add(new LoginInterceptor());//登錄攔截器
+		me.add(new GlobalExceptionInterceptor());//全局異常攔截器
 	}
 
 	@Override
 	public void configHandler(Handlers me) {
+		//jfinal配置druid數據源
 		DruidStatViewHandler dvh =  new DruidStatViewHandler("/druid");
 		me.add(dvh);
 	}
 
 	@Override
 	public void configEngine(Engine me) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
