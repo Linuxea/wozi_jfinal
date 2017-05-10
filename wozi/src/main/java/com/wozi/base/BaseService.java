@@ -1,37 +1,34 @@
 package com.wozi.base;
 
 import com.jfinal.plugin.activerecord.Model;
-import com.wozi.utils.impl.PointImpl;
 
 /**curd base service*/
 public class BaseService<T extends Model<?>> {
 	
 	/**model save*/
 	public boolean add(T model) {
-		boolean isSuccess = false;
-		isSuccess = model.save();
-		return isSuccess;
+		return model.save();
 	}
 	
 	/**model del*/
 	public boolean del(T model) {
-		boolean isSuccess = false;
-		isSuccess = model.delete();
-		return isSuccess;
+		return model.delete();
 	}
 	
 	/**model update*/
 	public boolean update(T model) {
-		boolean isSuccess = false;
-		isSuccess = model.update();
-		return isSuccess;
+		return model.update();
 	}
 	
 	/**model return newID
 	 * @return */
+	@SuppressWarnings("unchecked")
 	public <R> R getId(T model, String idName) {
-		model.save();
-		return (R)model.get(idName);
+		if(model.save()){
+			return (R)model.get(idName);
+		}else{
+			return null;
+		}
 	}
 	
 }
