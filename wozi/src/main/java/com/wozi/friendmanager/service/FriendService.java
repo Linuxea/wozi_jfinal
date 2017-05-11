@@ -7,6 +7,7 @@ import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Record;
 import com.wozi.base.BaseService;
+import com.wozi.notemanager.model.NoteModel;
 
 public class FriendService  extends BaseService<Model<?>>{
 
@@ -21,11 +22,27 @@ public class FriendService  extends BaseService<Model<?>>{
 	}
 
 	
+//	public boolean share(int noteId, int id, int to) {
+//		String sql = "insert into WOZI_NOTE_SHARE (noteId, fromId, toId)"
+//				+ " values (?,?,?)";
+//		return Db.update(sql,noteId, id, to) == 1;
+//	}
+	
+	/**
+	 * share the note to sb
+	 * @param noteId
+	 * @param id
+	 * @param to
+	 * @return
+	 */
 	public boolean share(int noteId, int id, int to) {
-		String sql = "insert into WOZI_NOTE_SHARE (noteId, fromId, toId)"
-				+ " values (?,?,?)";
-		return Db.update(sql,noteId, id, to) == 1;
+		NoteModel mm = new NoteModel();
+		mm.set("", noteId).set("", id).set("",to);
+		return super.add(mm);
 	}
+	
+	
+	
 
 	public List<Record> shareToMe(int id) {
 		String sql = "select * from WOZI_NOTE_SHARE where toId = ?";
