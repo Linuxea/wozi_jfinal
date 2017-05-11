@@ -190,22 +190,9 @@
     	padding-right:0;
     	padding-bottom:0;
     }
-    .bg{
-	    display:none;
-	    position:fixed;
-	    width:100%;
-	    height:100%;
-	    background:white;
-	    z-index:9999;
-	    top:0;
-	    left:0;
-	    opacity:1;
-    }
 	</style>
 </head>
 <body>
-<div class="bg">
-
 	 <table id="example"> 
    	 	<thead> 
      		<tr> 
@@ -704,17 +691,8 @@
 	}
 	
 	
-	function show(){
-		$("div.bg").css("display","block");
-	}
-	
-	function hide(){
-		$("div.bg").css("display","none");
-	}
-	
 	//Load出我的朋友 
 	function loadPeople(){
-// 		show();
 		if(!currentNoteId){
 			swal("请选择想要分享的笔记!", "分享失败", "error");
 			return;
@@ -761,6 +739,10 @@
 	
 	
 	function share(){
+		if(!rowData){
+			swal("选择好友", "请选择想要分享的好友!", "error");
+			return;
+		}
 		var toId = rowData.id;
 		$.ajax({
   		  url:"<%=request.getContextPath()%>/friendController/share", 
