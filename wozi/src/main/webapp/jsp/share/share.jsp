@@ -54,7 +54,7 @@
 		  bindEvent: function(){
 			  setTimeout(function(){
 				  $("button.btn-share").on("click", function(){
-					  alert(rowData.only);
+					  funs.share(noteId,rowData.only);
 				  });
 			  }, 500);
 		  },
@@ -109,6 +109,23 @@
 					          cell.innerHTML = i + 1;
 					      });
 					  }).draw();
+		  },
+		  
+		  share:function(noteId, toId){
+			  $.ajax({
+				  url:"<%=request.getContextPath()%>/friendController/share",
+				  data:{"noteId":noteId,"toId":toId},
+				  success:function(rs){
+					  if(rs.isSuccess){
+						  alert("share success");
+					  }else{
+						  alert("share failed");
+					  }
+				  },
+				  error:function(){
+					  alert("system error");
+				  }
+			  });
 		  },
   }
   
