@@ -488,7 +488,7 @@
 			success:function(rs){
 				if(rs.isSuccess) {
 					getNoteListByMenu(currentMenuId);
-					UE.getEditor('editor').setDisabled('fullscreen');
+// 					UE.getEditor('editor').setDisabled('fullscreen');
 					if(rs.isUpdate){
 						swal({
 							  title: "修改成功!",
@@ -714,8 +714,11 @@
 	
 	//Load出我的朋友 
 	function loadPeople(){
-		show();
-		
+// 		show();
+		if(!currentNoteId){
+			swal("请选择想要分享的笔记!", "分享失败", "error");
+			return;
+		}
 		window.location.href="<%=request.getContextPath()%>/jsp/share/share.jsp?noteId="+currentNoteId;
 		return;
 		 t = $('#example').DataTable({
