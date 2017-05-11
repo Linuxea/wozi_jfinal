@@ -70,18 +70,6 @@ public class FriendService  extends BaseService<Model<?>>{
 		return effect == 1;
 	}
 	
-	
-	
-
-	public List<Record> shareToMe(int id) {
-		String sql = "select * from WOZI_NOTE_SHARE where toId = ?";
-		return Db.find(sql);
-	}
-
-	public List<Record> shareFromMe(int id) {
-		String sql = "select * from WOZI_NOTE_SHARE where fromId = ?";
-		return Db.find(sql);
-	}
 
 	public List<Record> list(int id) {
 		String sql = "select * from wozi_friends where "

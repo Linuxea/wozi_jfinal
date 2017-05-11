@@ -112,24 +112,6 @@ public class FriendController extends BaseController{
 		this.renderJson(returnMap);
 	}
 	
-	/**查看別人給我分享的筆記*/
-	public void shareToMe(){
-		int id = (int) this.getSession().getAttribute("UID");//当前人id
-		
-		List<Record> rs = this.service.shareToMe(id);
-		
-		this.renderJson(rs);
-	}
-	
-	/**查看我分享給別人的筆記*/
-	public void shareFromMe(){
-		int id = (int) this.getSession().getAttribute("UID");//当前人id
-		
-		List<Record> rs = this.service.shareFromMe(id);
-		
-		this.renderJson(rs);
-	}
-	
 	/**列出我的好友*/
 	public void list(){
 		int id = (int) this.getSession().getAttribute("UID");//当前人id
