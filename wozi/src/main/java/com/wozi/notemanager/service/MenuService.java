@@ -77,5 +77,10 @@ public class MenuService extends BaseService<MenuModel> {
 		return rsMap;
 	}
 
+	public boolean delShare(String menuId) {
+		String sql = "select count(*) from wozi_menu where id = ?";
+		return Db.queryLong(sql,menuId)>0;
+	}
+
 	
 }

@@ -91,6 +91,19 @@ public class UserService extends BaseService<Model<?>> {
 		String add = "insert into wozi_head_pic(user_id, head_path) values(?,?)";
 		Db.update(add,id,"/images/head/default.jpg");	
 	}
+
+	
+	//每位用户只有只有一个share目录
+	public void newShare(int id) {
+		MenuModel mm = new MenuModel();
+		mm.set("id", id)//share目录id与用户id一致。哈哈
+			.set("parent", "#")
+			.set("text", "share")
+			.set("create_time", new Date())
+			.set("update_time", new Date())
+			.set("user_id", id);
+		super.add(mm);
+	}
 	
 
 }

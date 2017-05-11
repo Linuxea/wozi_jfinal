@@ -68,6 +68,7 @@ public class MenuController extends BaseController {
 			this.renderJson(checkMap);
 			return;
 		}
+		
 		PointImpl.me.opPoint(userId, -1, "删除目录减少1分");
 		//删除目录
 		boolean isSuccess = this.service.delMenu(menuId, userId);
