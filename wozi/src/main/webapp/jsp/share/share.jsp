@@ -117,13 +117,13 @@
 				  data:{"noteId":noteId,"toId":toId},
 				  success:function(rs){
 					  if(rs.isSuccess){
-						  alert("share success");
+						  swal("分享成功!", rs.msg, "success");
 					  }else{
-						  alert("share failed");
+						  swal("分享失败!", rs.msg, "success");
 					  }
 				  },
 				  error:function(){
-					  alert("system error");
+					  swal("系统错误!", "系统没救了,请在留言区通知管理员，非常感谢", "error");
 				  }
 			  });
 		  },

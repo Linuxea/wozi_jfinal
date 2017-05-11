@@ -102,9 +102,13 @@ public class FriendController extends BaseController{
 	
 	/**分享笔记*/
 	public void share(){
+		
 		int noteId = this.getParaToInt("noteId");
 		int id = (int) this.getSession().getAttribute("UID");//当前人id
 		int to = this.getParaToInt("toId");//对方id 目前做成一个的
+		
+		//查看是否分享过了
+		boolean repeat = this.service.repeatShare(noteId, id, to);
 		
 		boolean isSuccess = this.service.share(noteId, id, to);
 		Map<String, Object> returnMap = Maps.newHashMap();

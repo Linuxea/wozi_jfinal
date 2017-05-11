@@ -144,6 +144,13 @@ public class FriendService  extends BaseService<Model<?>>{
 				+ " where added_side = ? and add_side = ?";
 		return Db.update(sql,new Date(),id,otherId)==1;
 	}
+
+	
+	
+	public boolean repeatShare(int noteId, int id, int to) {
+		String sql = "";
+		return false;
+	}
 	
 
 }
