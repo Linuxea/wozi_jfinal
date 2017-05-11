@@ -34,9 +34,6 @@ public class MappingKit {
 		/**头像信息表*/
 		arp.addMapping("wozi_head_pic","id", HeadPic.class);
 		
-		/**用户禁止表*/
-		arp.addMapping("wozi_user_stop", "id", UserStopModel.class);
-		
 	}
 	
 }
