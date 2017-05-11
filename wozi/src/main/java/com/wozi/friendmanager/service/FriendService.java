@@ -29,16 +29,26 @@ public class FriendService  extends BaseService<Model<?>>{
 //	}
 	
 	/**
-	 * share the note to sb
+	 * share the note to sb. share the one note each time
 	 * @param noteId
 	 * @param id
 	 * @param to
 	 * @return
 	 */
 	public boolean share(int noteId, int id, int to) {
-		NoteModel mm = new NoteModel();
-		mm.set("", noteId).set("", id).set("",to);
-		return super.add(mm);
+		
+		//select and insert 
+		/**
+		 * demo
+		 * INSERT INTO tbl_temp2 (fld_id) 
+		 * SELECT tbl_temp1.fld_order_id 
+		 * FROM tbl_temp1 WHERE tbl_temp1.fld_order_id > 100;
+		 */
+		
+		String dbSql = "";
+		int effect = Db.update(dbSql);
+		
+		return effect == 1;
 	}
 	
 	
