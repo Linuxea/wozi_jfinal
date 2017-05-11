@@ -37,6 +37,19 @@ public class FriendService  extends BaseService<Model<?>>{
 	 */
 	public boolean share(int noteId, int id, int to) {
 		
+//		CREATE TABLE `wozi_note` (
+//				  `id` int(11) NOT NULL AUTO_INCREMENT,
+//				  `name` varchar(50) NOT NULL,
+//				  `create_time` datetime NOT NULL,
+//				  `update_time` datetime NOT NULL,
+//				  `menu_id` varchar(11) NOT NULL,
+//				  `title` varchar(50) DEFAULT NULL,
+//				  `content` text,
+//				  `user_id` int(11) DEFAULT NULL,
+//				  PRIMARY KEY (`id`)
+//				) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8
+
+		
 		//select and insert 
 		/**
 		 * demo
@@ -45,8 +58,14 @@ public class FriendService  extends BaseService<Model<?>>{
 		 * FROM tbl_temp1 WHERE tbl_temp1.fld_order_id > 100;
 		 */
 		
-		String dbSql = "";
-		int effect = Db.update(dbSql);
+		String findSql = "select * from wozi_note where id = ? ";
+		Record onlyNote = Db.findFirst(findSql,noteId);
+		
+		String dbSql = "insert into wozi_note(name,create_time,update_time,menu_id,title,content,user_id) "
+				+ " values(?,?,?,?,?,?,?)";
+		int effect = //share目录的id与用户的id是一致的
+				Db.update(dbSql,onlyNote.getStr("name"),onlyNote.getDate("create_time"),onlyNote.getDate("update_time")
+				,to,onlyNote.getStr("title"), onlyNote.getStr("content"), to);
 		
 		return effect == 1;
 	}
