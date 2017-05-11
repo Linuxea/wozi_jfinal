@@ -625,6 +625,9 @@
                    	data:{"currentNoteId":nodeId},
                    	success:function(rs){
                    			getNoteListByMenu(currentMenuId);//重新加载日记列表
+                   			if(nodeId === currentNoteId){
+                   				currentNoteId = null;//即是被选的删除
+                   			}
                    	}
                    });
                }else if(key === "share"){//这里应该做成弹窗的形势
