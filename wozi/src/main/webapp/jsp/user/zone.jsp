@@ -58,6 +58,7 @@
            	<li id="leave"><a href="#">留言</a></li>
            	<li id="point"><a href="#">历史积分</a></li>
            	<li id="friend"><a href="#">好友</a></li>
+           	<li id="exit"><a href="#">退出</a></li>
         </ul>
     </div>
     </div>
@@ -108,9 +109,29 @@
 				$("#point").on("click", function(){
 					funs.jump("<%=request.getContextPath()%>/jsp/user/point.jsp");
 				});
+				
+				//logout
+				$("#exit").on("click", function(){
+					funs.logout();
+				});
 			},
 			jump: function(src){
 				$("#outer").attr("src", src);
+			},
+			logout: function(){
+				$.ajax({
+					url:"<%=request.getContextPath()%>/userController/logout",
+					type:"get",
+					success:function(rs){
+						if(rs.isSuccess){
+							window.location.href="<%=request.getContextPath()%>/jsp/user/login.jsp";
+						}
+					},
+					error:function(){
+						
+					}
+					
+				});
 			}
 	}
 

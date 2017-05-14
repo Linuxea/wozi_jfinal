@@ -187,5 +187,10 @@ public class UserController extends BaseController{
 		
 	}
 	
+	public void logout(){
+		this.getSession().invalidate();
+		this.renderJson("isSuccess",true);
+	}
+	
 	
 }
