@@ -193,17 +193,6 @@
 	</style>
 </head>
 <body>
-	 <table id="example"> 
-   	 	<thead> 
-     		<tr> 
-     			<th></th> 
-      			<th>名称</th>
-      			<th></th>
-     		</tr> 
-    	</thead> 
-    	<tbody></tbody> 
-    <!-- tbody是必须的 --> 
-   	</table> 
 	
 </div>
 <nav class="navbar navbar-default" role="navigation">

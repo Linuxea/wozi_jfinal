@@ -54,7 +54,7 @@
 			  funs.cli();
 		  },
 		  bindEvent: function(){
-			setTimeout(function(){
+			setInterval(function(){
 				$("button.btn-add").on("click", function(){
 					swal({
 						  title: "确认添加该好友吗?",
@@ -77,7 +77,7 @@
 							}
 						});
 				});  
-			}, 1000);
+			}, 200);
 		  },
 		  cli: function(){
 			  $("#example tbody").on("click", "tr", function(){
