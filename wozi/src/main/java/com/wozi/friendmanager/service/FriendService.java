@@ -2,6 +2,7 @@ package com.wozi.friendmanager.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
@@ -76,16 +77,19 @@ public class FriendService  extends BaseService<Model<?>>{
 				+ " add_side = ?"
 				+ " or added_side = ?  order by create_time desc";
 		List<Record> rs = Db.find(sql, id, id);
-		this.filter(id, rs);//过滤掉自己一方
 		
-		for(Record temp:rs){
+		CopyOnWriteArrayList<Record> rs2 = new CopyOnWriteArrayList<>(rs);
+		
+		this.filter(id, rs2);//过滤掉自己一方
+		
+		for(Record temp:rs2){
 			if(!temp.getStr("added_pass").equalsIgnoreCase("true")){
-				rs.remove(temp);//去除掉不同意的人
+				rs2.remove(temp);//去除掉不同意的人
 				continue;
 			}
 		}
 		
-		return rs;
+		return rs2;
 	}
 
 	private void filter(int id, List<Record> rs) {

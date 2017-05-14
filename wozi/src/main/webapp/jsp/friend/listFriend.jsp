@@ -23,9 +23,8 @@
     </div>
     <div>
         <ul class="nav navbar-nav" id="">
-        	<li id=""><a href="#">添加好友</a></li>
-        	<li id=""><a href="#">分享笔记</a></li>
-        	<li id="check"><a href="#">我的好友请求</a></li>
+        	<li id=""><a href="addFriend.jsp" target="blank">添加好友</a></li>
+        	<li id="check"><a href="addMe.jsp" target="blank">我的好友请求</a></li>
         </ul>
     </div>
     </div>
