@@ -24,3 +24,6 @@ jfinal类似于mvc+orm的小型轻量级框架<br>
 7.笔记打印模块：用户能够对特定的笔记进行打印操作。<br>
 8.添加好友，发送请求，拒绝请求模块<br>
 9.对好友分享笔记模块<br>
+
+
+ ![image](https://github.com/Linuxea/wozi/blob/master/wozi/src/main/webapp/%E9%A1%B9%E7%9B%AE%E8%B5%84%E6%96%99/%E5%9B%BE%E7%89%87/main.png)
