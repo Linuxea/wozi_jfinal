@@ -1,4 +1,4 @@
-我知笔记毕业设计<br>
+我知笔记<br>
 
 介绍：<br>
 在线笔记平台功能迷你版，从前端到后台的搭建<br>
@@ -9,8 +9,6 @@ ueditor用来做日志编辑<br>
 sweetalert用来做弹窗提示<br>
 后台jfinal+mysql<br>
 jfinal类似于mvc+orm的小型轻量级框架<br>
-基本数据库的操作<br>
-
 
 
 主要功能模块有：<br>
